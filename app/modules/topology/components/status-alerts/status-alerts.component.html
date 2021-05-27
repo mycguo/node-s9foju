@@ -1,0 +1,48 @@
+<mat-drawer-container class="drawer-container" hasBackdrop="false">
+  <mat-drawer #drawer mode="over" position="end" class="drawer" (closed)="onCloseAlert()">
+    <nx-status-alert-details-drawer *ngIf="details"
+                                    [details]="details"
+                                    (closeDrawer)="onCloseAlert()"></nx-status-alert-details-drawer>
+  </mat-drawer>
+
+  <mat-drawer-content class="drawer-content">
+    <div class="header">
+      <div class="header__title">Current Alerts</div>
+      <div class="header__filter">
+        <span *ngIf="formControl">
+          <nx-select className="nx-lightweight-select"
+                     [formControl]="formControl"
+                     [options]="selectModel.options"
+                     [displayModel]="selectModel.displayOptions"
+                     [inputValueTemplate]="inputValueTemplate">
+            <ng-template #inputValueTemplate let-item="item">Severity: {{item.name}}</ng-template>
+          </nx-select>
+        </span>
+      </div>
+      <button class="header__close-btn la-fontello la-fontello_close" (click)="onCloseDrawer()"></button>
+    </div>
+    <div class="body">
+      <nx-loading
+        [isLoading]="isLoading"
+        [error]="error"
+        [fatalMessageOverride]="fatalMessageOverride"
+        [contentTemplate]="content">
+        <ng-template #content>
+          <div @list>
+            <nx-status-alerts-item @items
+                                   [alert]="alert"
+                                   (alertClick)="onAlertClick($event)"
+                                   *ngFor="let alert of alerts"></nx-status-alerts-item>
+            <div @items
+                 class='alerts-count-info'
+                 *ngIf="alertsLimit.isReached">
+              Only {{alertsLimit.limit}} most recent alerts shown. You can see all Alerts on the <a
+              href="/alerts?tabId=active">Active Alert</a> page.
+            </div>
+          </div>
+        </ng-template>
+      </nx-loading>
+    </div>
+  </mat-drawer-content>
+
+</mat-drawer-container>

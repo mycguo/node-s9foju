@@ -1,0 +1,23 @@
+{
+  "extends": "../tsconfig.base.json",
+  "files": ["main.ts", "polyfills.ts"],
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "types": [],
+    "paths": {
+      "date-fns": [ "node_modules/date-fns"]
+    },
+    "target": "es5"
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "**/*.fixtures.ts",
+    "**/*.stories.ts",
+    "**/story/*.ts"
+  ],
+  "angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictMetadataEmit" : true
+  }
+}

@@ -1,0 +1,67 @@
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+
+.widget-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.widget-row {
+  flex: 1;
+}
+
+.live-insight-edge-summary__filter-form {
+  width: 100%;
+}
+
+.nx-live-insight-edge-summary-loading {
+  overflow-y: auto;
+}
+
+.nx-live-insight-edge-summary-container {
+  &.row {
+    flex-wrap: nowrap;
+    margin-bottom: 0;
+    min-height: 287px;
+    &:last-child:not(.row_has-bg):not(.row_single) {
+      margin-bottom: 0;
+    }
+
+    &:not(.row_single) {
+      flex-wrap: nowrap;
+    }
+
+    &:not(.row_has-bg):not(.row_single) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .col_w-50 {
+      width: 50%;
+    }
+
+    > .col {
+      padding: 16px;
+      flex-grow: 1;
+      &:first-child {
+        padding-right: 8px;
+        flex-grow: 1;
+        height: auto;
+      }
+
+      &:last-child {
+        padding-left: 8px;
+        flex-basis: 590px;
+        flex-shrink: 0;
+      }
+
+      > .row {
+        min-height: 275px;
+        max-height: 275px;
+      }
+    }
+  }
+}

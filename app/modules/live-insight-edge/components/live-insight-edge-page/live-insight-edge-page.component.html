@@ -1,0 +1,43 @@
+<nx-title-bar
+  pageTitle="LiveNA"
+  [pageActions]="doesConfigurationExist ? pageActions : null"
+>
+  <ng-template #pageActions>
+    <nx-button class="nx-title-bar-action">
+      <a class="nx-link" href="livenx/settings/device-management">View Device Management</a>
+    </nx-button>
+    <nx-button class="nx-title-bar-action" (btnClick)="openEditDataSourceModal()">Edit Data Source</nx-button>
+    <nx-button class="nx-title-bar-action" (btnClick)="deleteConfigurationClick.emit($event)">Delete Configuration</nx-button>    
+    <nx-button class="nx-title-bar-action" (btnClick)="checkConnectionStatusClick.emit($event)">Recheck Status</nx-button>
+    <nx-button class="nx-title-bar-action" [isPrimary]="true" (btnClick)="openConfigClick.emit($event)">Edit Connection</nx-button>
+  </ng-template>
+</nx-title-bar>
+<div class="nx-root-content-body">
+  <ng-container *ngIf="isCheckingConfiguration; else finishedLoading">
+      <div class="page-loading nx-root-container">
+        <nx-spinner
+          [spinnerSize]="SPINNER_SIZE.LG"
+          [spinnerPosition]="SPINNER_POSITION.STATIC_CENTER"
+        ></nx-spinner>
+      </div>
+</ng-container>
+</div>
+
+<ng-template #finishedLoading>
+  <ng-container *ngIf="!doesConfigurationExist; else configuredView">
+    <div class="nx-root-container">
+      <nx-no-data-message [model]="noDataModel"></nx-no-data-message>
+    </div>
+  </ng-container>
+
+  <ng-template #configuredView>
+      <nx-live-insight-edge-config-display-container class="nx-root-container"></nx-live-insight-edge-config-display-container>
+      <nx-tabset
+        class="nx-root-container"
+        [isContentDetailsView]="true"
+        [tabGroup]="tabs"
+        [selectedTabId]="selectedTabId">
+      </nx-tabset>
+  </ng-template>
+</ng-template>
+

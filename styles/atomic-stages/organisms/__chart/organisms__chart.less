@@ -1,0 +1,31 @@
+@import "../../../utilities/utilities";
+@import '_reset-highchart/organisms__chart_reset-highchart';
+@import '__legend/organisms__chart__legend';
+
+la-timeseries-chart,
+[la-timeseries-chart],
+la-apm-distribution-chart,
+[la-apm-distribution-chart] {
+  .highcharts-container {
+    margin: 0 auto;
+  }
+}
+
+.la-app-body_not-logged {
+  .la-custom-button_drilldown {
+    display: none;
+  }
+}
+
+.highcharts-button:not(.highcharts-contextbutton) {
+  .highcharts-button-box {
+    stroke: @la-color_geyser-base;
+    fill: @la-color_black-squeeze-base;
+  }
+}
+
+.highcharts-button-hover {
+  .highcharts-button-box {
+    fill: @secondary-button__background-color_is-hovered;
+  }
+}

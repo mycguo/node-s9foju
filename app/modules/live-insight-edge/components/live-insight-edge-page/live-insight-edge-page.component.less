@@ -1,0 +1,24 @@
+@import "../../../../../styles/atomic-stages/templates/__layout/__root/layouts__root";
+@import "../../../../../styles/atomic-stages/atoms/components__link";
+@import 'variables';
+@import "../../../../../../../client/nxuxComponents/components/laNoDataMessage/laNoDataMessage.less";
+
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nx-root-content-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.nx-root-container {
+  padding-bottom: 20px;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}

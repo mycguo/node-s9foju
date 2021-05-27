@@ -1,0 +1,40 @@
+@import "../../../../../styles/atomic-stages/atoms/__utils/atoms__utils.less";
+@import "../../../../../styles/atomic-stages/atoms/__workaround/atoms__workaround.less";
+@import 'mixins';
+
+@componentHeight: 192px;
+@gutterWidth: 18px;
+@metaWidth: 360px - @gutterWidth;
+
+.live-insight-edge-reports__content {
+  height: @componentHeight;
+  .content__chart {
+    display: inline-block;
+    height: 100%;
+    width: calc(100% - @metaWidth);
+  }
+  .content__meta {
+    display: inline-block;
+    height: @componentHeight;
+    width: @metaWidth - 18px;
+    margin-left: @gutterWidth;
+    vertical-align: top;
+    .meta__elements {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      nx-horizontal-legend {
+        width: 100%;
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+.live-insight-edge-reports__card {
+  .nx-lightweight-card__header-subtitle {
+    text-transform: capitalize;
+  }
+}
+

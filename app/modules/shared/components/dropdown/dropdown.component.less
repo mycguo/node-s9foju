@@ -1,0 +1,14 @@
+@import '../../../../../styles/atomic-stages/molecules/dropdown/dropdown';
+
+:host {
+  &:extend(.nx-dropdown-wrapper all);
+  vertical-align: top; // IE 11 add extra space for the total height if inner elements have different line-height value
+}
+
+:host([disabled]) {
+  cursor: not-allowed;
+
+  .mat-menu-trigger {
+    pointer-events: none;
+  }
+}

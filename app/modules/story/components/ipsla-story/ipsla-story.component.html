@@ -1,0 +1,13 @@
+<nx-title-bar pageTitle="IP SLA"
+              [pageActions]="actions">
+  <ng-template #actions>
+    <nx-switcher
+      [switcherModel]="switcherModel"
+      [(ngModel)]="selectedSwitcher"
+      [ngModelOptions]="{standalone: true}"
+      (ngModelChange)="onIpslaTypeChange($event)">
+    </nx-switcher>
+  </ng-template>
+</nx-title-bar>
+
+<nx-tabset [tabGroup]="tabs"></nx-tabset>

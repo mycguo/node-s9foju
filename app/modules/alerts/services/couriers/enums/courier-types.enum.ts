@@ -1,0 +1,7 @@
+export enum CourierTypes {
+  PAGER_DUTY_EMAIL= 'PAGER_DUTY_EMAIL',
+  SERVICE_NOW = 'SERVICE_NOW',
+  WEB_UI = 'WEB_UI',
+  SNMP_TRAP = 'SNMP_TRAP',
+  SYSLOG = 'SYSLOG'
+}

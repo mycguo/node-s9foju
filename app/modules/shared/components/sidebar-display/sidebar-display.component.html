@@ -1,0 +1,21 @@
+<div class="nx-sidebar__header">
+  <div class="nx-sidebar__header-main">
+    <ng-template *ngTemplateOutlet="header ? header : defaultHeader"></ng-template>
+
+    <ng-template #defaultHeader>
+      <strong class="nx-sidebar-title">{{titleText || ''}}</strong>
+    </ng-template>
+  </div>
+
+  <button class="nx-sidebar-close-btn la-fontello la-fontello_close" (click)="closeSidebar()"></button>
+</div>
+
+<div class="nx-sidebar__body">
+  <ng-template #body></ng-template>
+</div>
+
+<div *ngIf="footer" class="nx-sidebar__footer">
+  <ng-template *ngTemplateOutlet="footer"></ng-template>
+</div>
+
+

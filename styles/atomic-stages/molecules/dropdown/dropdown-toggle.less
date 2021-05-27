@@ -1,0 +1,49 @@
+@import "../../../utilities/utilities";
+@import "../../atoms/__button/atoms__button";
+@import "../../atoms/la-icon";
+@import "dropdown-helpers";
+
+.nx-dropdown-wrapper {
+  .la-btn {
+    &[dropdown-toggle][aria-expanded="true"] {
+      &:extend(.la-btn:hover all);
+    }
+  }
+
+  .la-btn_white {
+    &[dropdown-toggle][aria-expanded="true"] {
+      &:extend(.la-btn_white:hover all);
+    }
+  }
+
+  .la-icon-btn_white {
+    &[dropdown-toggle],
+    &[class*="buttons---dropdown-toggle"]{
+      &[aria-expanded="true"] {
+        &:extend(.la-icon-btn_white:hover all);
+      }
+    }
+  }
+
+  .la-icon {
+    &[dropdown-toggle] {
+      &[aria-expanded="true"] {
+        &:extend(.la-icon_has-hover-effect:hover);
+      }
+
+      .overview-dashboard-widget__header-table-cell_navigation-btns & {
+        font-size: 12px;
+        width: 28px;
+      }
+
+      &.la-fontello_columns-icon {
+        &:before {
+          font-size: 12px;
+          la-table-column-filter-button & {
+            line-height: 25px;
+          }
+        }
+      }
+    }
+  }
+}

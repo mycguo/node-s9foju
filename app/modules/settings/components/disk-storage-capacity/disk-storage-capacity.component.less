@@ -1,0 +1,156 @@
+@import 'mixins';
+
+@legend-item-bottom__indent-left_base: 14px;
+@nx-disk-storage-capacity-tick__min-width_base: 6px;
+
+:host {
+  display: block;
+}
+
+.nx-disk-storage-capacity__chart-labels {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+
+.nx-disk-storage-capacity-chart-label {
+  font-size: 0;
+}
+
+.nx-disk-storage-capacity-chart-label__key,
+.nx-disk-storage-capacity-chart-label__value {
+  font-family: @la-font-family_base;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.nx-disk-storage-capacity-chart-label__key {
+  display: inline-block;
+  padding-right: 6px;
+  color: @la-color_regent-gray-base;
+}
+
+.nx-disk-storage-capacity-chart-label__value {
+  color: @la-color_oxford-blue-base;
+}
+
+.nx-disk-storage-capacity__chart-body {
+  height: 16px;
+  margin-bottom: 18px;
+  display: flex;
+}
+
+.chart-part {
+  margin-right: 1px;
+  min-width: @nx-disk-storage-capacity-tick__min-width_base;
+  position: relative;
+  &:last-child {
+    flex-grow: 1;
+    margin-right: 0;
+  }
+
+  i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: @nx-disk-storage-capacity-tick__min-width_base / 2;
+    max-width: 100%;
+  }
+}
+
+.chart-part_color_other-data,
+.nx-disk-storage-capacity-legend__item_color_other-data .nx-disk-storage-capacity-legend__item-top-icon {
+  background-color: @la-color_regent-gray-base;
+}
+
+.chart-part_color_other-data {
+  flex-shrink: 0;
+}
+
+.chart-part_color_free-space {
+  background-color: darken(@la-color_black-squeeze-base, 2%);
+}
+
+.chart-part:first-child {
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.chart-part:last-child {
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.nx-disk-storage-capacity-legend {
+  display: flex;
+  justify-content: space-between;
+  :host-context(nx-node-data-info-list) & {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}
+
+.nx-disk-storage-capacity-legend__item {
+  padding-right: 10px;
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.nx-disk-storage-capacity-legend__item-top {
+  padding-bottom: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.nx-disk-storage-capacity-legend__item-top-icon {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.nx-disk-storage-capacity-legend__item-top-text {
+  .la-mixin_text(@la-font-family_roboto, 12px, 14px, @la-color_regent-gray-base);
+  white-space: nowrap;
+}
+
+.nx-disk-storage-capacity-legend__item-bottom {
+  position: relative;
+  padding-left: @legend-item-bottom__indent-left_base;
+  display: flex;
+  align-items: center;
+  .nx-disk-storage-capacity-legend_has-input & {
+    height: 28px;
+  }
+}
+
+.nx-disk-storage-capacity-legend__item-bottom-text {
+  .la-mixin_text(@la-font-family_roboto, 12px, 14px, @la-color_oxford-blue-base);
+  white-space: nowrap;
+}
+
+:host-context(nx-node-data-info-list) {
+  .nx-disk-storage-capacity-legend__item {
+    display: flex;
+    align-items: center;
+  }
+
+  .nx-disk-storage-capacity-legend__item-top {
+    padding-bottom: 0;
+  }
+
+  .nx-disk-storage-capacity-legend__item-bottom {
+    padding-left: 2px;
+  }
+
+  .nx-disk-storage-capacity-legend__item-top-text-postfix {
+    display: none;
+  }
+
+  .chart-part {
+    i {
+      min-width: @nx-disk-storage-capacity-tick__min-width_base;
+    }
+  }
+}

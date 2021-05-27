@@ -1,0 +1,37 @@
+<div class="files-list">
+  <div class="file">
+    <div class="main-info" (click)="noLogoClick()">
+      <div class="la-radio" [ngClass]="{'la-radio_active': !activeLogoId}">
+        <div class="la-radio__navigation">
+          <label class="la-radio__label">
+            <input class="la-radio__input" name="logoSelection" [checked]="!activeLogoId" type="radio">
+            <span class="la-radio__text">{{noCustomLogo}}</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="file" *ngFor="let logo of logos">
+    <div class="main-info" (click)="logoClick(logo)">
+      <div class="la-radio" [ngClass]="{'la-radio_active': logo.id === activeLogoId}">
+        <div class="la-radio__navigation">
+          <label class="la-radio__label la-radio__label_has-no-text">
+            <input class="la-radio__input" name="logoSelection" [checked]="logo.id === activeLogoId" type="radio">
+            <span class="la-radio__text"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="image-wrapper">
+        <img [src]="prefixLogoUrl + logo.id + postfixLogoUrl + '?' + logo.lastLogoUpdateTime" width="54">
+      </div>
+      <div class="vertical-separator"></div>
+      <p class="file-name"> {{ logo.name }} </p>
+    </div>
+    <div class="actions">
+      <nx-button class="button" (click)="changeLogoClick(logo)">Edit</nx-button>
+      <nx-button class="button" (click)="deleteLogoClick(logo)">Delete</nx-button>
+    </div>
+  </div>
+</div>

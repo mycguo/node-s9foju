@@ -1,0 +1,28 @@
+<div class="la-no-data-message-container">
+
+  <div class="la-no-data-message">
+    <div class="la-no-data-message__icon"
+         [ngClass]="model.icon || 'la-no-data-message__icon-no-data'"></div>
+
+    <div class="la-no-data-message__text">
+      <ng-container *ngIf="titleTmpl; else defaultTitleTmpl">
+        <ng-template [ngTemplateOutlet]="titleTmpl"></ng-template>
+      </ng-container>
+
+      <p class="la-no-data-message__text-instruction">{{model.instruction}}</p>
+    </div>
+
+    <div class="la-no-data-message__actions"
+         *ngIf="model.buttons">
+      <button class="la-no-data-message__actions-btn la-btn"
+              *ngFor="let button of model.buttons"
+              [ngClass]="{'la-btn_cta':button.primary}"
+              (click)="button.action()">{{button.text}}</button>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #defaultTitleTmpl>
+  <p class="la-no-data-message__text-title" *ngIf="model.title">{{model.title}}</p>
+</ng-template>

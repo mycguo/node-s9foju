@@ -1,0 +1,23 @@
+<div class="upload-file-container" [ngClass]="{'upload-file-container_invalid': errorMessage}">
+  <div class="upload-file-inner-container"
+       fileUploader
+       (fileDropped)="uploadFile($event)">
+    <div class="text">
+      <p>Drop file here</p>
+      <p>or</p>
+      <button class="la-btn la-btn_white"
+              type="button"
+              (click)="fileInput.click()">Select File
+      </button>
+    </div>
+    <input #fileInput
+           class="hidden"
+           type="file"
+           [accept]="acceptedFileTypes | fileExtension"
+    >
+  </div>
+  <div *ngIf="disabled" class="overlay"></div>
+
+  <div class="file-uploader__validation-msg" *ngIf="errorMessage">{{errorMessage}}</div>
+</div>
+

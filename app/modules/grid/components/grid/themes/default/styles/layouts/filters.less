@@ -1,0 +1,30 @@
+/**
+ * @section Angular Grid
+ * @subsection Filters
+ */
+.nx-grid-default.ag-theme-balham_live-nx {
+  .ag-header-row {
+    &:last-child:not(:first-child) {
+      background-color: white;
+      box-shadow: 0 1px 0 1px @la-table__border-color_base;
+      .ag-header-cell {
+        padding: @la-table-filters-cell__padding_base;
+        &:last-child {
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .ag-floating-filter-button {
+    display: none;
+  }
+
+  .ag-floating-filter-body {
+    input {
+      max-height: none;
+    }
+  }
+}

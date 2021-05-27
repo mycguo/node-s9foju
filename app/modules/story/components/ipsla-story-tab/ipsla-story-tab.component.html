@@ -1,0 +1,17 @@
+<nx-loading [isLoading]="!tableWidget && !error"
+            [error]="error"
+            [contentTemplate]="content">
+  <ng-template #content>
+    <nx-dashboard-widget-container
+      [widgetId]="widgetId"
+      [hideCard]="true"
+      [headerTitle]="tableWidget.headerTitle"
+      [headerSubtitle]="tableWidget.headerSubtitle"
+      [dateRange]="tableWidget.timeLabel"
+      [dataKey]="tableWidget.dataKey"
+      [visualComponent]="tableWidget.visualComponent"
+      [visualDataGenerator]="tableWidget.visualDataGenerator"
+      [visualDataGeneratorOptions]="tableWidget.visualGeneratorOptions"
+    ></nx-dashboard-widget-container>
+  </ng-template>
+</nx-loading>

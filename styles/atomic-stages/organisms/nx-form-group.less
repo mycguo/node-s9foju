@@ -1,0 +1,24 @@
+@import "../../utilities/utilities";
+
+.nx-form-group__action-set {
+  display: flex;
+  align-items: center;
+}
+
+.nx-form-group_actions-pos_right {
+  display: flex;
+  align-items: center;
+  .nx-form-group__main {
+    flex-grow: 1;
+    border-right: 1px solid @la-color_mystic-base;
+    padding-right: 24px;
+    box-sizing: border-box;
+  }
+
+  .nx-form-group__action-set {
+    flex-shrink: 0;
+    flex-direction: column;
+    padding-left: 24px;
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,25 @@
+@import "../../../utilities/utilities";
+@import "dropdown-helpers";
+
+.nx-dropdown-checkbox-list {
+  margin-top: @nx-dropdown-content__vertical-indent_base;
+  margin-bottom: @nx-dropdown-content__vertical-indent_base;
+  padding: @nx-dropdown-checkbox-list__vertical-indent_base @nx-dropdown-checkbox-list__horizontal-indent_base;
+  &:not(:last-child) {
+    padding-bottom: @nx-dropdown-checkbox-list__vertical-indent_base + @nx-dropdown-content__vertical-indent_base;
+  }
+}
+
+.nx-dropdown-checkbox-list__item,
+.nx-dropdown-checkbox-list__sub-item {
+  display: block;
+  margin-bottom: 14px;
+  white-space: nowrap;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.nx-dropdown-checkbox-list__sub-item {
+  margin-left: 22px;
+}

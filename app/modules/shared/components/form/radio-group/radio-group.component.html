@@ -1,0 +1,25 @@
+<div
+  class="nx-radio nx-radio-group__item"
+  *ngFor="let option of radioGroup.options"
+  [ngClass]="{
+    'nx-radio_is_active': radioControl.value === option.id,
+    'nx-radio_is_disabled': radioControl.disabled,
+    'nx-radio_has-content':  !!contentTpl
+  }"
+>
+  <label>
+    <input class="nx-radio__input"
+           [formControl]="radioControl"
+           [value]="option.id"
+           (blur)="onTouch()"
+           type="radio"
+           [name]="groupName">
+
+    <div class="nx-radio__label">{{option.label}}</div>
+  </label>
+
+  <!-- Content is only supported for standalone mode (if current group has single child) -->
+  <div class="nx-radio__content" *ngIf="!!contentTpl" [hidden]="hideContent">
+    <ng-template [ngTemplateOutlet]="contentTpl"></ng-template>
+  </div>
+</div>

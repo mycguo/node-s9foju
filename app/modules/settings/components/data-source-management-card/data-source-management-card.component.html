@@ -1,0 +1,25 @@
+<nx-card
+  headerTitle="Data Source Management"
+  size="md"
+  [description]="description"
+  [body]="cardBody"
+  [footer]="cardFooter"
+>
+</nx-card>
+
+<ng-template #cardBody>
+  <form [formGroup]="group">
+    <nx-filter-input
+      [filterOptions]="options"
+      [formControlName]="filterControlName"
+    ></nx-filter-input>
+  </form>
+
+</ng-template>
+
+<ng-template #cardFooter>
+  <div nxButtonList class="nx-card-footer-buttons">
+    <nx-button (btnClick)="resetToDefault()">Reset to Default</nx-button>
+    <nx-button [isPrimary]="true" [isDisabled]="group.pristine || group.invalid" (btnClick)="onApply()">Apply</nx-button>
+  </div>
+</ng-template>

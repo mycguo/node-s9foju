@@ -1,0 +1,16 @@
+<div class="sortable-list"
+     (cdkDropListDropped)="drop($event)"
+     cdkDropListLockAxis="y"
+     cdkDropList>
+  <div class="sortable-item js-sidebar-ignore-sortable"
+       [ngClass]="{'active': item.active}"
+       *ngFor="let item of state.items; let i = index;"
+       cdkDragBoundary=".sortable-list"
+       [cdkDragDisabled]="item.disabled"
+       (click)="itemClick(item)"
+       cdkDrag>
+      <i class="la-fontello la-fontello_drag-and-drop sortable-item-handle" cdkDragHandle></i>
+
+      <ng-template [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{$implicit: item, index: i}"></ng-template>
+  </div>
+</div>

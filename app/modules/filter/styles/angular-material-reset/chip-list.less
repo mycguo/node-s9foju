@@ -1,0 +1,30 @@
+@import "../variables/variables";
+
+.nx-filter__tags {
+  .mat-chip-list-wrapper {
+    margin: 0;
+    flex-wrap: nowrap;
+    input {
+      &.mat-input-element {
+        margin: 0;
+        caret-color: @la-color_oxford-blue-base;
+      }
+
+      &.nx-filter-tag-group__input {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .nx-filter-tag-group__input {
+    input {
+      &.mat-chip-input {
+        flex: 1 0 @nx-filter-tag-group-input__width_base;
+      }
+    }
+  }
+
+  .mat-ripple-element {
+    display: none;
+  }
+}

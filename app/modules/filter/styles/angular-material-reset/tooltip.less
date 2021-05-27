@@ -1,0 +1,21 @@
+@import 'src/styles/utilities/mixins/mixins';
+
+.nx-filter-validation-msg {
+  .la-mixin_text(@la-font-family_roboto, 12px, 14px, @la-color_oxford-blue-base);
+  box-shadow: @la-shadow_level-3-base;
+  background-color: @la-color_chablis-base;
+  border: 1px solid @la-color_red-orange-base;
+  &.mat-tooltip {
+    overflow: visible;
+    max-width: none;
+  }
+}
+
+.nx-filter-validation-msg,
+.nx-filter-validation-msg.mat-tooltip-handset,
+.nx-filter-validation-msg.mat-tooltip {
+  margin: 6px 0 0;
+  padding: 4px 6px;
+  border-radius: 2px;
+  color: @la-color_oxford-blue-base;
+}

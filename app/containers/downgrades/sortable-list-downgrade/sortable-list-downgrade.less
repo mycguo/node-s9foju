@@ -1,0 +1,37 @@
+@import '/variables';
+
+.items {
+  margin-right: @sortable-list-item-element__horizontal-indent_base;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.item-name {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host-context(.la-hierarchical-alerts-list) {
+  .item-actions {
+    width: @sortable-list-item-actions__width_hierarchical-alerts;
+    flex-shrink: 0;
+  }
+}
+
+.item-copy,
+.item-delete {
+  font-size: 10px;
+  color: @la-color_regent-gray-base;
+  width: 26px;
+  height: 100%;
+  flex-shrink: 0;
+  transition: color .2s ease;
+
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+}

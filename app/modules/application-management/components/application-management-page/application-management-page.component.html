@@ -1,0 +1,16 @@
+<nx-title-bar
+  pageTitle="Application Management"
+  [pageActions]="pageActions"
+>
+  <ng-template #pageActions>
+    <ng-container>
+      <nx-button class="nx-title-bar-action" (btnClick)="navigateToApplicationsPage()">View WAN Applications</nx-button>
+    </ng-container>
+  </ng-template>
+</nx-title-bar>
+
+<nx-tabset
+  [tabGroup]="tabs"
+  [selectedTabId]="selectedTabId"
+  (tabSelected)="handleTabSelected($event)"
+></nx-tabset>

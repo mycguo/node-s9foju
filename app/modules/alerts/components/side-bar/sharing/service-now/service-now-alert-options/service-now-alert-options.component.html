@@ -1,0 +1,55 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="fields?.length > 0"
+  [contentTemplate]="content"
+>
+  <ng-template #content>
+    <ng-container>
+      <p class="nx-p row row_single">
+        Default ServiceNow settings set on
+        <a class="nx-link" href="/livenx/settings/service-now-global?tabId=ServiceNow">Global settings</a>
+        page. You can override individual settings below.
+      </p>
+
+      <div class="nx-form-group-container row row_single"
+           *ngFor="let selectedField of selectedFields; index as i"
+      >
+        <div class="nx-form-group-container__control-list">
+          <nx-service-now-global-settings-select-container
+            class="row row_single"
+            *ngFor="let field of selectedField"
+            [(ngModel)]="courierConfig[field.fieldName]"
+            (ngModelChange)="changeHandler()"
+            [fieldName]="field.fieldName"
+            [parentValue]="courierConfig[field.parentName]?.value"
+            [disabled]="isDisabled"
+            (blur)="onTouched()"
+          ></nx-service-now-global-settings-select-container>
+        </div>
+
+        <div class="nx-form-group-container__action-list">
+          <nx-button
+            class="nx-form-group-container__action-list-item js-sidebar-ignore"
+            icon="trash"
+            [isWhiteViewMode]="true"
+            [isDisabled]="isDisabled"
+            (btnClick)="removeOverride(i)"
+          ></nx-button>
+        </div>
+      </div>
+
+      <!-- override field -->
+      <nx-select
+        class="row row_single"
+        [options]="fieldSelectModel.options"
+        [displayModel]="fieldSelectModel.displayOptions"
+        [disabled]="isDisabled"
+        [ngModel]="overrideModel"
+        (ngModelChange)="overrideSelected($event)"
+        [ngModelOptions]="{standalone: true}"
+      ></nx-select>
+    </ng-container>
+
+  </ng-template>
+</nx-loading>

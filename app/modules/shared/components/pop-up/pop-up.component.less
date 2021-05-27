@@ -1,0 +1,50 @@
+@import '../../../../../styles/atomic-stages/molecules/pop-up';
+
+.cdk-overlay-pane_nx-pop-up {
+  > * {
+    overflow: inherit;
+    &:extend(.nx-pop-up all);
+  }
+
+  &.cdk-overlay-pane_has-pointer {
+    > * {
+      &:extend(.nx-pop-up_has-pointer all);
+    }
+
+    &.cdk-overlay-pane_pos_top-left {
+      > * {
+        &:extend(.nx-pop-up_has-pointer.nx-pop-up_pos_top-left all);
+      }
+    }
+
+    &.cdk-overlay-pane_pos_top-center {
+      > * {
+        &:extend(.nx-pop-up_has-pointer.nx-pop-up_pos_top-center all);
+      }
+    }
+
+    &.cdk-overlay-pane_pos_top-right {
+      > * {
+        &:extend(.nx-pop-up_has-pointer.nx-pop-up_pos_top-right all);
+      }
+    }
+
+    &.cdk-overlay-pane_pos_bottom-left {
+      > * {
+        &:extend(.nx-pop-up_has-pointer.nx-pop-up_pos_bottom-left all);
+      }
+    }
+
+    &.cdk-overlay-pane_pos_bottom-center {
+      > * {
+        &:extend(.nx-pop-up_has-pointer.nx-pop-up_pos_bottom-center all);
+      }
+    }
+
+    &.cdk-overlay-pane_pos_bottom-right {
+      > * {
+        &:extend(.nx-pop-up_has-pointer.nx-pop-up_pos_bottom-right all);
+      }
+    }
+  }
+}

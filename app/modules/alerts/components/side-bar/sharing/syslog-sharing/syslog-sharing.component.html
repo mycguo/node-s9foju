@@ -1,0 +1,20 @@
+<nx-checkbox
+  [ngClass]="{'nx-mr-8': syslogEnabled.disabled}"
+  [label]="displayName"
+  [formControl]="syslogEnabled"
+  (blur)="onTouched()"
+></nx-checkbox>
+
+<ng-container *ngIf="syslogEnabled.disabled">
+  <a
+    class="la-fontello la-fontello_not-configured nx-lightweight-icon-btn nx-position_relative"
+    [href]="configureUrl"
+    (mouseenter)="showTooltip = true"
+    (mouseleave)="showTooltip = false"
+  >
+    <nx-tooltip
+      *ngIf="showTooltip"
+      [alignment]="TOOLTIP_ALIGNMENT.TOP_LEFT"
+    >Syslog is not configured, click to configure</nx-tooltip>
+  </a>
+</ng-container>

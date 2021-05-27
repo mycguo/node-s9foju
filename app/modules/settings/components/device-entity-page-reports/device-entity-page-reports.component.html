@@ -1,0 +1,44 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="reports.length > 0"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <nx-card
+      headerTitle="Device Entity Page Reports"
+      [size]="CARD_SIZE"
+      [body]="cardBody"
+      [footer]="cardFooter"
+    >
+      <ng-template #cardBody>
+        <form
+          [formGroup]="formGroup"
+          (ngSubmit)="save()"
+        >
+          <nx-device-entity-page-report-list
+            [formControlName]="reportsKey"
+            [reportOptions]="reportOptions">
+          </nx-device-entity-page-report-list>
+
+        </form>
+      </ng-template>
+
+      <ng-template #cardFooter>
+        <div nxButtonList class="nx-card__footer-btn-list">
+          <nx-button
+            [isDisabled]="isResetDisabled || isLoading"
+            (btnClick)="resetToDefault()">
+            Reset to Default
+          </nx-button>
+
+          <nx-button
+            [isPrimary]="true"
+            [isDisabled]="!formGroup.valid || formGroup.pristine || isLoading"
+            (btnClick)="save()"
+          >Apply
+          </nx-button>
+        </div>
+      </ng-template>
+    </nx-card>
+  </ng-template>
+</nx-loading>

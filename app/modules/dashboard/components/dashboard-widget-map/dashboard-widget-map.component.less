@@ -1,0 +1,15 @@
+@import 'variables';
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// map widget inside card on dashboard should have full width and height
+:host-context(.nx-lightweight-card__body) {
+  margin-top: -@nx-lightweight-card-body__indents_base;
+  margin-left: -@nx-lightweight-card-body__indents_base;
+  width: calc(100% + @nx-lightweight-card-body__indents_base * 2);
+  height: calc(100% + @nx-lightweight-card-body__indents_base * 2);
+}

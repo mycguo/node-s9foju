@@ -1,0 +1,42 @@
+<div class="nx-grid-action-bar">
+  <div class="nx-grid-action-bar__primary-actions">
+    <div nxButtonList>
+      <nx-button
+        (btnClick)="addDevicesBtnClick()"
+      >Add
+      </nx-button>
+
+      <nx-button
+        [isDisabled]="!deleteButtonActive"
+        (btnClick)="deleteAppGroupClicked.emit()"
+      >Delete
+      </nx-button>
+    </div>
+  </div>
+
+  <div class="nx-grid-action-bar__secondary-actions">
+    <nx-table-string-filter
+      (searchTermChange)="searchTermChanged.emit($event)"
+    ></nx-table-string-filter>
+  </div>
+</div>
+
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="requestError"
+  [showContent]="!isLoading"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <nx-live-insight-edge-application-group-list
+      [data]="appGroupList"
+      [selectedAppGroupIds]="selectedAppGroupIds"
+      [errorMessage]="errorMessage"
+      [statusBarData]="statusBarData"
+      (appGroupsSelected)="handleAppGroupSelection($event)"
+      (columnFilterChanged)="columnFilterChanged.emit($event)"
+      (columnSortChanged)="columnSortChanged.emit($event)"
+      [fullHeight]="true"
+      [offsetBottom]="gridOffsetBottom"
+    ></nx-live-insight-edge-application-group-list>
+  </ng-template>
+</nx-loading>

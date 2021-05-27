@@ -1,0 +1,32 @@
+@import 'mixins';
+@import "helpers_card";
+
+.nx-common-integrations-display__body,
+.nx-common-integrations-display__footer {
+  &:extend(.apply__horizontal-indents_card-base);
+  width: @nx-integrations__width_base;
+  box-sizing: content-box;
+}
+
+.nx-common-integrations-display__body {
+  margin: 0 auto;
+  &:extend(.apply__bottom-indent_card-body-base);
+  &:extend(.apply__bottom-border_card-body-base);
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.nx-common-integrations-display__footer {
+  &:extend(.apply__vertical-indents_card-base);
+  &:extend(.apply__top-indent_card-footer-base);
+  justify-content: center;
+}
+
+.nx-common-integrations-display__body-content {
+  padding-bottom: 40px;
+}
+
+.nx-common-integrations-display__body-buttons {
+  justify-content: center;
+}

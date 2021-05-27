@@ -1,0 +1,26 @@
+<nx-section
+  [titleText]="'Thresholds'"
+  [hasHeaderSeparator]="false"
+>
+  <!--  thresholds-->
+  <ng-container [ngSwitch]="thresholdComponent">
+
+    <nx-alert-management-sidebar-threshold-qos
+      *ngSwitchCase="thresholdComponents.QOS"
+      [formControl]="thresholdConfigControl"
+      (blur)="onTouched()">
+    </nx-alert-management-sidebar-threshold-qos>
+
+    <nx-alert-management-sidebar-threshold-multiple
+      *ngSwitchCase="thresholdComponents.MULTIPLE"
+      [formControl]="thresholdConfigControl"
+      (blur)="onTouched()">
+    </nx-alert-management-sidebar-threshold-multiple>
+
+    <nx-alert-management-sidebar-threshold-single
+      *ngSwitchDefault
+      [formControl]="thresholdConfigControl"
+      (blur)="onTouched()">
+    </nx-alert-management-sidebar-threshold-single>
+  </ng-container>
+</nx-section>

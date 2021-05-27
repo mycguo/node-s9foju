@@ -1,0 +1,18 @@
+@import "../../../../../../styles/atomic-stages/organisms/nx-drawer";
+
+:host {
+  display: block;
+  height: 100%;
+  margin-left: -@nx-drawer__indent_base;
+  margin-right: -@nx-drawer__indent_base;
+}
+
+form {
+  &:extend(.nx-drawer__body);
+  padding-top: 0;
+}
+
+[nxButtonList] {
+  &:extend(.nx-drawer__footer);
+  padding-bottom: 0;
+}

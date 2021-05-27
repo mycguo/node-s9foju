@@ -1,0 +1,34 @@
+<div class="live-insight-edge-reports-list__sort-filters nx-indent_outer_bottom_row">
+  <form [formGroup]="sortFormGroup">
+    <div class="sort-filters">
+      <label>Sort by Date:</label>
+      <nx-select
+        [formControl]="dateSortFormControl"
+        [options]="dateSortModel.options"
+        [displayModel]="dateSortModel.displayOptions"
+      ></nx-select>
+      <label> then by Anomalies Number</label>
+      <nx-select
+        [formControl]="anomalyCountSortControl"
+        [options]="anomalyCountSortModel.options"
+        [displayModel]="anomalyCountSortModel.displayOptions"
+      ></nx-select>
+    </div>
+  </form>
+</div>
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="detailedError"
+  [contentTemplate]="reportList"
+>
+  <ng-template #reportList>
+    <nx-no-data-message *ngIf="isLoading == false && reports.length === 0"
+                        [model]="noDataObj"></nx-no-data-message>
+    <ng-container *ngFor="let report of reports">
+      <nx-live-insight-edge-reports-container
+        [report]="report"
+      >
+      </nx-live-insight-edge-reports-container>
+    </ng-container>
+  </ng-template>
+</nx-loading>

@@ -1,0 +1,11 @@
+<p>
+  test-upgrade-page works!
+</p>
+<h3>User info</h3>
+<div>
+  {{ userInfo | async | json }}
+</div>
+
+<div>
+  <button type="button" (click)="navigate()">Navigate</button>
+</div>

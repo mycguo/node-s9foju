@@ -1,0 +1,51 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [showContent]="true"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <div
+      class="nx-drawer-accordion"
+      [formGroup]="serviceNowFormGroup"
+      [ngClass]="{'nx-drawer-accordion_is-disabled': serviceNowFormGroup.disabled,
+              'nx-drawer-accordion_is-opened': showSettings}"
+    >
+
+      <div class="nx-drawer-accordion__header">
+        <nx-checkbox
+          [ngClass]="{'nx-mr-8': serviceNowFormGroup.disabled}"
+          [label]="displayName"
+          [formControlName]="ENABLED_KEY"
+          (blur)="onTouched()"
+        ></nx-checkbox>
+
+        <ng-container *ngIf="serviceNowFormGroup.disabled">
+          <a
+            class="la-fontello la-fontello_not-configured nx-lightweight-icon-btn nx-position_relative"
+            [href]="configureUrl"
+            (mouseenter)="showTooltip = true"
+            (mouseleave)="showTooltip = false"
+          >
+            <nx-tooltip
+              *ngIf="showTooltip"
+              [alignment]="TOOLTIP_ALIGNMENT.TOP_CENTER"
+            >ServiceNow is not configured, click to configure</nx-tooltip>
+          </a>
+        </ng-container>
+
+        <i *ngIf="isIncidentType"
+           class="nx-drawer-accordion-toggle"
+           (click)="showSettings = !showSettings">
+        </i>
+      </div>
+
+      <nx-service-now-alert-options-container
+        class="nx-drawer-accordion__body"
+        *ngIf="isIncidentType && showSettings"
+        [formControlName]="OVERRIDES_KEY"
+        (blur)="onTouched()"
+      ></nx-service-now-alert-options-container>
+
+    </div>
+
+  </ng-template>
+</nx-loading>

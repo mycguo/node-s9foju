@@ -1,0 +1,46 @@
+@import "helpers";
+@import "sortable-list-variables";
+.sortable-list {
+  max-width: 100%;
+  display: block;
+  background: @la-color_white-base;
+}
+
+.sortable-item {
+  position: relative;
+  padding: @nx-sortable-list-item__indent-inner_base;
+  color: @la-color_oxford-blue-base;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 18px;
+  cursor: pointer;
+  background-color: transparent;
+  box-shadow: 0 @nx-sortable-list-items-divider__size_base 0 0 @nx-sortable-list-items-divider__color_base;
+  transition: box-shadow @duration_sm @easing_base, background-color @duration_sm @easing_base;
+  &:hover {
+    background-color: @la-color_alabaster-base;
+  }
+
+  &.active {
+    background-color: @nx-sortable-list-item__background-color_focus;
+    box-shadow: inset 0 -@nx-sortable-list-items-divider__size_focus 0 0 @nx-sortable-list-items-divider__color_focus;
+  }
+}
+
+.sortable-item-handle {
+  cursor: ns-resize;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 7px;
+  color: @la-color_alto-base;
+  font-size: 12px;
+  transition: color @duration_sm @easing_base;
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+}

@@ -1,0 +1,42 @@
+<cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <!-- Tree node template for expandable nodes -->
+  <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" class="nx-tree-node" cdkTreeNodePadding cdkTreeNodePaddingIndent="24">
+    <div class="nx-tree-node-content">
+      <nx-checkbox
+        class="nx-tree-node-checkbox"
+        [ngModel]="node.selected"
+        [disabled]="node.disabled"
+        [partial]="descendantsPartiallySelected(node)"
+        (ngModelChange)="nodeItemSelectionToggle(node)"
+      ></nx-checkbox>
+
+      <div
+        class="nx-tree-node-toggle nx-tree-node-toggle_{{node.level === 0 ? 'lg' : 'md'}}"
+        cdkTreeNodeToggle
+        (click)="node.isExpanded = !node.isExpanded"
+        >
+        <span class="nx-tree-node-label" [innerHTML]="node.name | highlight: searchText"></span>
+        <i class="la-fontello nx-tree-toggle-icon"
+           [ngClass]="node.isExpanded ? 'la-fontello_chevron_up' : 'la-fontello_chevron_down'">
+        </i>
+      </div>
+
+    </div>
+
+    <div [class.nx-tree-invisible]="!node.isExpanded">
+      <ng-container cdkTreeNodeOutlet></ng-container>
+    </div>
+  </cdk-tree-node>
+  <!-- Tree node template for leaf nodes -->
+  <cdk-tree-node *cdkTreeNodeDef="let node" class="nx-tree-node" cdkTreeNodePadding cdkTreeNodePaddingIndent="24">
+    <div class="nx-tree-node-content">
+      <nx-checkbox
+        class="nx-tree-node-checkbox"
+        [ngModel]="node.selected"
+        [disabled]="node.disabled"
+        (ngModelChange)="leafNodeItemSelectionToggle(node)"
+      ></nx-checkbox>
+      <span class="nx-tree-node-label" [innerHTML]="node.name | highlight: searchText"></span>
+    </div>
+  </cdk-tree-node>
+</cdk-tree>

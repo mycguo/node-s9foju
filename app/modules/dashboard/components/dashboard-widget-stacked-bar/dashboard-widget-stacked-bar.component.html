@@ -1,0 +1,12 @@
+<ng-container *ngIf="data?.data != null && data.data.length > 0; else noDataMessage">
+  <nx-stacked-bar-time-series-chart
+    [chartData]="data"
+  ></nx-stacked-bar-time-series-chart>
+</ng-container>
+<ng-template #noDataMessage>
+  <div class="dashboard-widget-stacked-bar__no-data-message">
+    <div class="no-data-message__label">
+      No Data
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,28 @@
+<form class="sdwan-form nx-form nx-form_has-footer-divider"
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit()">
+
+  <div class="nx-form__body">
+    <nx-section [titleText]="'Connection Settings'" class="sdwan-form__connection-settings">
+      <nx-basic-integration-form
+        formControlName="integration"
+        [inlineView]="true"
+      ></nx-basic-integration-form>
+    </nx-section>
+
+    <nx-sdwan-header-form [formControlName]="headersKey"></nx-sdwan-header-form>
+  </div>
+
+  <div nxButtonList class="nx-form__footer nx-form__footer_align_right">
+    <nx-button *ngIf="isEdit" (click)="onCancel()">
+      Cancel
+    </nx-button>
+
+    <nx-button
+      [isPrimary]="true"
+      [isDisabled]="!formGroup.valid || formGroup.disabled"
+      [isSubmit]="true">
+      Submit
+    </nx-button>
+  </div>
+</form>

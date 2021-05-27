@@ -1,0 +1,113 @@
+@import 'variables';
+
+.nx-filter-chip-list-toggle-btn {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.nx-filter-chip-list-toggle-btn__label {
+  font-family: @la-font-family_base;
+  font-size: 12px;
+  line-height: 14px;
+  color: @la-color_oxford-blue-base;
+  font-weight: 400;
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+.nx-filter-chip-list-toggle-btn__icon {
+  font-size: 12px;
+  line-height: 18px;
+  color: @la-color_regent-gray-base;
+  text-align: center;
+  width: 18px;
+  border-radius: 4px;
+  background-color: @la-color_black-squeeze-base;
+  transition: color .2s ease;
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+}
+
+.nx-filter-chip {
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  padding-left: @nx-filter-chip__indent-horizontal-base;
+  padding-right: @nx-filter-chip__indent-horizontal-base;
+  background-color: @la-color_mystic-base;
+  [nxChipList] & {
+    margin-right: @nx-filter-builder-collapsed-tag-list-item__indent_base;
+  }
+
+  &:last-child {
+    [nxChipList] & {
+      margin-right: 0;
+    }
+  }
+}
+
+.nx-filter-chip_has_hiding-delete-btn {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+//:host-context(.nx-filter-chip-list_wrap) {
+//  margin-bottom: 4px;
+//}
+
+:host-context(.nx-filter-chip-group [nxChipList]) {
+  border-radius: 4px;
+}
+
+.nx-filter-chip__text {
+  font-family: @la-font-family_base;
+  font-size: 12px;
+  line-height: 14px;
+  color: @la-color_oxford-blue-base;
+  font-weight: 400;
+  white-space: nowrap;
+  padding-top: @nx-py-filter-chip-text-base;
+  padding-bottom: @nx-py-filter-chip-text-base;
+  cursor: default;
+  .nx-filter-chip_has_hiding-delete-btn & {
+    transform: translateX(4px);
+    transition: transform .2s ease-in;
+  }
+  &.nx-filter-chip-editable {
+    cursor: pointer;
+  }
+}
+
+.nx-filter-chip__delete-btn {
+  cursor: pointer;
+  font-size: 6px;
+  padding: 5px 6px 5px 4px;
+  margin-right: -6px;
+  color: @la-color_regent-gray-base;
+  transition: color .2s ease;
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+
+  .nx-filter-chip_has_hiding-delete-btn & {
+    pointer-events: none;
+    transform: scale(0, 0) rotate(30deg);
+    transition: color .2s ease, transform .2s ease-in;
+  }
+}
+
+:host-context(.nx-filter-chip-group):hover .nx-filter-chip_has_hiding-delete-btn {
+  .nx-filter-chip__text {
+    transform: translateX(0);
+    transition: transform .2s ease-out;
+  }
+
+  .nx-filter-chip__delete-btn {
+    transition: color .2s ease, transform .2s ease-out;
+    pointer-events: auto;
+    transform: scale(1, 1);
+  }
+}

@@ -1,0 +1,26 @@
+<div class="{{lightweight ? 'nx-lightweight-card__header' : 'nx-card__header'}}" *ngIf="header; else defaultHeader">
+  <ng-template
+    [ngTemplateOutlet]="header">
+  </ng-template>
+</div>
+
+<div class="{{lightweight ? 'nx-lightweight-card__body' : 'nx-card__body'}}" *ngIf="body">
+  <ng-template
+    [ngTemplateOutlet]="body">
+  </ng-template>
+</div>
+
+<div class="{{lightweight ? 'nx-lightweight-card__footer' : 'nx-card__footer'}}" *ngIf="footer">
+  <ng-template
+    [ngTemplateOutlet]="footer"></ng-template>
+</div>
+
+<ng-template #defaultHeader>
+  <div class="{{lightweight ? 'nx-lightweight-card__header' : 'nx-card__header'}}" *ngIf="headerTitle">
+    <p class="{{lightweight ? 'nx-lightweight-card__header-title nx-lightweight-card-header-title' : 'nx-card__header-title nx-card-header-title'}}">
+      {{headerTitle}}
+    </p>
+    <p class="nx-lightweight-card__header-subtitle nx-lightweight-card-header-subtitle" *ngIf="lightweight">{{subtitle}}</p>
+    <p class="nx-card__header-description nx-card-header-description nx-post" *ngIf="description && !lightweight">{{description}}</p>
+  </div>
+</ng-template>

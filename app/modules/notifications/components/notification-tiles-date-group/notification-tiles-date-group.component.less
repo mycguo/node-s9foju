@@ -1,0 +1,22 @@
+@import "../../../../../../../client/nxuxComponents/directives/laNotifications/laNotificationsSideBar/laNotificationsSideBar";
+
+:host {
+  overflow: hidden;
+  display: block;
+}
+
+.notification-tiles-date-group {
+  max-height: 100%;
+  overflow: hidden;
+  &--slide-up {
+    transform: translateY(-100%);
+    max-height: 0px;
+    transition:
+      transform .450s ease-in-out,
+      max-height .450s .450s;
+  }
+
+  .la-notifications-side-bar-show-more-btn {
+    margin-top: 6px;
+  }
+}

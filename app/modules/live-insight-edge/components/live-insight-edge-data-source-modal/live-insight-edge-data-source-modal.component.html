@@ -1,0 +1,54 @@
+<nx-modal-container
+  titleText="Edit Data Source"
+  [hasFooterSeparator]="false"
+  (closeButtonClicked)="close()"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+>
+  <ng-template #bodyTpl>
+    <form [formGroup]="formGroup">
+      <nx-loading
+        [isLoading]="isLoading$ | async"
+        [error]="error$ | async"
+        [showContent]="true"
+        [contentTemplate]="contentTemplate"
+      >
+        <ng-template #contentTemplate>
+          <p class="nx-p row row_single">WAN interfaces provide data by default. Also,
+            you can select interface and service provider tags to provide data to LiveNA.</p>
+
+          <nx-radio-group
+            class="row row_single"
+            [formControlName]="INTERFACES_KEY"
+            [radioGroup]="radioGroupModel"
+            [inline]="true"
+          ></nx-radio-group>
+
+          <nx-chips-input-multiselect
+            class="row row_single"
+            [formControlName]="INTERFACE_TAGS_KEY"
+            [chipsInputModel]="interfaceTagsModel"
+          ></nx-chips-input-multiselect>
+
+          <nx-chips-input-multiselect
+            class="row row_single"
+            [formControlName]="SERVICE_PROVIDER_KEY"
+            [chipsInputModel]="serviceProviderModel"
+          ></nx-chips-input-multiselect>
+        </ng-template>
+      </nx-loading>
+    </form>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="close()">Cancel</nx-button>
+
+      <nx-button
+        [isPrimary]="true"
+        [isDisabled]="(isLoading$ | async) || formGroup.pristine"
+        (btnClick)="onSubmit()"
+      >Save</nx-button>
+    </div>
+  </ng-template>
+</nx-modal-container>

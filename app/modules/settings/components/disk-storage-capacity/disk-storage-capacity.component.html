@@ -1,0 +1,73 @@
+<div class="nx-disk-storage-capacity__chart">
+  <div class="nx-disk-storage-capacity__chart-labels">
+    <p class="nx-disk-storage-capacity-chart-label">
+      <span class="nx-disk-storage-capacity-chart-label__key">Available Free Space:</span>
+      <span class="nx-disk-storage-capacity-chart-label__value">{{freeDiskSpace | byteFormatting}}</span>
+    </p>
+
+    <p class="nx-disk-storage-capacity-chart-label">
+      <span class="nx-disk-storage-capacity-chart-label__key">Total Disk Space:</span>
+      <span class="nx-disk-storage-capacity-chart-label__value">{{totalDiskSpace | byteFormatting}}</span>
+    </p>
+  </div>
+
+  <div class="nx-disk-storage-capacity__chart-body chart js-disk-storage-capacity-chart">
+    <div
+      class="chart-part chart-part_color_other-data"
+      *ngIf="unspecifiedDataStoreSize > 0"
+      [ngStyle]="{'width': getChartBarWidth(unspecifiedDataStoreSize, totalDiskSpace)+'%'}">
+    </div>
+
+    <div class="chart-part"
+         *ngFor="let legendItem of legend; let i = index"
+         [ngStyle]="{'background-color': barColors && barColors[i]?.parent, 'width': getChartBarWidth(legendItem.storeMaxValue, totalDiskSpace)+'%'}">
+      <i [ngStyle]="{'background-color': barColors && barColors[i]?.child, 'width': getChartBarChildWidth(legendItem.storeValue, legendItem.storeMaxValue)+'%'}"></i>
+    </div>
+
+    <div class="chart-part chart-part_color_free-space" *ngIf="!usedDiskSpace || freeDiskSpace > 0 && freeDiskSpace >= primaryStore?.storeMaxValue"></div>
+  </div>
+</div>
+
+<div class="nx-disk-storage-capacity__legend nx-disk-storage-capacity-legend"
+     [ngClass]="{'nx-disk-storage-capacity-legend_has-input': maxStoreSizeLegendDetailsTmpl}">
+  <div class="nx-disk-storage-capacity-legend__item nx-disk-storage-capacity-legend__item_color_other-data"
+       *ngIf="unspecifiedDataStoreSize > 0">
+    <div class="nx-disk-storage-capacity-legend__item-top">
+      <div class="nx-disk-storage-capacity-legend__item-top-icon"></div>
+      <div class="nx-disk-storage-capacity-legend__item-top-text">Other Data:</div>
+    </div>
+
+    <div class="nx-disk-storage-capacity-legend__item-bottom">
+      <p class="nx-disk-storage-capacity-legend__item-bottom-text">{{unspecifiedDataStoreSize | byteFormatting}}</p>
+    </div>
+  </div>
+
+  <div class="nx-disk-storage-capacity-legend__item" *ngFor="let legendItem of legend; let i = index">
+    <div class="nx-disk-storage-capacity-legend__item-top">
+      <div class="nx-disk-storage-capacity-legend__item-top-icon" [ngStyle]="{'background-color': barColors && barColors[i]?.child}"></div>
+      <div class="nx-disk-storage-capacity-legend__item-top-text">{{legendItem.storeName}} Store Size:</div>
+    </div>
+
+    <div class="nx-disk-storage-capacity-legend__item-bottom">
+      <p class="nx-disk-storage-capacity-legend__item-bottom-text">{{legendItem.storeValue | byteFormatting}}</p>
+    </div>
+  </div>
+
+  <div class="nx-disk-storage-capacity-legend__item" *ngIf="primaryStore?.storeMaxValue">
+    <div class="nx-disk-storage-capacity-legend__item-top">
+      <div class="nx-disk-storage-capacity-legend__item-top-icon"
+           [ngStyle]="{'background-color': getInputTypeLegendItemIconColor(legend)}"></div>
+      <div class="nx-disk-storage-capacity-legend__item-top-text">Max {{primaryStore?.storeName}}<span class="nx-disk-storage-capacity-legend__item-top-text-postfix"> Store Size</span>:</div>
+    </div>
+
+    <div class="nx-disk-storage-capacity-legend__item-bottom">
+      <ng-container *ngIf="maxStoreSizeLegendDetailsTmpl; else defaultMaxStoreSizeLegendDetailsTmpl">
+        <ng-template [ngTemplateOutlet]="maxStoreSizeLegendDetailsTmpl"></ng-template>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #defaultMaxStoreSizeLegendDetailsTmpl>
+  <p class="nx-disk-storage-capacity-legend__item-bottom-text">{{primaryStore?.storeMaxValue | byteFormatting}}</p>
+</ng-template>

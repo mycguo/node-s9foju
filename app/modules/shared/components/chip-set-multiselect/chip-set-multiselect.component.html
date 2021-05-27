@@ -1,0 +1,69 @@
+<mat-chip-list
+  #chipList
+  [disabled]="isDisabled"
+  matAutocompleteOrigin
+  #origin="matAutocompleteOrigin">
+  <div #chipsInputBody class="nx-chips-input__body{{ size ? ' nx-chips-input__body_size_' + size : '' }}"
+       (mousedown)="$event.preventDefault()"
+       (click)="onMultiselectBodyClick()">
+
+    <nx-chip
+      *ngFor="let chip of chips?.toArray()"
+      [value]="chip"
+      [color]="chip.color"
+      (delete)="deleteChips.emit([chip])"
+      (click)="$event.stopPropagation();">
+    </nx-chip>
+
+    <input
+      #chipInput
+      class="nx-chips-input__body-input nx-form-field-input"
+      [formControl]="inputCtrl"
+      nxAutocompleteScroll
+      [optionHeight]="28"
+      [panelHeight]="196"
+      [suggestionLength]="AUTOCOMPLETE_LENGTH"
+      [placeholder]="placeholder"
+      [matAutocomplete]="auto"
+      [matAutocompleteConnectedTo]="origin"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="SEPARATOR_KEY_CODES"
+      (keydown.arrowdown)="$event.stopPropagation();"
+      (keydown.arrowup)="$event.stopPropagation();"
+      (matChipInputTokenEnd)="multiselectAddText()"
+      (keydown.backspace)="onBackspace()"
+      (blur)="onBlurHandler($event)"
+      (focus)="onMultiselectBodyClick()"
+      autocomplete="off"/>
+
+  </div>
+
+  <span
+    *ngIf="chips?.size > 0 && !isDisabled"
+    class="nx-chips-input__clear-btn la-fontello la-fontello_close"
+    @fadeTrigger
+    (mousedown)="$event.preventDefault()"
+    (click)="$event.stopPropagation(); removeAllChips()"
+  ></span>
+</mat-chip-list>
+
+<mat-autocomplete
+  class="mat-autocomplete_chips-input"
+  #auto="matAutocomplete"
+  autoActiveFirstOption
+  (optionSelected)="selectOption($event.option.value)">
+  <mat-option class="mat-option_chips-input" [value]="option" *ngFor="let option of autocompleteOptions">
+    <ng-container *ngTemplateOutlet="suggestionsItemTmpl || dropdownOptionDefaultTmpl;
+                                     context: { data: option, highlight: searchValue || '' }">
+    </ng-container>
+
+    <ng-template #dropdownOptionDefaultTmpl let-data="data">
+      <span [innerHTML]="data.toString() | highlight: searchValue || ''"></span>
+    </ng-template>
+  </mat-option>
+
+  <div class="mat-option_hint"
+       *ngIf="autocompleteOptions?.length === AUTOCOMPLETE_LENGTH">
+    Only {{AUTOCOMPLETE_LENGTH}} first options are shown. Type a name to see more results.
+  </div>
+</mat-autocomplete>

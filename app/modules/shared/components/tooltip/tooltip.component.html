@@ -1,0 +1,9 @@
+<div class="la-tooltip__body nx-post{{size === TOOLTIP_SIZES.AUTO ? ' nx-nowrap': ''}}">
+  <ng-content></ng-content>
+</div>
+
+<button
+  class="la-tooltip__close-btn la-fontello la-fontello_close"
+  *ngIf="close && close.observers.length > 0"
+  (click)="close.emit()">
+</button>

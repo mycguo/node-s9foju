@@ -1,0 +1,53 @@
+@import "variables";
+@import "mixins";
+
+.nx-tree-node {
+  display: block;
+}
+
+.nx-tree-node-content {
+  display: flex;
+}
+
+.nx-tree-node-checkbox {
+  margin-right: 8px;
+}
+
+.nx-tree-node-toggle {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.nx-tree-invisible {
+  display: none;
+}
+
+.nx-tree-node-label {
+  flex-grow: 1;
+  .nx-typography-mixin(12px, 14px);
+  .nx-tree-node-toggle_lg &,
+  .nx-tree-node-toggle_md & {
+    font-weight: bold;
+  }
+
+  .nx-tree-node-toggle_lg & {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.nx-tree-toggle-icon {
+  cursor: pointer;
+  font-size: 6px;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: @la-color_regent-gray-base;
+  display: flex;
+  align-items: center;
+  transition: color .2s ease;
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+}

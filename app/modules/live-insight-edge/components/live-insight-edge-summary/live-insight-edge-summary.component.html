@@ -1,0 +1,112 @@
+<nx-title-bar
+  pageTitle="LiveNA Summary"
+  [bodyTmpl]="filter"
+></nx-title-bar>
+
+<ng-template #filter>
+  <form [formGroup]="filterFormGroup" class="live-insight-edge-summary__filter-form">
+    <nx-filter
+      [filterOptions]="filterOptions"
+      [formControlName]="staticFlexSearchKey"
+      [showApplyButton]="true"
+    ></nx-filter>
+  </form>
+</ng-template>
+
+<nx-loading
+  class="nx-live-insight-edge-summary-loading"
+  [isLoading]="!isLiveNaConnectionChecked"
+  [showContent]="false"
+  [error]="liveNaConnectionError"
+  [contentTemplate]="dashboard"
+  [errorTemplate]="errorMessage"
+></nx-loading>
+
+<ng-template #errorMessage>
+  <nx-no-data-message
+    class="nx-indent_inner_vertical_no-data-msg"
+    [model]="liveNaErrorModel"
+  ></nx-no-data-message>
+</ng-template>
+
+
+<ng-template #dashboard>
+  <div class="nx-live-insight-edge-summary-container row">
+    <nx-dashboard-widget-container
+      class="col col_w-50"
+      widgetId="livena-insights-application-summary"
+      [headerTitle]="widgetConfigMap.insights.headerTitle"
+      [headerSubtitle]="widgetConfigMap.insights.headerSubtitle"
+      [dateRange]="widgetTimeLabel"
+      [dataKey]="widgetConfigMap.insights.dataKey"
+      [visualComponent]="widgetConfigMap.insights.visualComponent"
+      [visualDataGenerator]="widgetConfigMap.insights.visualDataGenerator"
+      [visualDataGeneratorOptions]="widgetConfigMap.insights.visualGeneratorOptions"
+    ></nx-dashboard-widget-container>
+
+    <div class="widget-col col col_w-50">
+      <div class="widget-row row">
+        <nx-dashboard-widget-container
+          class="col col_w-50"
+          widgetId="livena-applications-summary"
+          [headerTitle]="widgetConfigMap.applications.headerTitle"
+          [headerSubtitle]="widgetConfigMap.applications.headerSubtitle"
+          [dateRange]="widgetTimeLabel"
+          [dataKey]="widgetConfigMap.applications.dataKey"
+          [visualComponent]="widgetConfigMap.applications.visualComponent"
+          [visualDataGenerator]="widgetConfigMap.applications.visualDataGenerator"
+          [visualDataGeneratorOptions]="widgetConfigMap.applications.visualGeneratorOptions"
+        ></nx-dashboard-widget-container>
+
+        <nx-dashboard-widget-container
+          class="col col_w-50"
+          widgetId="livena-sites-summary"
+          [headerTitle]="widgetConfigMap.sites.headerTitle"
+          [headerSubtitle]="widgetConfigMap.sites.headerSubtitle"
+          [dateRange]="widgetTimeLabel"
+          [dataKey]="widgetConfigMap.sites.dataKey"
+          [visualComponent]="widgetConfigMap.sites.visualComponent"
+          [visualDataGenerator]="widgetConfigMap.sites.visualDataGenerator"
+          [visualDataGeneratorOptions]="widgetConfigMap.sites.visualGeneratorOptions"
+        ></nx-dashboard-widget-container>
+      </div>
+
+      <div class="widget-row row">
+        <nx-dashboard-widget-container
+          class="col col_w-50"
+          widgetId="livena-device-summary"
+          [headerTitle]="widgetConfigMap.devices.headerTitle"
+          [headerSubtitle]="widgetConfigMap.devices.headerSubtitle"
+          [dateRange]="widgetTimeLabel"
+          [dataKey]="widgetConfigMap.devices.dataKey"
+          [visualComponent]="widgetConfigMap.devices.visualComponent"
+          [visualDataGenerator]="widgetConfigMap.devices.visualDataGenerator"
+          [visualDataGeneratorOptions]="widgetConfigMap.devices.visualGeneratorOptions"
+        ></nx-dashboard-widget-container>
+
+        <nx-dashboard-widget-container
+          class="col col_w-50"
+          widgetId="livena-site-map-summary"
+          [headerTitle]="widgetConfigMap.siteMap.headerTitle"
+          [headerSubtitle]="widgetConfigMap.siteMap.headerSubtitle"
+          [dateRange]="widgetTimeLabel"
+          [dataKey]="widgetConfigMap.siteMap.dataKey"
+          [visualComponent]="widgetConfigMap.siteMap.visualComponent"
+          [visualDataGenerator]="widgetConfigMap.siteMap.visualDataGenerator"
+        ></nx-dashboard-widget-container>
+      </div>
+
+      <nx-dashboard-widget-container
+        class="widget-row row row_single"
+        widgetId="livena-site-over-time"
+        [headerTitle]="widgetConfigMap.siteTimeSeries.headerTitle"
+        [headerSubtitle]="widgetConfigMap.siteTimeSeries.headerSubtitle"
+        [dateRange]="widgetTimeLabel"
+        [dataKey]="widgetConfigMap.siteTimeSeries.dataKey"
+        [visualComponent]="widgetConfigMap.siteTimeSeries.visualComponent"
+        [visualDataGenerator]="widgetConfigMap.siteTimeSeries.visualDataGenerator"
+        [visualDataGeneratorOptions]="widgetConfigMap.siteTimeSeries.visualGeneratorOptions"
+      ></nx-dashboard-widget-container>
+    </div>
+  </div>
+</ng-template>

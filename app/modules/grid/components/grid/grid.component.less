@@ -1,0 +1,30 @@
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import 'mixins';
+
+nx-grid {
+  display: block;
+  .nx-card_size-full & {
+    height: 100%;
+    width: 100%
+  }
+}
+
+.ag-theme-balham_live-nx {
+  .ag-cell_number {
+    text-align: right;
+  }
+
+  .ag-row-no-animation .ag-row {
+    transition: none;
+  }
+
+  // remove horizontal scroll from dashboard table widget
+  .ag-center-cols-viewport {
+    nx-live-insight-edge-summary & {
+      overflow-x: hidden;
+    }
+  }
+}
+
+@import "themes/themes.less";

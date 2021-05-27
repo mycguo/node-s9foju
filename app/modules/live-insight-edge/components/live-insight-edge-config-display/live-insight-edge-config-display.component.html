@@ -1,0 +1,18 @@
+<nx-card
+  [body]="cardBody"
+  headerTitle="LiveNA Information"
+  [lightweight]="true"
+></nx-card>
+
+<ng-template #cardBody>
+  <nx-key-value-list [inline]="true" [spread]="true">
+    <div nxKeyValueListItem key="Hostname" [value]="data ? data.hostname : '-'"></div>
+    <div nxKeyValueListItem key="Port" [value]="data ? data.port : '-'"></div>
+    <div nxKeyValueListItem key="Version" [value]="version"></div>
+    <ng-template nxKeyValueListItem key="Status" [template]="showStatus"></ng-template>
+    <ng-template #showStatus>
+      <span *ngIf="!isCheckingConnection" nx-status-indicator [status]="connectionStatus">{{connectionStatus}}</span>
+      <nx-spinner *ngIf="isCheckingConnection" [spinnerSize]="SPINNER_SIZE.XS"></nx-spinner>
+    </ng-template>
+  </nx-key-value-list>
+</ng-template>

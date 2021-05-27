@@ -1,0 +1,38 @@
+<ng-container *ngIf="!hideCard; else widgetBody">
+  <nx-card
+    [lightweight]="true"
+    [header]="widgetHeader"
+    [body]="widgetBody"
+    [size]="'full'"
+  >
+  </nx-card>
+</ng-container>
+
+<ng-template #widgetHeader>
+  <p class="nx-lightweight-card__header-title nx-lightweight-card-header-title">
+    {{headerTitle}}
+  </p>
+  <p class="nx-lightweight-card__header-subtitle nx-lightweight-card-header-subtitle">
+    {{headerSubtitle}}
+  </p>
+  <p class="nx-lightweight-card__header-notation nx-lightweight-card-header-notation">
+    {{dateRange}}
+  </p>
+</ng-template>
+<ng-template #widgetBody>
+  <nx-loading
+    [isLoading]="isLoading"
+    [error]="error"
+    [showContent]="showContent"
+    [contentTemplate]="dashboardVisual"
+  >
+    <ng-template #dashboardVisual>
+      <nx-dashboard-widget-visual
+        [component]="component"
+        [data]="data"
+        [config]="config"
+      ></nx-dashboard-widget-visual>
+    </ng-template>
+  </nx-loading>
+</ng-template>
+

@@ -1,0 +1,60 @@
+<nx-updating-data-message
+  *ngIf="taskLoading"
+  message="Job running"
+>
+</nx-updating-data-message>
+
+<div
+  class="nx-node-data-store-settings__header nx-h2 nx-indent_inner_bottom_layout_base"
+  *ngIf="settings?.node?.name"
+>
+  {{settings.node.name}}
+</div>
+
+<div
+  class="nx-node-data-store-settings__body"
+>
+  <nx-radio-group
+    class="nx-node-data-store-settings__body-content-switcher"
+    *ngIf="isCustomNodeSelected"
+    [formControl]="nodeSettingsTypeControl"
+    [radioGroup]="nodeSettingsTypeRadioGroup"
+    [inline]="true">
+  </nx-radio-group>
+
+  <div
+    [formGroup]="nodeDataStoreSettingsForm"
+    *ngIf="nodeDataStoreSettingsForm"
+    class="nx-node-data-store-settings__body-content"
+  >
+    <nx-data-store-settings
+      *ngFor="let storeSettings of dataStoreSettings"
+      [formControlName]="storeSettings.dataStoreType"
+      [settings]="storeSettings"
+      [allowEditing]="settings?.node?.id === DEFAULT_NODE_ID || nodeSettingsTypeControl?.value === NODE_SETTINGS_TYPES.CUSTOM"
+      [allowBackup]="settings?.node?.id !== DEFAULT_NODE_ID"
+      [disableActions]="settings?.node?.nodeState === NODE_STATES.DISCONNECTED || taskLoading"
+      (backup)="backupClick($event)"
+      (purge)="purgeClick($event)"
+      (reset)="resetClick($event)"
+      class="nx-indent_inner_bottom_section_lg"
+    ></nx-data-store-settings>
+  </div>
+</div>
+
+<div nxButtonList class="nx-node-data-store-settings__footer nx-indent_inner_top_layout_base" *ngIf="nodeDataStoreSettingsForm">
+  <nx-button
+    (btnClick)="revertBtnClick()"
+    [isDisabled]="!isSettingsDataChanged || isLoading"
+  >
+    Revert changes
+  </nx-button>
+
+  <nx-button
+    (btnClick)="applyBtnClick()"
+    [isPrimary]="true"
+    [isDisabled]="!isApplyBtnEnabled || isLoading"
+  >
+    Apply
+  </nx-button>
+</div>

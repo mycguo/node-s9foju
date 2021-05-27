@@ -1,0 +1,26 @@
+<nx-modal-container
+  [titleText]="data.title ? data.title : 'Confirm'"
+  [hasFooterSeparator]="true"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+  (closeButtonClicked)="close()"
+>
+  <ng-template #bodyTpl>
+    <div class="nx-post" [innerHTML]="data.message"></div>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="close(false)">
+        Cancel
+      </nx-button>
+
+      <nx-button
+        [isPrimary]="true"
+        (btnClick)="close(true)"
+      >
+        {{data.confirmButtonMessage ? data.confirmButtonMessage : 'Delete'}}
+      </nx-button>
+    </div>
+  </ng-template>
+</nx-modal-container>

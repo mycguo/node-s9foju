@@ -1,0 +1,43 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="showContent"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <div class="nx-grid-action-bar">
+      <div class="nx-grid-action-bar__primary-actions">
+        <div nxButtonList>
+          <nx-button
+            [isDisabled]="isEnableBtnDisabled"
+            (btnClick)="enabledClicked.emit()"
+            [isWhiteViewMode]="true"
+          >Enable</nx-button>
+
+          <nx-button
+            [isDisabled]="isDisabledBtnDisabled"
+            (btnClick)="disabledClicked.emit()"
+            [isWhiteViewMode]="true"
+          >Disable</nx-button>
+        </div>
+      </div>
+
+      <div class="nx-grid-action-bar__secondary-actions">
+        <nx-table-string-filter
+          (searchTermChange)="globalSearchTermChanged.emit($event)"
+        ></nx-table-string-filter>
+      </div>
+    </div>
+
+    <nx-grid
+      [data]="gridData"
+      [statusBarData]="statusBarData"
+      [columns]="columns"
+      [fullHeight]="true"
+      [getIdFromDataItem]="getIdFromDataItem"
+      (rowsSelected)="handleRowsSelected($event)"
+      (columnFilterChanged)="columnFilterChanged.emit($event)"
+      (columnSortChanged)="columnSortChanged.emit($event)">
+    </nx-grid>
+  </ng-template>
+</nx-loading>
+

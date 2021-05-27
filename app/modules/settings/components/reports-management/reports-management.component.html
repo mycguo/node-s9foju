@@ -1,0 +1,35 @@
+<div class="nx-grid-action-bar">
+  <div class="nx-grid-action-bar__primary-actions">
+    <div nxButtonList>
+
+      <nx-button
+        [isDisabled]="isReassignBtnDisabled"
+        (btnClick)="reassignBtnClicked.emit()">
+        Re-assign Ownership
+      </nx-button>
+
+      <nx-button
+        [isDisabled]="isDeleteBtnDisabled"
+        (btnClick)="deleteBtnClicked.emit()">
+        Delete
+      </nx-button>
+    </div>
+  </div>
+
+  <div class="nx-grid-action-bar__secondary-actions">
+
+  </div>
+</div>
+
+<nx-grid
+  [ngClass]="{'nx-grid_disabled': disableGrid}"
+  [fullHeight]="true"
+  [offsetBottom]="gridOffsetBottom"
+  [data]="gridData"
+  [columns]="columns"
+  [selectedIds]="selectedIds"
+  [statusBarData]="statusBarData"
+  (rowsSelected)="handleRowsSelected($event)"
+  (columnFilterChanged)="columnFilterChanged.emit($event)"
+  (columnSortChanged)="columnSortChanged.emit($event)">
+</nx-grid>

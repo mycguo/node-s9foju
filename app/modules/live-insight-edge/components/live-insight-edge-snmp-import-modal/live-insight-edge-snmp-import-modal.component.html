@@ -1,0 +1,32 @@
+<nx-modal-container
+  titleText="Import SNMP Data"
+  (closeButtonClicked)="cancel()"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+>
+  <ng-template #bodyTpl>
+    <p class="nx-p">
+      You are about to import SNMP data from LiveNX. All previous LiveNA data will be overwritten.<br />
+      Are you sure you want to proceed?
+    </p>
+
+    <nx-select
+      [displayModel]="displayModel"
+      [options]="options"
+      [formControl]="formControl"
+    ></nx-select>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="cancel()">Cancel</nx-button>
+
+      <nx-button
+        [isPrimary]="true"
+        (btnClick)="onSubmit()"
+      >
+        Proceed
+      </nx-button>
+    </div>
+  </ng-template>
+</nx-modal-container>

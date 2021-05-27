@@ -1,0 +1,141 @@
+@import 'variables';
+@import 'helpers_form';
+@import 'helpers_fontello';
+
+:host {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.nx-checkbox {
+  position: relative;
+}
+
+.nx-checkbox__label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  &:extend(.la-form-element-title);
+  font-weight: 400;
+  cursor: pointer;
+  &:before {
+    content: '';
+    height: @la-checkbox__height_base;
+    width: @la-checkbox__width_base;
+    border-radius: @la-form-element__border-radius_base;
+    border: @la-form-element__border_base;
+    box-sizing: content-box;
+    background-color: @la-form-element__background-color_base;
+    transition: background-color @duration_sm @easing_base, border-color @duration_sm @easing_base;
+    margin-right: 8px;
+  }
+
+  &:after {
+    &:extend(.la-fontello:before);
+    font-size: 6px;
+    color: @la-checkbox-icon__color_base;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: @la-checkbox__width_base + @la-form-element__border-width_base * 2;
+    text-align: center;
+    opacity: 0;
+    transition: opacity @duration_sm @easing_base, color @duration_sm @easing_base;
+  }
+
+  &:hover {
+    &:before {
+      border-color: @la-form-element__border-color_is-hovered;
+    }
+  }
+
+  &:empty {
+    &:before {
+      margin-right: 0;
+    }
+  }
+}
+
+.nx-checkbox__input {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  visibility: hidden;
+  &:checked {
+    + .nx-checkbox__label {
+      &:before {
+        background-color: @la-checkbox__background-color_is-checked;
+        border-color: @la-checkbox__border-color_is-checked;
+      }
+
+      &:after {
+        &:extend(.la-fontello_check:before);
+        opacity: 1;
+      }
+
+      &:hover {
+        &:before {
+          border-color: darken(@la-color_jaffa-base, 10%);
+          background-color: darken(@la-color_jaffa-base, 10%);
+        }
+      }
+    }
+  }
+
+  &:disabled {
+    + .nx-checkbox__label,
+    + .nx-checkbox__label:hover {
+      &:before {
+        background-color: @la-form-element__background-color_is-disabled;
+        border-color: @la-form-element__border-color_base;
+      }
+    }
+
+    + .nx-checkbox__label {
+      color: @la-form-element-label__color_disable;
+      cursor: not-allowed;
+      &:after {
+        color: @la-form-element__color_is-disabled;
+      }
+    }
+  }
+}
+
+.nx-checkbox_partial {
+  .nx-checkbox__label {
+    &:extend(.nx-checkbox__input:checked + .nx-checkbox__label all);
+    &:after {
+      &:extend(.la-fontello_minus:before);
+    }
+  }
+}
+
+/* If checkbox is related to the checkbox list displayed as column */
+:host-context(nx-checkbox-list),
+:host-context(.nx-checkbox-list) {
+  margin-bottom: 10px;
+  margin-right: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* If checkbox is related to the checkbox list */
+:host-context(.nx-checkbox-list_inline) {
+  margin-right: 16px;
+  margin-bottom: 0;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+:host-context(nx-toggle-input),
+:host-context(.la-form-element-title) {
+  .nx-checkbox__label {
+    font-weight: bold;
+  }
+}

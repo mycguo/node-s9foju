@@ -1,0 +1,101 @@
+<div class="la-app-header" nxClickOutside="'appbar'" (clickOutside)="onClickOutside()">
+  <div class="header__left">
+    <a href class="burger-menu" (click)="toggleMenu(true)" id="main-nav-toggle">
+      <i class="line"></i>
+      <i class="line"></i>
+      <i class="line"></i>
+    </a>
+
+    <div class="logo">
+      <a routerLink="/">
+        <img [src]="'/assets/images/logo.svg'"/>
+      </a>
+    </div>
+
+    <div id="walkme-user" style="display: none" *ngIf="walkmeUser">{{walkmeUser}}</div>
+  </div>
+
+
+  <div class="header__right">
+    <ul class="switch-btns -space-right-15 pull-left">
+      <li [ngClass]="{active: isActiveHeaderTab('NX')}">
+        <a class="appbar__nx-select" routerLink="/" (click)="selectTab('NX')"  title="NX">NX</a>
+      </li>
+
+      <li [ngClass]="{active: isActiveHeaderTab('NX+')}" *ngIf="showNxPlusAppNav">
+        <a class="appbar__nx-plus-select" routerLink="livenxplus-dashboard.main" title="NX+">NX+</a>
+      </li>
+
+      <li [ngClass]="{active: isActiveHeaderTab('UX')}" *ngIf="showUxAppNav">
+        <a class="appbar__ux-select" routerLink="{{uxState}}" (click)="selectTab('UX')" title="UX">UX</a>
+      </li>
+    </ul>
+
+
+    <div class="header-nav header__right-nav la-header-nav">
+      <div agent-status-summary class="header-nav__item"
+           *ngIf="(liveUxState === 'ux-dashboard') && (parentApp === 'UX')" title="Agent Summary"></div>
+
+      <nx-active-alerts-count-container class="header-nav__item header-nav__item_alerts" *ngIf="user !== undefined"></nx-active-alerts-count-container>
+<!--      <nx-active-alerts-count class="header-nav__item header-nav__item_alerts" *ngIf="user !== undefined"></nx-active-alerts-count>-->
+      <div class="header-nav__item header-nav__item_btn-toggle-notifications la-header-nav__item js-notifications-sidebar-toggle"
+          id="unread-notifications-appbar"
+          (click)="toggleNotificationWindow()"
+          title="Notifications"
+          [ngClass]="{'la-header-nav__item_is-active': false}">
+        <div class="la-header-nav-label">
+          <i class="la-fontello la-fontello_bell la-header-nav-label__icon la-header-nav-label-icon la-header-nav-label-icon_bell"></i>
+
+          <span class="la-header-nav-label__text la-header-nav-label__text la-header-nav-label-text">
+            {{unreadNotificationsIndicatorCount}}
+          </span>
+        </div>
+      </div>
+
+      <div class="header-nav__item api-link la-header-nav__item"
+           *ngIf="user !== undefined">
+        <div class="la-header-nav-label">
+          <a class="la-fontello la-fontello_api la-header-nav-label-icon"
+             routerLink="{{restApiUrl}}"
+             target="_blank"
+             title="API">
+          </a>
+        </div>
+      </div>
+
+      <div class="header-nav__item api-link la-header-nav__item js-header-nav-item"
+           *ngIf="user !== undefined">
+        <div class="la-header-nav-label">
+          <a class="la-fontello la-fontello_desktop-app la-header-nav-label-icon"
+             routerLink="{{webstartUrl}}"
+             target="_blank"
+             title="Launch Desktop App">
+          </a>
+        </div>
+      </div>
+
+      <nx-help-dropdown
+        [activeHeaderNavItem]="activeHeaderNavItem"
+        [showSupportPortalOption]="showSupportPortalOption"
+        (headerNavItemClicked)="setActiveHeaderNav($event)"
+      ></nx-help-dropdown>
+      <nx-settings-dropdown
+        *ngIf="user !== undefined"
+        [activeHeaderNavItem]="activeHeaderNavItem"
+        [isLoggedIn]="user !== undefined"
+        [access]="user.access"
+        (headerNavItemClicked)="setActiveHeaderNav($event)"
+      ></nx-settings-dropdown>
+      <nx-profile-dropdown
+        *ngIf="user !== undefined"
+        [activeHeaderNavItem]="activeHeaderNavItem"
+        [loggedInUser]="user"
+        (headerNavItemClicked)="setActiveHeaderNav($event)"
+      ></nx-profile-dropdown>
+
+    </div>
+  </div>
+</div>
+
+
+

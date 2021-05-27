@@ -1,0 +1,387 @@
+import { moduleMetadata } from '@storybook/angular';
+import { CustomOidPollingDevicesComponent } from './custom-oid-polling-devices.component';
+import { SharedModule } from '../../../shared/shared.module';
+import { GridModule } from '../../../grid/grid.module';
+import CustomOidPollingDevices from '../../services/custom-oid-polling/models/custom-oid-polling-devices';
+import { GridStatusBar } from '../../../grid/components/grid-status-bar/grid-status-bar';
+import ILaDeviceResponse from '../../../../../../../project_typings/api/laDevice/ILaDeviceResponse';
+
+const DEVICES_LIST: CustomOidPollingDevices[] = [
+  new CustomOidPollingDevices(<ILaDeviceResponse>{
+    id: '50B9AF1E',
+    serial: '50B9AF1E',
+    address: '10.122.122.103',
+    systemName: 'VANCOUVER-VE-03',
+    hostName: 'VANCOUVER-VE-03',
+    systemDescription: 'Viptela SNMP agent',
+    nodeId: '2195ad80-b1e1-4e34-8b2d-1d0c5bfe28de',
+    osVersion: {
+      majorNumber: 18,
+      minorNumber: 4,
+      indivNumber: '.0',
+      indivNumberSuffix: null,
+      newFeatureIdentifier: null,
+      newFeatureVersion: null,
+      versionString: '18.4.0',
+    },
+    osVersionString: '18.4.0',
+    vendorProduct: {
+      model: 'vedge-cloud',
+      displayName: 'vedge-cloud',
+      description: 'Viptela SNMP agent',
+      vendor: {
+        vendorName: 'Viptela',
+        vendorOid: {
+          displayName: '.1.3.6.1.4.1.41916',
+        },
+        vendorSerialOid: {
+          displayName: '.1.3.6.1.4.1.41916',
+        },
+      },
+      objectOID: {
+        displayName: '.1.3.6.1.4.1.41916.3.2.12',
+      },
+      asrModel: false,
+      objectOIDString: '.1.3.6.1.4.1.41916.3.2.12',
+    },
+    site: 'VANCOUVER-VE-03',
+    siteIp: ['10.174.1.0/24', '10.174.10.0/24', '10.174.2.0/24'],
+    isDataCenterSite: false,
+    taggedOmni: false,
+    interfaces: [
+      {
+        name: 'system',
+        wan: false,
+        tags: ['vpn0'],
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'eth0',
+        wan: false,
+        tags: ['vpn512'],
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'ge0/2.302',
+        wan: false,
+        tags: ['vpn200'],
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'ge0/0',
+        inputCapacity: 1000000,
+        outputCapacity: 1000000,
+        wan: true,
+        serviceProvider: 'biz-internet',
+        tags: ['vpn0'],
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'vmanage_system',
+        wan: false,
+        tags: ['vpn0'],
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'ge0/3',
+        inputCapacity: 1000000,
+        outputCapacity: 1000000,
+        wan: true,
+        serviceProvider: 'lte',
+        tags: ['vpn0'],
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'ge0/1',
+        inputCapacity: 1000000,
+        outputCapacity: 1000000,
+        wan: true,
+        serviceProvider: 'mpls',
+        tags: ['vpn0'],
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'ge0/2.301',
+        wan: false,
+        tags: ['vpn100'],
+        down: true,
+        xcon: false,
+      },
+    ],
+    monitorOnly: true,
+    settings: {
+      pollInterval: 60000,
+      enablePoll: true,
+      enableQosPoll: false,
+      enableNetflowPoll: true,
+      enableIpslaPoll: false,
+      enableLanPoll: false,
+      enableRoutingPoll: false,
+      virtualDevice: false,
+    },
+    capabilities: {
+      nbarCapable: false,
+      netflowCollectorCapable: true,
+      mediatraceCapable: false,
+      extendedTraceRouteCapable: false,
+      nbar2Capable: false,
+      flexibleNetflowCapable: false,
+      perfmonCapable: false,
+      avcCapable: false,
+      unifiedPerfmonCapable: false,
+      hqfSupportDetected: false,
+      ipslaCapable: false,
+    },
+    pollingSupported: {
+      netflowPollingSupported: true,
+      qosPollingSupported: true,
+      ipslaPollingSupported: true,
+      routingPollingSupported: true,
+      lanPollingSupported: true,
+    },
+    down: true,
+  }),
+  new CustomOidPollingDevices(<ILaDeviceResponse>{
+    id: '9H4C98RFILR',
+    serial: '9H4C98RFILR',
+    address: '10.1.40.229',
+    systemName: 'MC1_229.liveaction.com',
+    hostName: 'MC1_229',
+    systemDescription:
+      'Cisco IOS Software, CSR1000V Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 15.5(3)S4b, RELEASE SOFTWARE (fc1)\r\nTechnical Support: http://www.cisco.com/techsupport\r\nCopyright (c) 1986-2016 by Cisco Systems, Inc.\r\nCompiled Mon 17-Oct-16 19:49 by mcpre',
+    nodeId: '2195ad80-b1e1-4e34-8b2d-1d0c5bfe28de',
+    osVersion: {
+      majorNumber: 15,
+      minorNumber: 5,
+      indivNumber: '3',
+      indivNumberSuffix: null,
+      newFeatureIdentifier: 'S',
+      newFeatureVersion: 4,
+      versionString: '15.5(3)S4',
+      osType: 'IOS',
+    },
+    osVersionString: '15.5(3)S4',
+    vendorProduct: {
+      model: 'ciscoCSR1000v',
+      displayName: 'ciscoCSR1000v',
+      description: 'ciscoCSR1000v',
+      vendor: {
+        vendorName: 'Cisco',
+        vendorOid: {
+          displayName: '.1.3.6.1.4.1.9',
+        },
+        vendorSerialOid: {
+          displayName: '.1.3.6.1.4.1.9.3.6.3',
+        },
+      },
+      objectOID: {
+        displayName: '.1.3.6.1.4.1.9.1.1537',
+      },
+      asrModel: false,
+      objectOIDString: '.1.3.6.1.4.1.9.1.1537',
+    },
+    isDataCenterSite: false,
+    taggedOmni: false,
+    interfaces: [
+      {
+        name: 'GigabitEthernet1',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'GigabitEthernet2',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'GigabitEthernet4',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'GigabitEthernet5',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+    ],
+    monitorOnly: true,
+    settings: {
+      pollInterval: 60000,
+      enablePoll: true,
+      enableQosPoll: true,
+      enableNetflowPoll: true,
+      enableIpslaPoll: true,
+      enableLanPoll: false,
+      enableRoutingPoll: false,
+      virtualDevice: false,
+    },
+    capabilities: {
+      nbarCapable: false,
+      netflowCollectorCapable: true,
+      mediatraceCapable: false,
+      extendedTraceRouteCapable: false,
+      nbar2Capable: false,
+      flexibleNetflowCapable: false,
+      perfmonCapable: false,
+      avcCapable: false,
+      unifiedPerfmonCapable: false,
+      hqfSupportDetected: false,
+      ipslaCapable: false,
+    },
+    pollingSupported: {
+      netflowPollingSupported: true,
+      qosPollingSupported: true,
+      ipslaPollingSupported: true,
+      routingPollingSupported: true,
+      lanPollingSupported: true,
+    },
+    down: true,
+  }),
+  new CustomOidPollingDevices(<ILaDeviceResponse>{
+    id: 'FCW2031F067',
+    serial: 'FCW2031F067',
+    address: '10.1.137.2',
+    systemName: 'C3850-A-14',
+    hostName: 'C3850-A-14',
+    systemDescription:
+      'Cisco IOS Software, IOS-XE Software, Catalyst L3 Switch Software (CAT3K_CAA-UNIVERSALK9-M), Version 03.07.05.E RELEASE SOFTWARE (fc1)\r\nTechnical Support: http://www.cisco.com/techsupport\r\nCopyright (c) 1986-2017 by Cisco Systems, Inc.\r\nCompiled Fri 10-Feb',
+    nodeId: '2195ad80-b1e1-4e34-8b2d-1d0c5bfe28de',
+    osVersion: {
+      majorNumber: 3,
+      minorNumber: 7,
+      indivNumber: '5',
+      indivNumberSuffix: 'E',
+      newFeatureIdentifier: null,
+      newFeatureVersion: null,
+      versionString: '03.07.05.E',
+      osType: 'IOS_XE',
+    },
+    osVersionString: '03.07.05.E',
+    vendorProduct: {
+      model: 'cat38xxstack',
+      displayName: 'cat38xxstack',
+      description: 'cat38xxstack',
+      vendor: {
+        vendorName: 'Cisco',
+        vendorOid: {
+          displayName: '.1.3.6.1.4.1.9',
+        },
+        vendorSerialOid: {
+          displayName: '.1.3.6.1.4.1.9.3.6.3',
+        },
+      },
+      objectOID: {
+        displayName: '.1.3.6.1.4.1.9.1.1745',
+      },
+      asrModel: false,
+      objectOIDString: '.1.3.6.1.4.1.9.1.1745',
+    },
+    isDataCenterSite: false,
+    taggedOmni: false,
+    interfaces: [
+      {
+        name: 'GigabitEthernet0/0',
+        label: 'MGMT CROSS-CONNECT TO C3550-B-15 INTERFACE FA0/15',
+        inputCapacity: 100000,
+        outputCapacity: 100000,
+        wan: true,
+        serviceProvider: 'MGMT CROSS-CONNECT TO C3550-B-15 INTERFACE FA0/15',
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'TenGigabitEthernet1/0/4',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'TenGigabitEthernet1/0/3',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'TenGigabitEthernet1/1/2',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+      {
+        name: 'Port-channel5',
+        wan: false,
+        down: true,
+        xcon: false,
+      },
+    ],
+    monitorOnly: true,
+    settings: {
+      pollInterval: 60000,
+      enablePoll: true,
+      enableQosPoll: true,
+      enableNetflowPoll: true,
+      enableIpslaPoll: true,
+      enableLanPoll: false,
+      enableRoutingPoll: false,
+      virtualDevice: false,
+    },
+    capabilities: {
+      nbarCapable: false,
+      netflowCollectorCapable: true,
+      mediatraceCapable: false,
+      extendedTraceRouteCapable: false,
+      nbar2Capable: false,
+      flexibleNetflowCapable: false,
+      perfmonCapable: false,
+      avcCapable: false,
+      unifiedPerfmonCapable: false,
+      hqfSupportDetected: false,
+      ipslaCapable: false,
+    },
+    pollingSupported: {
+      netflowPollingSupported: true,
+      qosPollingSupported: true,
+      ipslaPollingSupported: true,
+      routingPollingSupported: true,
+      lanPollingSupported: true,
+    },
+    down: true,
+  }),
+];
+
+export default {
+  title: 'Settings/CustomOidPollingDevicesComponent',
+
+  decorators: [
+    moduleMetadata({
+      imports: [SharedModule, GridModule],
+    }),
+  ],
+};
+
+export const Default = () => ({
+  component: CustomOidPollingDevicesComponent,
+  props: {
+    data: DEVICES_LIST,
+    statusBarData: <GridStatusBar>{
+      allRows: 3,
+      filteredRows: 3,
+      selectedRows: null,
+    },
+  },
+});
+
+Default.story = {
+  name: 'default',
+};

@@ -1,0 +1,79 @@
+@import 'variables';
+
+:host {
+  display: flex;
+  height: 18px;
+  align-items: center;
+  border-radius: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+:host-context(nx-chip-set),
+:host-context(nx-chip-set-multiselect) {
+  margin-right: 4px;
+  max-width: 100%;
+  margin-bottom: 4px;
+}
+
+:host-context(.nx-chip-list_single-row) {
+  margin-bottom: 0;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+:host-context(.nx-chip-group nx-chip-set) {
+  border-radius: 4px;
+}
+
+.nx-chip__text {
+  font-family: @la-font-family_base;
+  font-size: 12px;
+  line-height: 14px;
+  color: @la-color_oxford-blue-base;
+  font-weight: 400;
+  white-space: nowrap;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  cursor: default;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  :host(.nx-chip_has_hiding-delete-btn) & {
+    transform: translateX(4px);
+    transition: transform .2s ease-in;
+  }
+
+  :host(.nx-chip_has_hiding-delete-btn):host-context(.nx-chip-group:hover) & {
+    transform: translateX(0);
+    transition: transform .2s ease-out;
+  }
+}
+
+.nx-chip__delete-btn {
+  cursor: pointer;
+  font-size: 6px;
+  padding: 5px 6px 5px 4px;
+  margin-right: -6px;
+  color: @la-color_regent-gray-base;
+  transition: color .2s ease;
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+
+  :host(.nx-chip_has_hiding-delete-btn) & {
+    pointer-events: none;
+    transform: scale(0, 0) rotate(30deg);
+    transition: color .2s ease, transform .2s ease-in;
+  }
+
+  :host(.nx-chip_has_hiding-delete-btn):host-context(.nx-chip-group:hover) & {
+    transition: color .2s ease, transform .2s ease-out;
+    pointer-events: auto;
+    transform: scale(1, 1);
+  }
+}
+
+:host-context(.nx-form-field_is-disabled) {
+  opacity: .7;
+}

@@ -1,0 +1,18 @@
+<div class="la-custom-text-toggle">
+  <div class="toggle-switch">
+    <input
+      #toggleCheckbox
+      type="checkbox"
+      name="toggle-switch"
+      [checked]="isOption1"
+      class="toggle-switch-checkbox"
+      id="{{id}}"
+      (change)="handleCheckboxChange(toggleCheckbox.checked)"
+    >
+    <label class="toggle-switch-label" for="{{id}}">
+      <span class="toggle-switch-inner" [attr.data-option-1]="option1" [attr.data-option-2]="option2"></span>
+      <span class="toggle-switch-switch"></span>
+    </label>
+  </div>
+  <div class="toggle-label" [ngClass]="{'disabled' : !isOption1}" *ngIf="toggleLabel">{{toggleLabel}}</div>
+</div>

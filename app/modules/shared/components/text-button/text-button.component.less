@@ -1,0 +1,29 @@
+@import 'variables';
+
+button {
+  font-size: 12px;
+  line-height: 16px;
+  color: @la-color_jaffa-base;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: color .2s ease;
+  &:hover {
+    color: darken(@la-link__color_base, 10%);
+  }
+
+  &:disabled {
+    color: fade(@la-link__color_base, 40);
+  }
+}
+
+:host-context([nxTextButtonList]) {
+  padding-left: 24px;
+  padding-right: 24px;
+  &:first-child {
+    padding-left: 0;
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+}

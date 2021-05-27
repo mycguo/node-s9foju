@@ -1,0 +1,20 @@
+<nx-checkbox
+  [ngClass]="{'nx-mr-8': snmpTrapEnabled.disabled}"
+  [label]="displayName"
+  [formControl]="snmpTrapEnabled"
+  (blur)="onTouched()"
+></nx-checkbox>
+
+<ng-container *ngIf="snmpTrapEnabled.disabled">
+  <a
+    class="la-fontello la-fontello_not-configured nx-lightweight-icon-btn nx-position_relative"
+    [href]="configureUrl"
+    (mouseenter)="showTooltip = true"
+    (mouseleave)="showTooltip = false"
+  >
+    <nx-tooltip
+      *ngIf="showTooltip"
+      [alignment]="TOOLTIP_ALIGNMENT.TOP_LEFT"
+    >SNMP Trap is not configured, click to configure</nx-tooltip>
+  </a>
+</ng-container>

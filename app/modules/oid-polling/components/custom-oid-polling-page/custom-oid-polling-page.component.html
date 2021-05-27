@@ -1,0 +1,43 @@
+<div class="nx-grid-action-bar">
+  <div class="nx-grid-action-bar__primary-actions">
+    <div nxButtonList>
+
+      <nx-button
+        [isWhiteViewMode]="true"
+        (btnClick)="addBtnClicked.emit()">
+        Add
+      </nx-button>
+
+      <nx-button
+        [isWhiteViewMode]="true"
+        [isDisabled]="isEditBtnDisabled"
+        (btnClick)="editBtnClicked.emit()">
+        Edit
+      </nx-button>
+
+      <nx-button
+        [isWhiteViewMode]="true"
+        [isDisabled]="isDeleteBtnDisabled"
+        (btnClick)="deleteBtnClicked.emit()">
+        Delete
+      </nx-button>
+    </div>
+  </div>
+
+  <div class="nx-grid-action-bar__secondary-actions">
+    <nx-table-string-filter
+      (searchTermChange)="globalSearchTermChanged.emit($event)"
+    ></nx-table-string-filter>
+  </div>
+</div>
+
+<nx-grid
+  [data]="gridData"
+  [columns]="columns"
+  [selectedIds]="selectedIds"
+  [statusBarData]="statusBarData"
+  [fullHeight]="true"
+  (rowsSelected)="handleRowsSelected($event)"
+  (columnFilterChanged)="columnFilterChanged.emit($event)"
+  (columnSortChanged)="columnSortChanged.emit($event)">
+</nx-grid>

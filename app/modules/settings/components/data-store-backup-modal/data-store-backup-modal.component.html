@@ -1,0 +1,44 @@
+<nx-modal-container
+  titleText="Backup Data"
+  (closeButtonClicked)="cancel()"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+  [alertTpl]="alertTpl"
+>
+
+  <ng-template #bodyTpl>
+    <nx-loading
+      [isLoading]="isLoading"
+      [showContent]="true"
+      [contentTemplate]="contentTmpl">
+      <ng-template #contentTmpl>
+        <div class="row row_single nx-p">
+          Specify the backup directory on the node
+        </div>
+        <nx-simple-input
+          class="row row_single"
+          [formControl]="formControl"
+          [inputModel]="inputModel"
+        ></nx-simple-input>
+      </ng-template>
+    </nx-loading>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button
+        (btnClick)="cancel()"
+        [isDisabled]="isLoading"
+      >Cancel</nx-button>
+      <nx-button
+        [isPrimary]="true"
+        [isDisabled]="!formControl.valid || isLoading"
+        (btnClick)="runBackup()">Backup</nx-button>
+    </div>
+  </ng-template>
+
+  <ng-template #alertTpl>
+    <nx-simple-alert [alert]="taskAlert"></nx-simple-alert>
+  </ng-template>
+
+</nx-modal-container>

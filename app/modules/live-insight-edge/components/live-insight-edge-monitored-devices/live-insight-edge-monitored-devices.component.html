@@ -1,0 +1,55 @@
+<div class="nx-grid-action-bar">
+  <div class="nx-grid-action-bar__primary-actions">
+    <div nxButtonList>
+      <nx-button
+        (btnClick)="addDevicesBtnClick()"
+      >Add
+      </nx-button>
+
+      <nx-button
+        [isDisabled]="!deleteButtonActive"
+        (btnClick)="deleteDevicesClicked.emit()"
+      >Delete
+      </nx-button>
+
+      <nx-button
+        [isDisabled]="!importSnmpButtonActive"
+        (btnClick)="importSnmpBtnClick()"
+      >Import SNMP Data
+      </nx-button>
+    </div>
+  </div>
+
+  <nx-updating-data-message
+    *ngIf="importSnmpTaskLoading"
+    class="nx-grid-action-bar__info"
+    message="SNMP data import in progress. Please wait."
+  >
+  </nx-updating-data-message>
+
+  <div class="nx-grid-action-bar__secondary-actions">
+    <nx-table-string-filter
+      (searchTermChange)="searchTermChanged.emit($event)"
+    ></nx-table-string-filter>
+  </div>
+</div>
+
+<nx-loading
+  [isLoading]="isMonitoredDevicesLoading"
+  [contentTemplate]="deviceListTemplate"
+>
+  <ng-template #deviceListTemplate>
+    <nx-live-insight-edge-device-list
+      [data]="deviceList"
+      [selectedDeviceIds]="selectedDeviceIds"
+      [doesUseNxNode]="false"
+      [isLoading]="isMonitoredDevicesLoading"
+      [errorMessage]="errorMessage"
+      [statusBarData]="statusBarData"
+      (devicesSelected)="handleDeviceSelection($event)"
+      (columnFilterChanged)="columnFilterChanged.emit($event)"
+      (columnSortChanged)="columnSortChanged.emit($event)"
+      [fullHeight]="true"
+    ></nx-live-insight-edge-device-list>
+  </ng-template>
+</nx-loading>

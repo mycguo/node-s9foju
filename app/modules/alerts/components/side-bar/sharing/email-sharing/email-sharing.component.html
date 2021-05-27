@@ -1,0 +1,30 @@
+<div [formGroup]="emailForm">
+  <div class="nx-align_vertical_middle nx-indent_inner_bottom_form-field-header">
+    <nx-checkbox
+      [ngClass]="{'nx-mr-8': emailForm.disabled}"
+      [label]="displayName"
+      [formControlName]="ENABLED_KEY"
+      (blur)="onTouched()"
+    ></nx-checkbox>
+
+    <ng-container *ngIf="emailForm.disabled">
+      <a
+        class="la-fontello la-fontello_not-configured nx-lightweight-icon-btn nx-position_relative"
+        [href]="configureUrl"
+        (mouseenter)="showTooltip = true"
+        (mouseleave)="showTooltip = false"
+      >
+        <nx-tooltip
+          *ngIf="showTooltip"
+          [alignment]="TOOLTIP_ALIGNMENT.TOP_LEFT"
+        >Email is not configured, click to configure</nx-tooltip>
+      </a>
+    </ng-container>
+  </div>
+
+  <nx-chips-input-text
+    [formControlName]="RECIPIENTS_KEY"
+    [chipsInputModel]="chipsInputModel">
+  </nx-chips-input-text>
+
+</div>

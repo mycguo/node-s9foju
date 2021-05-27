@@ -1,0 +1,32 @@
+@import "../../../utilities/utilities";
+@import "dropdown-helpers";
+
+.nx-highcharts-dropdown-mixin() {
+  .highcharts-contextmenu {
+    padding: 0!important;
+    margin-right: 18px;
+    margin-top: 32px;
+  }
+
+  .highcharts-menu {
+    border: @nx-dropdown-content__border_base!important;
+    box-shadow: @nx-dropdown-content__box-shadow_base!important;
+    padding-top: @nx-dropdown-content__vertical-indent_base!important;
+    padding-bottom: @nx-dropdown-content__vertical-indent_base!important;
+    border-radius: @nx-dropdown-content__border-radius_base!important;
+  }
+
+  .highcharts-menu-item {
+    font-size: @nx-dropdown-action__font-size_base!important;
+    line-height: @nx-dropdown-action__line-height_base;
+    color: @nx-dropdown-action__color_base!important;
+    padding: @nx-dropdown-action__vertical-indent_base @nx-dropdown-action__horizontal-indent_base!important;
+    transition: @nx-dropdown-action__transition_base!important;
+    font-weight: normal;
+    text-align: left;
+    &:hover {
+      background-color: @nx-dropdown-action__background-color_hover;
+      font-weight: @nx-dropdown-action__font-weight_hover;
+    }
+  }
+}

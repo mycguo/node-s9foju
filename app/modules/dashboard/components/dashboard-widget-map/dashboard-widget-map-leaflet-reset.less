@@ -1,0 +1,101 @@
+@import 'variables';
+@import 'helpers_fontello';
+
+nx-map-widget {
+  .nx-map-marker-icon, .nx-map-cluster-icon {
+    background-color: @la-color_red-orange-base;
+    box-shadow: 0 0 0 6px fade(@la-color_red-orange-base, 21%);
+    border-radius: 50%;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .nx-map-marker-icon div {
+    color: #000;
+    font-weight: bold;
+    line-height: 14px;
+    white-space: nowrap;
+    background-color: fade(#fff, 50%);
+    margin-top: 2px;
+    padding: 0 2px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nx-map-cluster-icon div {
+    color: #fff;
+    line-height: 16px;
+  }
+
+  .leaflet-bar {
+    box-shadow: @la-shadow_level-1-base;
+    border-radius: 0;
+    transition: box-shadow .2s ease;
+    &:hover {
+      box-shadow: @la-shadow_level-1-is-hovered;
+      border-bottom: none;
+    }
+
+    a,
+    a:hover {
+      height: @button__min-width_base;
+      width: @button__min-width_base;
+      line-height: @button__min-width_base;
+      border-bottom: none;
+    }
+
+    a {
+      &:hover {
+        background-color: @secondary-button__background-color_is-hovered;
+      }
+
+      &.leaflet-disabled {
+        background-color: @button__background-color_white;
+        &:hover {
+          background-color: @button__background-color_white;
+        }
+      }
+    }
+  }
+
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    background-color: @button__background-color_white;
+    box-shadow: 0 0 0 @button__border-size_base @secondary-button__border-color_base;
+    text-align: center;
+    font-size: 0;
+    border-bottom: none;
+    transition: background-color .2s ease;
+    &:before {
+      &:extend(.la-fontello:before);
+      font-size: 9px;
+      line-height: @button__min-width_base;
+      color: @la-color_regent-gray-base;
+      transition: opacity .2s ease;
+      position: relative;
+      left: -1px;
+    }
+
+    &.leaflet-disabled {
+      &:before {
+        opacity: .5;
+        color: @la-color_regent-gray-base;
+      }
+    }
+  }
+
+  .leaflet-control-zoom-in {
+    &:extend(.la-fontello_add all);
+    border-top-left-radius: @button__border-radius_base;
+    border-top-right-radius: @button__border-radius_base;
+  }
+
+  .leaflet-control-zoom-out {
+    &:extend(.la-fontello_minus all);
+    border-bottom-left-radius: @button__border-radius_base;
+    border-bottom-right-radius: @button__border-radius_base;
+    margin-top: -1px;
+  }
+}

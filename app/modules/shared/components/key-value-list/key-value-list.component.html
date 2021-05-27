@@ -1,0 +1,12 @@
+<table class="kvl-table" [ngClass]="{'kvl-table_direction_row': inline, 'kvl-table_spread': spread}">
+  <tr *ngFor="let item of items" class="kvl-table-row">
+    <td class="kvl-table-cell kvl-table-cell_key">{{item.key}}:</td>
+
+    <td *ngIf="item.template" class="kvl-table-cell kvl-table-cell_value">
+      <ng-container *ngTemplateOutlet="item.template; context: {item: item.value}" ></ng-container>
+    </td>
+    <td *ngIf="!item.template" class="kvl-table-cell kvl-table-cell_value">
+      {{item.value}}
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,24 @@
+@import "src/styles/utilities/variables/variables.less";
+
+.mat-menu_nx-filter_flex-string {
+  &.mat-menu-panel {
+    border-radius: @la-drop-down__border-radius_base;
+    border: none;
+    position: relative;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+
+  &.mat-menu-below {
+    box-shadow: @la-drop-down__box-shadow_base;
+    top: 4px;
+  }
+
+  .mat-menu-content:not(:empty) {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}

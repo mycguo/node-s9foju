@@ -1,0 +1,49 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <form [formGroup]="formGroup">
+      <nx-card size="sm" [header]="cardHeader" [body]="cardBody" [footer]="cardFooter">
+        <ng-template #cardHeader>
+          <div class="nx-card-header-row">
+            <p class="nx-card-header-title">Device Auto-refresh</p>
+
+            <nx-toggle
+              [toggleModel]="enableAutoRefreshToggle"
+              [formControlName]="staticEnableAutoRefreshKey"
+            ></nx-toggle>
+          </div>
+        </ng-template>
+
+        <ng-template #cardBody>
+          <p class="nx-card-body-paragraph">
+            LiveNX will auto-refresh device and interface details (bandwidth, IP address, IOS version, etc.).
+          </p>
+
+          <nx-simple-input
+            [formControlName]="staticAutoRefreshIntervalDaysKeys"
+            [inputModel]="refreshTimeIntervalInputField">
+          </nx-simple-input>
+        </ng-template>
+
+        <ng-template #cardFooter>
+          <div nxButtonList class="nx-card-footer-buttons">
+            <nx-button
+              [isDisabled]="isRevertChangesButtonDisabled"
+              (btnClick)="revertChanges()">
+              Revert Changes
+            </nx-button>
+
+            <nx-button
+              [isPrimary]="true"
+              [isDisabled]="isSubmitButtonDisabled"
+              (btnClick)="submitChanges()">
+              Apply
+            </nx-button>
+          </div>
+        </ng-template>
+      </nx-card>
+    </form>
+  </ng-template>
+</nx-loading>

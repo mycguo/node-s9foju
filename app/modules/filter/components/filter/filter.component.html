@@ -1,0 +1,75 @@
+<nx-filter-input
+  class="nx-flex-item-expanded"
+  [formControl]="filterFormControl"
+  [displayModel]="displayModel"
+  [filterOptions]="filterOptions"
+  [filterOptionsValue]="filterOptionsValue"
+></nx-filter-input>
+
+<div class="nx-filter__action-list" *ngIf="showFlexStringButton || showSaveButton || showApplyButton" #actionsWrapperEl>
+  <nx-dropdown
+    class="nx-filter__action-list-item"
+    panelClass="mat-menu_nx-filter_flex-string"
+    *ngIf="showFlexStringButton"
+    [btnTmpl]="tmpl"
+    [attr.disabled]="(filterFormControl.disabled || !filterFormControl.value || filterFormControl.value?.length === 0) || null"
+  >
+    <div
+      class="nx-filter-flex-string"
+      *ngIf="selectedFlexString"
+      [ngStyle]="{'width': hostElRef.nativeElement.offsetWidth - actionsWrapperEl.offsetWidth + ACTION_ICON_BUTTON_WIDTH + 'px'}"
+      >
+      <div class="nx-filter-flex-string__content">
+        <div class="nx-filter-flex-string__body">{{selectedFlexString}}</div>
+        <div class="nx-filter-flex-string__convert-btn"
+             *ngIf="isFlexFilterColumnExists && selectedFlexString">
+          <button
+            class="nx-filter-flex-string__convert-btn-label"
+            [ngClass]="{'nx-disabled': isFlexFilterSelected || isInvalidFlexString}"
+            [attr.disabled]="isFlexFilterSelected || isInvalidFlexString || null"
+            (click)="convertToFlexSearchTag()"
+          >
+            Convert to flex search
+          </button>
+        </div>
+        <div class="nx-filter-flex-string__copy-btn">
+          <i class="nx-filter-flex-string__copy-btn-icon la-fontello la-fontello_clone"
+             [ngClass]="{'nx-disabled': isInvalidFlexString}"
+             [cdkCopyToClipboard]="selectedFlexString"
+             (cdkCopyToClipboardCopied)="copyFlexSearchString()"
+          ></i>
+        </div>
+      </div>
+    </div>
+  </nx-dropdown>
+
+  <ng-template #tmpl>
+    <nx-button
+      icon="code"
+      [isWhiteViewMode]="true"
+      [matTooltip]="filterFormControl.disabled || filterFormControl.value?.length === 0 ? null : 'See as Flex Search String'"
+      matTooltipClass="nx-tooltip nx-tooltip_has-no_pointer"
+      [isDisabled]="(filterFormControl.disabled || !filterFormControl.value || filterFormControl.value?.length === 0) || null"
+      (btnClick)="buildFlexString()"
+    ></nx-button>
+  </ng-template>
+
+  <nx-button
+    class="nx-filter__action-list-item"
+    icon="download"
+    *ngIf="showSaveButton"
+    [isWhiteViewMode]="true"
+    [matTooltip]="filterFormControl.disabled || filterFormControl.value?.length === 0 ? null : 'Save Filter'"
+    matTooltipClass="nx-tooltip"
+    [isDisabled]="filterFormControl.disabled || filterFormControl.value?.length === 0"
+  ></nx-button>
+
+  <nx-button
+    class="nx-filter__action-list-item js-filter-apply"
+    *ngIf="showApplyButton"
+    (btnClick)="onSubmit()"
+    [isDisabled]="filterFormControl.disabled || filterFormControl.pristine || !filterFormControl.valid"
+  >
+    Apply filter
+  </nx-button>
+</div>

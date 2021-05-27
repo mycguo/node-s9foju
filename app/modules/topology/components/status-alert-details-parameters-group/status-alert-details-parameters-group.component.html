@@ -1,0 +1,39 @@
+<p class="parameters-groups__item-title" *ngIf="group?.title">{{group.title}}</p>
+
+<div class="parameters-groups__item-body">
+  <p class="parameters-groups__item-body-description la-post-paragraph"
+     *ngIf="group?.description">{{group.description}}</p>
+
+  <a class="parameters-groups__item-body-details-link la-post-link"
+     *ngIf="group?.detailsLink"
+     [routerLink]="group.detailsLink.link"
+     [queryParams]="group.detailsLink.params">
+    Full alert details.
+  </a>
+
+  <nx-key-value-list class="parameters-groups__item-body-parameters nx-key-value-list_align-left"
+                     *ngIf="group?.parameters">
+    <ng-template *ngFor="let parameter of group.parameters"
+                 nxKeyValueListItem
+                 [key]="parameter.key"
+                 [value]="parameter.templateType ? parameter : parameter.value"
+                 [template]="parameter.templateType ? linkTemplate : null">
+
+    </ng-template>
+
+    <ng-template #linkTemplate let-item="item">
+      <a class="la-post-link"
+         [routerLink]="item.value.link"
+         [queryParams]="item.value.params"
+         target="_blank"
+         *ngIf="item.value && item.templateType === templateType.LINK">
+        {{item.value.title}}
+      </a>
+
+      <nx-severity-indicator
+        [severity]="item.value"
+        *ngIf="item.value && item.templateType === templateType.SEVERITY">
+      </nx-severity-indicator>
+    </ng-template>
+  </nx-key-value-list>
+</div>

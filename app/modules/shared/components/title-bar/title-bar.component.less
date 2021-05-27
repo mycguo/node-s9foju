@@ -1,0 +1,27 @@
+@import 'mixins';
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: inset 0px -1px 0 0px  @la-color_mystic-base;
+  padding: 8px 16px;
+  background-color: @la-color_white-base;
+  flex-shrink: 0;
+}
+
+.title-bar__page-title,
+.title-bar__body {
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.title-bar__page-title {
+  .la-mixin_text(@la-font-family_base, 14px, 28px, @la-color_oxford-blue-base);
+  padding-right: 32px;
+}
+
+.title-bar__body {
+  flex-grow: 1;
+  padding-right: 16px;
+}

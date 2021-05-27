@@ -1,0 +1,188 @@
+@import 'mixins';
+@import 'helpers_form';
+@import 'helpers_fontello';
+@import 'helpers_state';
+
+.nx-form-field__header {
+  &:extend(.la-form-element__header);
+}
+
+.nx-form-field__header-title {
+  &:extend(.la-form-element-title);
+  flex-shrink: 0;
+}
+
+.nx-form-field__body {
+  &:extend(.nx-form-element__body all);
+  :host(.nx-form-field_readonly) & {
+    border-color: @la-form-element__border-color_base;
+    cursor: default;
+  }
+}
+
+.nx-form-field__body-prefix,
+.nx-form-field__body-postfix {
+  &:extend(.nx-form-element__body-secondary-element);
+}
+
+.nx-form-field__body-prefix {
+  &:extend(.nx-form-element__body-prefix);
+}
+
+.nx-form-field__body-postfix {
+  &:extend(.nx-form-element__body-postfix);
+}
+
+.nx-form-field__body-main {
+  &:extend(.nx-form-element__body-main);
+  display: flex;
+  :host-context(nx-toggle) & {
+    display: inline-flex;
+  }
+}
+
+.nx-form-field__footer {
+  &:extend(.la-form-element__footer);
+}
+
+.nx-form-field__footer-validation-messages {
+  &:extend(.la-form-element__footer-validation-messages);
+}
+
+.nx-form-field-validation-messages__item {
+  &:extend(.la-form-element-validation-message);
+  &:extend(.la-form-element-validation-messages__item all);
+}
+
+.nx-form-field-validation-messages__item_type-disable {
+  &:extend(.la-form-element-validation-message_type-disable);
+}
+
+:host(.nx-form-field_is-invalid) {
+  .nx-form-field__body {
+    &:extend(.nx-form-element__body_is-invalid all);
+  }
+}
+
+:host(.nx-form-field_readonly.nx-form-field_is-invalid) & {
+  .nx-form-field__body {
+    border-color: @la-form-element__border-color_is-invalid;
+  }
+}
+
+:host(.nx-form-field_is-disabled) {
+  .nx-form-field__body {
+    &:extend(.nx-form-element__body_is-disabled all);
+    nx-checkbox & {
+      background-color: transparent;
+    }
+  }
+
+  .nx-form-field__body-prefix,
+  .nx-form-field__body-postfix {
+    color: @la-form-element__color_is-disabled;
+  }
+}
+
+.nx-form-field__header-additional-elements {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.js-la-tooltip-wrapper {
+  la-tooltip {
+    display: none;
+  }
+
+  &:hover {
+    la-tooltip {
+      display: block;
+    }
+  }
+}
+
+:host-context(nx-form-radio-group),
+:host-context(nx-switcher) {
+  .nx-form-field__body {
+    border: none;
+    display: inline-flex;
+    background-color: transparent;
+  }
+}
+
+:host-context(nx-select),
+:host-context(nx-toggle) {
+  .nx-form-field__body {
+    transition: none;
+    border: none;
+    border-radius: 0;
+  }
+}
+
+:host-context(.nx-toggle_disable) {
+  .nx-form-field__header-title {
+    &:extend(.nx-disabled);
+    pointer-events: none;
+  }
+}
+
+:host(.nx-lightweight-select) {
+  .nx-form-field__body {
+    background-color: transparent;
+  }
+}
+
+:host-context(nx-disk-storage-capacity) {
+  .nx-form-field-validation-messages__item {
+    white-space: nowrap;
+  }
+}
+
+:host-context(.nx-toggle_inline) {
+  display: flex;
+  align-items: center;
+  .nx-form-field__header {
+    order: 1;
+    padding-left: 12px;
+    padding-bottom: 0;
+  }
+
+  .nx-form-field__header-title {
+    font-weight: 400;
+  }
+}
+
+:host(.nx-form-field_inline) {
+  display: flex;
+  flex-direction: row;
+
+  .nx-form-field__header {
+    flex-shrink: 0;
+    padding-right: 8px;
+    padding-bottom: 0;
+
+    .nx-form-field__header-title {
+      font-weight: 400;
+    }
+  }
+}
+
+:host-context(.nx-simple-input_global-search) {
+  .nx-form-field__body {
+    &:extend(.nx-global-search all);
+  }
+}
+
+:host-context(nx-filter nx-filter-input) {
+  .nx-form-field__body {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+:host-context(nx-filter nx-filter-input:last-child) {
+  .nx-form-field__body {
+    border-radius: @la-form-element__border-radius_base;
+  }
+}

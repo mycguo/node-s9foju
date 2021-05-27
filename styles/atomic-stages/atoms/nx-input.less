@@ -1,0 +1,78 @@
+@import "../../utilities/utilities";
+.nx-form-field-input {
+  border: none;
+  background-color: @la-color_white-base;
+  width: 100%;
+  box-sizing: border-box;
+  padding: @la-form-element__padding-vertical_base @la-form-element__padding-horizontal_base;
+  border-radius: @la-form-element__border-radius_base;
+  flex-grow: 1;
+  .nx-typography-mixin(@la-form-element__font-size_base, @la-form-element__line-height_base, @la-form-element__color_base);
+  .la-placeholder({color: @la-placeholder__color_base;});
+  &:-ms-input-placeholder {color: @la-placeholder__color_base;}
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .nx-form-field_is-disabled & {
+    color: @la-form-element__color_is-disabled;
+    background-color: @la-form-element__background-color_is-disabled;
+    cursor: not-allowed;
+    .la-placeholder({color: @la-form-element__color_is-disabled;});
+  }
+
+  .nx-form-field-input-wrapper & {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+  }
+
+  .nx-form-field_readonly & {
+    cursor: default;
+  }
+}
+
+.nx-form-field-input_has-clear-icon {
+  padding-right: @la-form-element-icon__width_clear + @la-form-element__padding-horizontal_base*2;
+}
+
+.nx-form-field-clear-icon {
+  &:extend(.la-fontello all, .la-fontello_close all);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: @la-form-element-icon__width_clear;
+  box-sizing: content-box;
+  padding: @la-form-element__padding-vertical_base @la-form-element__padding-horizontal_base;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 9px;
+  line-height: 11px;
+  color: @la-color_regent-gray-base;
+  transition: color @duration_sm @easing_base;
+  &:before {
+    display: block;
+  }
+
+  &:hover:not([disabled="true"]) {
+    color: @la-color_oxford-blue-base;
+  }
+
+  &[disabled="true"] {
+    &:extend(.nx-disabled);
+  }
+}
+
+.nx-form-field-input-wrapper {
+  display: block;
+  line-height: 0;
+  padding-top: @la-form-element__padding-vertical_base;
+  padding-bottom: @la-form-element__padding-vertical_base;
+  width: 100%;
+}

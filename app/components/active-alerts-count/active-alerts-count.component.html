@@ -1,0 +1,8 @@
+<div class="la-notifications-type-indicators">
+  <div class="la-notifications-type-indicator" *ngFor="let alertCount of alertsSummary.getAlertMap() | keyvalue"
+       title="{{ alertCount.key | titlecase }}" id="{{alertCount.key}}-alerts-appbar"
+       (click)="onIndicatorClick(alertCount.key)">
+    <div class="la-alert-status-marker la-alert-status-marker_{{alertCount.key}}"></div>
+    <div class="la-notifications-type-indicator__amount">{{alertCount.value}}</div>
+  </div>
+</div>

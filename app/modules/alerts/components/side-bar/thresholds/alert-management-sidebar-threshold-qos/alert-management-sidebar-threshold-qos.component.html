@@ -1,0 +1,64 @@
+<div
+  class="nx-dynamic-list-wrapper"
+  *nxFormFieldControl="let controller from thresholdsArray errorOverrides errorMessageOverrides"
+  [ngClass]="{'nx-dynamic-list-wrapper_invalid': controller?.errorMessage}"
+>
+  <div class="nx-dynamic-list">
+    <div
+      class="nx-dynamic-list__item"
+      *ngFor="let control of thresholdsArray.controls; let controlIndex = index"
+      [formGroup]="getFormGroup(control)"
+    >
+      <div class="nx-dynamic-list-item__body">
+        <nx-checkbox
+          [formControlName]="staticEnabledKey"
+          (blur)="onTouched()"
+        ></nx-checkbox>
+
+        <div class="row-list">
+          <nx-simple-input
+            class="row row_single"
+            [validateOnInit]="true"
+            [formControlName]="staticLabelKey"
+            [inputModel]="thresholdFields[controlIndex][staticLabelKey]"
+            (blur)="onTouched()"
+          ></nx-simple-input>
+
+          <div class="row">
+            <nx-simple-input
+              class="col col_w-50"
+              [validateOnInit]="true"
+              [formControlName]="staticDropRateKey"
+              [inputModel]="thresholdFields[controlIndex][staticDropRateKey]"
+              (blur)="onTouched()"
+            ></nx-simple-input>
+
+            <nx-simple-input
+              class="col col_w-50"
+              [validateOnInit]="true"
+              [formControlName]="staticTimeOverMinutesKey"
+              [inputModel]="thresholdFields[controlIndex][staticTimeOverMinutesKey]"
+              (blur)="onTouched()"
+            ></nx-simple-input>
+          </div>
+        </div>
+      </div>
+
+      <div class="nx-dynamic-list-item__action-list" *ngIf="controlIndex !== 0">
+        <nx-button
+          icon="la-fontello la-fontello_trash"
+          (btnClick)="deleteThreshold(controlIndex)"
+        ></nx-button>
+      </div>
+    </div>
+  </div>
+
+  <span class="nx-dynamic-list-validation-msg" *ngIf="controller?.errorMessage">{{controller.errorMessage}}</span>
+</div>
+
+<nx-button
+  [isDisabled]="thresholdsArray.invalid"
+  (btnClick)="addThreshold()"
+>
+  Add Specific QoS Class Alert
+</nx-button>

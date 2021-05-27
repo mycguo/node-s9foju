@@ -1,0 +1,50 @@
+@import 'variables';
+
+:host {
+  display: block;
+  padding-bottom: 31px;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.entity-alert-severity-indicator {
+  display: flex; // provide inner truncated text
+}
+
+// provide truncated text
+.entity-alert-severity-indicator__text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.parameters-groups__item-title {
+  font-size: 14px;
+  line-height: 16px;
+  color: @la-color_oxford-blue-base;
+  font-weight: bold;
+  padding-bottom: 25px;
+}
+
+.parameters-groups__item-body {
+  padding-left: 12px;
+  font-size: 0; // clear an external vertical space between inline elements
+}
+
+.la-post-paragraph,
+.la-post-link {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.la-post-paragraph {
+  color: @la-color_oxford-blue-base;
+}
+
+.parameters-groups__item-body-description {
+  padding-bottom: 8px;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,47 @@
+@import "helpers_typography";
+@import "helpers_fontello";
+@import "mixins.less";
+@import "../../../../../styles/vendor/highcharts/highcharts_variables";
+
+nx-chart-widget {
+  .highcharts-tooltip {
+    > span {
+      > span:nth-child(3):not(.nx-chart-widget-tooltip-drill-down):not(.nx-chart-widget-tooltip-point) {
+        font-size: 14px;
+        line-height: 6px;
+        position: relative;
+        top: 1px;
+      }
+    }
+  }
+}
+
+.nx-chart-widget-tooltip-point,
+.nx-chart-widget-tooltip-drill-down {
+  display: inline-block;
+  .nx-typography-mixin(@nx-highcharts-tooltip__font-size_base, @nx-highcharts-tooltip__line-height_base);
+  min-width: 100%;
+}
+
+.nx-chart-widget-tooltip-point {
+  padding-top: @nx-highcharts-tooltip-details__indent-top_base;
+  padding-bottom: 6px;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.nx-chart-widget-tooltip-point__icon {
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+}
+
+.nx-chart-widget-tooltip-drill-down {
+  padding-top: 6px;
+  border-top: 1px dashed @la-color_geyser-base;
+  .la-fontello_drill-down {
+    font-size: 10px;
+  }
+}

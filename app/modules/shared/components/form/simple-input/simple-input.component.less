@@ -1,0 +1,17 @@
+@import "../../../../../../styles/atomic-stages/atoms/nx-input.less";
+
+:host {
+  display: block;
+}
+
+:host-context(nx-row) {
+  &:first-child:last-child {
+    width: 100%;
+  }
+}
+
+:host(.nx-simple-input_global-search) {
+  .nx-form-field-input {
+    padding-left: @la-form-element__padding-horizontal_base * 2 + 12px;
+  }
+}

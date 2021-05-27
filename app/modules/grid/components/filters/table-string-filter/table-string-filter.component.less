@@ -1,0 +1,19 @@
+@import 'mixins';
+@import 'helpers_fontello';
+@import 'helpers_form';
+
+:host {
+  display: block;
+  &:extend(.nx-global-search all);
+  width: 100%;
+  max-width: @nx-table-global-search__width_base;
+}
+
+input {
+  .la-mixin__input_base(true);
+  padding-left: @la-form-element__padding-horizontal_base * 2 + 12px;
+}
+
+:host-context(.nx-grid-action-bar .nx-grid-action-bar__filter + .nx-grid-action-bar__secondary-actions) {
+  width: @nx-table-global-search__width_base;
+}

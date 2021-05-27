@@ -1,0 +1,21 @@
+<nx-common-integrations-panel
+  [isLoading]="isLoading"
+  [error]="error"
+  [displayState]="displayState"
+  [integrationData]="integrationData"
+  [status]="status"
+  [baseTitle]="baseTitle"
+  [formTemplate]="formTemplate"
+  [actionButtonModels]="actionButtonModels"
+  (edit)="edit.emit()"
+  (delete)="delete.emit()">
+  <ng-template #formTemplate>
+    <nx-apicem-form
+      class="nx-card-layout-integrations"
+      [apicemIntegrations]="apicemIntegrations"
+      [isLoading]="isLoading"
+      [isEdit]="isEditState"
+      (cancel)="cancel.emit()"
+      (formSubmit)="formSubmit.emit($event)"></nx-apicem-form>
+  </ng-template>
+</nx-common-integrations-panel>

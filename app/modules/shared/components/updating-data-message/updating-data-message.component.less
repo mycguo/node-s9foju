@@ -1,0 +1,13 @@
+@import "../../../../../styles/atomic-stages/molecules/laUpdatingDataMessage";
+
+:host{
+  &:extend(la-updating-data-message, la-updating-data-message.la-card__updating-data-message);
+}
+
+:host(.nx-grid-action-bar__info) {
+  flex-grow: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+}

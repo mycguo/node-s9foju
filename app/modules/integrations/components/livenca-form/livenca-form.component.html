@@ -1,0 +1,24 @@
+<form class="nx-form"
+      [formGroup]="formGroup"
+      (ngSubmit)="onSubmit()">
+
+  <div class="nx-form__body">
+    <nx-simple-input
+      [formControlName]="HOSTNAME_KEY"
+      [inputModel]='formField'
+    ></nx-simple-input>
+  </div>
+
+  <div nxButtonList class="nx-form__footer nx-form__footer_align_right">
+    <nx-button *ngIf="isEdit" (click)="onCancel()">
+      Cancel
+    </nx-button>
+
+    <nx-button
+      [isPrimary]="true"
+      [isDisabled]="!formGroup.valid || formGroup.disabled"
+      [isSubmit]="true">
+      Connect
+    </nx-button>
+  </div>
+</form>

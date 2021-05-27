@@ -1,0 +1,37 @@
+<div class="nx-form-field__header" *ngIf="label">
+  <span class="nx-form-field__header-title">
+    {{label}}<span *ngIf="isRequired">&#32;*</span>
+  </span>
+
+  <div class="nx-form-field__header-additional-elements" *ngIf="headerAdditionalElements">
+    <ng-container *ngTemplateOutlet="headerAdditionalElements"></ng-container>
+  </div>
+</div>
+
+<div class="nx-form-field__body">
+  <span class="nx-form-field__body-prefix" *ngIf="prefix">
+    {{prefix}}
+  </span>
+
+  <div class="nx-form-field__body-main">
+    <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+  </div>
+
+  <span class="nx-form-field__body-postfix" *ngIf="postfix">
+     {{postfix}}
+  </span>
+</div>
+
+<div class="nx-form-field__footer" *ngIf="errorMessage || hintMessage" @fadeTrigger>
+  <ul class="nx-form-field-validation-messages nx-form-field__footer-validation-messages">
+    <li class="nx-form-field-validation-messages__item"
+        *ngIf="!isDisabled && isInvalid">
+      {{errorMessage}}
+    </li>
+
+    <li class="nx-form-field-validation-messages__item nx-form-field-validation-messages__item_type-disable"
+        *ngIf="!isInvalid && hintMessage">
+      {{hintMessage}}
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,24 @@
+<form
+  class="nx-form"
+  [formGroup]="formGroup"
+  (ngSubmit)="onSubmit()"
+>
+  <!-- todo -->
+<!--  <nx-dynamic-form-group-->
+<!--    class="nx-form__body"-->
+<!--    [formControlName]="formControlName"-->
+<!--    [formGroup]="formGroup"-->
+<!--    [items]="items"-->
+<!--  ></nx-dynamic-form-group>-->
+
+  <div nxButtonList class="nx-form__footer nx-form__footer_align_right">
+    <nx-button (click)="onCancel()">Cancel</nx-button>
+    <nx-button
+      [isPrimary]="true"
+      [isDisabled]="!formGroup.valid"
+      [isSubmit]="true"
+    >
+      Submit
+    </nx-button>
+  </div>
+</form>

@@ -1,0 +1,109 @@
+<nx-modal-container
+  [titleText]="data.mode + ' Custom Application'"
+  [hasFooterSeparator]="false"
+  (closeButtonClicked)="cancel()"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+>
+  <ng-template #bodyTpl>
+    <form [formGroup]="formGroup">
+      <nx-loading
+        [isLoading]="isLoading$ | async"
+        [error]="error$ | async"
+        [showContent]="true"
+        [contentTemplate]="contentTemplate"
+      >
+        <ng-template #contentTemplate>
+          <div class="row">
+            <nx-simple-input
+              class="col col_w-50"
+              [formControlName]="NAME_CONTROL_KEY"
+              [inputModel]="nameInputModel"
+            ></nx-simple-input>
+
+            <nx-simple-input
+              class="col col_w-50"
+              [formControlName]="DESCRIPTION_CONTROL_KEY"
+              [inputModel]="descriptionInputModel"
+            ></nx-simple-input>
+          </div>
+
+          <nx-radio-group
+            class="row row_single"
+            [(ngModel)]="radioGroupModel"
+            (ngModelChange)="onRadioGroupChange($event)"
+            [ngModelOptions]="{standalone: true}"
+            [radioGroup]="radioGroup[RADIO_GROUP.NETWORK]"
+          ></nx-radio-group>
+
+          <div class="row" [ngClass]="{'nx-disabled nx-events-disabled': RADIO_GROUP.NETWORK !== radioGroupModel}">
+            <nx-chips-input-text
+              class="col col_w-50"
+              [formControlName]="IP_RANGES_CONTROL_KEY"
+              [chipsInputModel]="ipRangesModel"
+            ></nx-chips-input-text>
+
+            <nx-chips-input-multiselect
+              class="col col_w-50"
+              [formControlName]="INCLUDE_APPLICATIONS_CONTROL_KEY"
+              [chipsInputModel]="applicationSelectionModel"
+            ></nx-chips-input-multiselect>
+          </div>
+
+          <div class="row" [ngClass]="{'nx-disabled nx-events-disabled': RADIO_GROUP.NETWORK !== radioGroupModel}">
+            <nx-chips-input-multiselect
+              class="col col_w-50"
+              [formControlName]="LAYER_PROTOCOL_CONTROL_KEY"
+              [chipsInputModel]="layerProtocolModel"
+            ></nx-chips-input-multiselect>
+
+            <nx-textarea
+              class="col col_w-50"
+              [formControlName]="PORT_RANGES_CONTROL_KEY"
+              [inputModel]="portRangesInputModel"
+            ></nx-textarea>
+          </div>
+
+          <div class="row" [ngClass]="{'nx-disabled nx-events-disabled': RADIO_GROUP.NETWORK !== radioGroupModel}">
+            <nx-chips-input-multiselect
+              class="col col_w-50"
+              [formControlName]="DSCP_CONTROL_KEY"
+              [chipsInputModel]="dscpModel"
+            ></nx-chips-input-multiselect>
+          </div>
+
+          <nx-radio-group
+            class="row row_single"
+            [(ngModel)]="radioGroupModel"
+            (ngModelChange)="onRadioGroupChange($event)"
+            [ngModelOptions]="{standalone: true}"
+            [radioGroup]="radioGroup[RADIO_GROUP.HTTP]"
+          ></nx-radio-group>
+
+          <div class="row" [ngClass]="{'nx-disabled nx-events-disabled': RADIO_GROUP.HTTP !== radioGroupModel}">
+            <nx-chips-input-text
+              class="col col_w-50"
+              [formControlName]="HTTP_HOST_CONTROL_KEY"
+              [chipsInputModel]="httpHostsModel"
+            ></nx-chips-input-text>
+          </div>
+        </ng-template>
+      </nx-loading>
+    </form>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="cancel()">Cancel</nx-button>
+
+      <nx-button
+        [isPrimary]="true"
+        (btnClick)="onSaveClick()"
+        [isDisabled]="formGroup.pristine || !formGroup.valid || (isLoading$ | async) ||
+          (radioGroupModel === RADIO_GROUP.NETWORK &&
+          !ipRangesControl.value.length &&
+          !layerProtocolControl.value.length)"
+      >Save</nx-button>
+    </div>
+  </ng-template>
+</nx-modal-container>

@@ -1,0 +1,72 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [showContent]="!!sharingConfig"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <nx-section
+      [titleText]="'Sharing'"
+      [hasHeaderSeparator]="false"
+      [formGroup]="sharingFormGroup"
+      [headerAdditionalElementsTpl]="headerAdditionalElementsTpl"
+    >
+      <ng-template #headerAdditionalElementsTpl>
+        <nx-radio-group
+          *ngIf="hasToggle"
+          [formControlName]="SHARING_CONFIG_KEY"
+          [radioGroup]="configurationRadioModel"
+          [inline]="true"
+        ></nx-radio-group>
+      </ng-template>
+
+      <div *ngIf="!hasToggle || !sharingFormGroup.get(SHARING_CONFIG_KEY).value; else defaultConfigTmpl">
+        <!--email-->
+        <nx-email-sharing
+          class="row row_single row_has-bg row_selectable"
+          [isConfigured]="sharingConfig.email"
+          [formControlName]="EMAIL_KEY"
+          (blur)="onTouched()">
+        </nx-email-sharing>
+
+        <!--service now-->
+        <nx-service-now-sharing-container
+          class="row row_single row_has-bg row_selectable"
+          [isConfigured]="sharingConfig.serviceNow"
+          [formControlName]="SN_KEY"
+          (blur)="onTouched()">
+        </nx-service-now-sharing-container>
+
+        <!--snmp trap-->
+        <nx-snmp-trap-sharing
+          class="row row_single row_has-bg row_selectable"
+          [isConfigured]="sharingConfig.snmpTrap"
+          [formControlName]="SNMP_TRAP_KEY">
+        </nx-snmp-trap-sharing>
+
+        <!--web ui-->
+        <nx-web-ui-sharing
+          class="row row_single row_has-bg row_selectable"
+          [formControlName]="WEB_UI_KEY">
+        </nx-web-ui-sharing>
+
+        <!--syslog-->
+        <nx-syslog-sharing
+          class="row row_single row_has-bg row_selectable"
+          [isConfigured]="sharingConfig.syslog"
+          [formControlName]="SYS_LOG_KEY">
+        </nx-syslog-sharing>
+      </div>
+
+      <ng-template #defaultConfigTmpl>
+        <div class="nx-post row row_single row_has-bg row_typography">
+          Sharing configuration for all alert instances can be changed in the
+          <button class="la-text-btn_link js-sidebar-ignore"
+                  [disabled]="sharingFormGroup.invalid"
+                  (click)="defaultInstanceClicked.emit()">
+            Default&nbsp;Threshold
+          </button>
+          instance.
+        </div>
+      </ng-template>
+    </nx-section>
+  </ng-template>
+</nx-loading>

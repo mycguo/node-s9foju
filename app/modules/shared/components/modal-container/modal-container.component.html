@@ -1,0 +1,23 @@
+<div class="nx-modal__header">
+  <ng-container *ngIf="headerTpl; else defaultHeaderTpl">
+    <ng-template [ngTemplateOutlet]="headerTpl"></ng-template>
+  </ng-container>
+
+  <ng-template #defaultHeaderTpl>
+    <p class="nx-modal-title" *ngIf="titleText">{{titleText}}</p>
+
+    <button class="nx-modal-close-btn" (click)="closeButtonClicked.emit()" type="button"></button>
+  </ng-template>
+</div>
+
+<div class="nx-modal__body" *ngIf="bodyTpl">
+  <ng-template [ngTemplateOutlet]="bodyTpl"></ng-template>
+</div>
+
+<div class="nx-modal__footer" *ngIf="footerTpl">
+  <ng-template [ngTemplateOutlet]="footerTpl"></ng-template>
+</div>
+
+<div class="nx-modal__alert" *ngIf="alertTpl">
+  <ng-template [ngTemplateOutlet]="alertTpl"></ng-template>
+</div>

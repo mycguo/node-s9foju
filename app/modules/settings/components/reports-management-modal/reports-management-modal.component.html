@@ -1,0 +1,41 @@
+<nx-modal-container
+  titleText="Re-assign Ownership"
+  (closeButtonClicked)="cancel()"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+>
+  <ng-template #bodyTpl>
+    <nx-loading
+      [isLoading]="selectLoading$ | async"
+      [error]="selectError$ | async"
+      [showContent]="true"
+      [contentTemplate]="contentTemplate"
+    >
+      <ng-template #contentTemplate>
+        <p class="info-text row row_single">
+          <b>Important:</b> Results from scheduled report execution will be transferred to the new owner.
+        </p>
+
+        <nx-select
+          class="row row_single"
+          [options]="selectModel.options"
+          [displayModel]="selectModel.displayOptions"
+          [formControl]="selectControl"
+        ></nx-select>
+      </ng-template>
+    </nx-loading>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="cancel()">Cancel</nx-button>
+
+      <nx-button
+        [isPrimary]="true"
+        [isDisabled]="(selectLoading$ | async) || isSubmitDisabled"
+        (btnClick)="onSubmit()"
+      >Save</nx-button>
+    </div>
+  </ng-template>
+
+</nx-modal-container>

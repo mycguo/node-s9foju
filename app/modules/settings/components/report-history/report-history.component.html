@@ -1,0 +1,75 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="!!reportHistory && !!reportHistoryValidation && !!storage"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <form [formGroup]="formGroup">
+      <nx-card [headerTitle]="'Report History'"
+               [size]="'sm'"
+               [body]="cardBody"
+               [footer]="cardFooter">
+        <ng-template #cardBody>
+          <nx-disk-storage-capacity
+            class="nx-indent_outer_bottom_row"
+            [totalDiskSpace]="storage?.diskSizeTotal"
+            [usedDiskSpace]="storage?.diskSizeUsed"
+            [legend]="diskStorageCapacityLegend"
+            [maxStoreSizeLegendDetailsTmpl]="maxStoreSizeLegendDetailsTmpl">
+            <ng-template #maxStoreSizeLegendDetailsTmpl>
+              <nx-simple-input
+                class="nx-disk-storage-capacity-legend__item-bottom-simple-input"
+                [formControlName]="staticStorageKey"
+                [inputModel]="diskStorageField">
+              </nx-simple-input>
+            </ng-template>
+          </nx-disk-storage-capacity>
+
+          <div class="nx-indent_outer_bottom_row nx-post">
+            You can set how long different report type results are stored on LiveNX
+            server.
+          </div>
+
+          <div class="row" [formGroupName]="staticHistoryFormKey">
+            <nx-simple-input class="col col_w-100" [formControlName]="staticAdhocDaysKey" [inputModel]="adhocDaysField"></nx-simple-input>
+
+            <nx-simple-input class="col col_w-100" [formControlName]="staticScheduleDaysKey" [inputModel]="scheduledDaysField"></nx-simple-input>
+
+            <nx-simple-input class="col col_w-100" [formControlName]="staticSharedDaysKey" [inputModel]="sharedDaysField"></nx-simple-input>
+          </div>
+        </ng-template>
+
+        <ng-template #cardFooter>
+          <div class="nx-buttons-groups">
+            <div class="nx-buttons-groups__item">
+              <nx-button
+                [isDisabled]="isResetToDefaultDisabled"
+                (btnClick)="onResetDefault()"
+                id="report-history-set-defaults-btn">
+                Reset to Default
+              </nx-button>
+            </div>
+
+            <div nxButtonList class="nx-buttons-groups__item">
+              <nx-button
+                [isDisabled]="formGroup.pristine"
+                (btnClick)="onRevert()"
+                id="report-history-revert-btn">
+                Revert Changes
+              </nx-button>
+
+              <nx-button
+                [isPrimary]="true"
+                [isDisabled]="formGroup.pristine || formGroup.invalid"
+                (btnClick)="onSubmit()"
+                id="report-history-submit-btn">
+                Submit
+              </nx-button>
+            </div>
+          </div>
+        </ng-template>
+      </nx-card>
+    </form>
+  </ng-template>
+
+</nx-loading>

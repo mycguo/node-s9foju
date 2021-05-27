@@ -1,0 +1,46 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="!!logosConfig && !!logos"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <nx-card
+      [size]="'sm'"
+      class="custom-logo-configuration-card"
+      [headerTitle]="'Logo'"
+      [body]="body">
+      <ng-template #body>
+        <p class="nx-p">
+          You will be able to select one of uploaded logos in report creation modal window.
+          Maximum file size {{logosConfig?.fileSize | byteFormatting}}, supported
+          formats: {{logosConfig?.fileTypes.join(', ')}},
+          aspect ratio {{logosConfig?.ratio?.width}}:{{logosConfig?.ratio?.height}}.
+        </p>
+
+        <p class="nx-p">
+          Logos uploaded {{logos.length}}/{{logosConfig?.limit}}.
+          <span class="nx-text-critical" *ngIf="logos.length >= logosConfig?.limit">
+        You have reached the maximum number of logos.
+      </span>
+        </p>
+
+        <nx-file-uploader
+          *ngIf="logos.length < logosConfig?.limit"
+          [formControl]="fileFormControl"
+          [acceptedFileTypes]="logosConfig.fileTypes"
+        ></nx-file-uploader>
+
+        <nx-logos-list
+          *ngIf="logos.length > 0"
+          [logos]="logos"
+          [activeLogoId]="activeLogoId"
+          (changeLogo)="openEditModal($event)"
+          (selectLogo)="selectLogo($event)"
+          (deleteLogo)="deleteLogo($event)"
+          (selectEmptyLogo)="selectLogo($event)"
+        ></nx-logos-list>
+      </ng-template>
+    </nx-card>
+
+  </ng-template>
+</nx-loading>

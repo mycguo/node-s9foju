@@ -1,0 +1,40 @@
+<ng-container *ngIf="state === states.ERROR && displayError === displayErrors.FATAL">
+  <ng-template [ngTemplateOutlet]="errorTemplate ? errorTemplate : defaultFatalErrorTemplate"
+               [ngTemplateOutletContext]="{$implicit: error}"></ng-template>
+
+  <ng-template #defaultFatalErrorTemplate>
+    <nx-no-data-message [model]="fatalErrorMessage"></nx-no-data-message>
+  </ng-template>
+</ng-container>
+
+<ng-template #defaultLoaderTemplate>
+  <nx-spinner [fillContentArea]="true"></nx-spinner>
+</ng-template>
+
+<ng-container *ngIf="isLoading">
+  <ng-template
+    *ngTemplateOutlet="(state === states.LOADING) ? loadingTemplate || defaultLoaderTemplate : updatingTemplate || defaultLoaderTemplate"></ng-template>
+</ng-container>
+
+<ng-container *ngIf="state === states.ALERT && displayError === displayErrors.TOP">
+  <ng-template [ngTemplateOutlet]="errorTemplate ? errorTemplate : defaultAlertTemplate"
+               [ngTemplateOutletContext]="{$implicit: error}"></ng-template>
+</ng-container>
+
+<ng-container *ngIf="state !== states.ERROR && state !== states.LOADING ">
+  <ng-template *ngTemplateOutlet="contentTemplate"></ng-template>
+</ng-container>
+
+<ng-container *ngIf="state === states.ALERT && displayError === displayErrors.BOTTOM">
+  <ng-template [ngTemplateOutlet]="errorTemplate ? errorTemplate : defaultAlertTemplate"
+               [ngTemplateOutletContext]="{$implicit: error}"></ng-template>
+</ng-container>
+
+
+<ng-template #defaultAlertTemplate>
+  <nx-simple-alert
+    class="nx-loading-error-data__alert"
+    [alert]="alertErrorMessage"
+    [yPosition]="displayError === displayErrors.TOP ? 'top' : 'bottom'"
+  ></nx-simple-alert>
+</ng-template>

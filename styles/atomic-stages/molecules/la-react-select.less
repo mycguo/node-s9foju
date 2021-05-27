@@ -1,0 +1,181 @@
+@import "../../utilities/utilities";
+
+/*
+  Reset plugin styles
+*/
+.la-react-select {
+  .la-react-select__menu {
+    z-index: 9999;
+    width: auto;
+    min-width: 100%;
+    overflow: visible;
+  }
+
+  .la-react-select__control {
+    background-color: @la-form-element__background-color_base;
+    border: @la-form-element__border_base;
+    min-height: 28px;
+    height: 28px;
+    border-radius: @la-form-element__border-radius_base;
+    box-shadow: none;
+    transition: border .2s ease, background .2s ease;
+    &:hover {
+      border-color: @la-form-element__border-color_is-hovered;
+    }
+  }
+
+  .la-react-select__control--is-focused {
+    border-color: @la-form-element__border-color_is-focused;
+    &:hover {
+      border-color: @la-form-element__border-color_is-focused;
+    }
+
+    .la-react-select__dropdown-indicator {
+      &:after {
+        content: '\e81e';
+      }
+    }
+  }
+
+  .la-react-select__value-container {
+    padding: @la-form-element__padding-vertical_base 0 @la-form-element__padding-vertical_base @la-form-element__padding-horizontal_base;
+  }
+
+  .la-react-select__value-container--has-value {
+    > div {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .la-react-select__dropdown-indicator {
+    padding: 0;
+  }
+
+  .la-react-select__single-value {
+    color: @la-form-element__color_base;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .la-react-select__menu {
+    background-color: @la-form-element__background-color_base;
+    border-radius: 0 0 @la-form-element__border-radius_base @la-form-element__border-radius_base;
+    box-shadow: 0px -5px 11px rgba(255, 255, 255, .7), 0px 10px 20px rgba(53, 64, 83, 0.1), 0px 4px 16px rgba(53, 64, 83, 0.12), 0px 2px 6px rgba(53, 64, 83, 0.14);
+    margin-bottom: 0;
+    margin-top: -2px;
+    border-top: none;
+  }
+
+  .la-react-select__menu-list {
+    max-height: @la-select-drop-down__max-height;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+
+  .la-react-select__option,
+  .la-react-select__menu-notice {
+    padding: @la-select-drop-down-item__padding_base;
+    .la-mixin_text(@la-font-family_base, @la-select-drop-down-item__font-size_base, @la-select-drop-down-item__line-height_base, @la-select-drop-down-item__color_base);
+  }
+
+  .la-react-select__option--is-focused,
+  .la-react-select__option:active,
+  .la-react-select__option--is-selected.la-react-select__option--is-focused {
+    background-color: @la-select-drop-down-item__background-color_is-hovered;
+  }
+
+  .la-react-select__option--is-selected {
+    background-color: transparent;
+  }
+}
+
+.la-react-select__single-value {
+  .la-mixin_text(@la-font-family_base, 12px, 14px, @la-form-element__color_base);
+}
+
+.la-react-select__dropdown-indicator {
+  svg {
+    display: none;
+  }
+}
+
+.la-react-select__indicator-separator {
+  display: none;
+}
+
+.la-react-select__single-value {
+  + div {
+    height: @la-form-element__line-height_base;
+    line-height: @la-form-element__line-height_base;
+    margin: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+  }
+}
+
+/*
+  Main styles
+*/
+.la-react-select__value-container {
+  padding: 6px 0 6px 8px;
+  > div:not(.la-react-select__single-value) {
+    font-size: 0;
+  }
+}
+
+.la-react-select__dropdown-indicator {
+  position: relative;
+  width: 28px;
+  justify-content: center;
+  &:after {
+    &:extend(.la-fontello:before);
+    content: '\e81d';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding-right: @la-form-element__padding-horizontal_base;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 6px;
+    color: @la-form-element-icon__color_base;
+  }
+}
+
+.la-react-select__input {
+  > input[type='text'] {
+    font-size: @la-form-element__font-size_base!important;
+    line-height: @la-form-element__line-height_base;
+    height: @la-form-element__line-height_base;
+    vertical-align: top;
+  }
+}
+
+.la-react-select__menu {
+  border: @la-form-element__border_base;
+  transition: border .2s ease;
+}
+
+.la-react-select__menu-list {
+  border-top: @la-select-drop-down__border-top_base;
+}
+
+.la-react-select__control--is-focused {
+  + .la-react-select__menu {
+    border-color: @la-form-element__border-color_is-focused;
+  }
+}
+
+.la-react-select,
+.la-react-select__control,
+.la-react-select__menu,
+.la-react-select__menu-list,
+.la-react-select__option {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.la-react-select__option {
+  transition: background .2s ease;
+}

@@ -1,0 +1,56 @@
+<nx-loading
+  [isLoading]="isLoading$ | async"
+  [error]="error$ | async"
+  [displayError]="DISPLAY_ERROR.BOTTOM"
+  [alertMessageOverride]="alertMessageOverride"
+  [showContent]="true"
+  [contentTemplate]="contentTemplate"
+>
+  <ng-template #contentTemplate>
+    <nx-modal-container
+      [titleText]="data.id ? 'Edit OID' : 'Add Oid'"
+      (closeButtonClicked)="cancel()"
+      [bodyTpl]="bodyTpl"
+      [footerTpl]="footerTpl"
+    >
+      <ng-template #bodyTpl>
+        <form [formGroup]="formGroup">
+          <nx-tabset
+            [tabGroup]="tabs"
+            [isContentDetailsView]="true"
+            [selectedTabId]="selectedTabId"
+            (tabSelected)="handleTabSelected($event)"
+            [tabsOnly]="true"
+          ></nx-tabset>
+
+          <nx-custom-oid-polling-settings
+            [hidden]="selectedTabId !== tabIds.GENERAL"
+            [formControlName]="generalControlKey"
+          ></nx-custom-oid-polling-settings>
+
+          <nx-custom-oid-polling-devices-container
+            *ngIf="selectedTabId === tabIds.DEVICES"
+            [formControlName]="devicesControlKey"
+          ></nx-custom-oid-polling-devices-container>
+
+          <ng-template #devicesTabLabelTpl>Devices ({{devicesTabCount}})</ng-template>
+        </form>
+      </ng-template>
+
+      <ng-template #footerTpl>
+        <div nxButtonList>
+          <nx-button
+            (btnClick)="cancel()"
+            [isDisabled]="(isLoading$ | async)"
+          >Cancel</nx-button>
+
+          <nx-button
+            [isPrimary]="true"
+            [isDisabled]="formGroup.invalid || formGroup.pristine || (isLoading$ | async)"
+            (btnClick)="onSubmit()"
+          >Save</nx-button>
+        </div>
+      </ng-template>
+    </nx-modal-container>
+  </ng-template>
+</nx-loading>

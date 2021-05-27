@@ -1,0 +1,19 @@
+@import 'helpers_form';
+
+.image-wrapper,
+nx-file-uploader {
+  margin-bottom: 16px;
+}
+
+.image-wrapper-title {
+  &:extend(.la-form-element__header all);
+  &:extend(.la-form-element-title);
+}
+
+.image-wrapper-body {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  border: 1px dashed @la-color_mystic-base;
+  overflow: hidden;
+}

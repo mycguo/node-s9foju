@@ -1,0 +1,46 @@
+<mat-drawer-container
+  [hasBackdrop]="false">
+  <mat-drawer #drawer mode="over" position="end">
+    <nx-sidebar-display
+      [titleText]="sidebarTitle"
+      [componentHelper]="sidebarComponent"
+      [closePreventClassList]="closePreventClassList"
+      [closeOnClickOutside]="true"
+      [drawerRef]="sidebar"
+      (close)="closeSidebar()">
+    </nx-sidebar-display>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <nx-title-bar
+      pageTitle="Alert Management"
+      [pageActions]="pageActions"
+    >
+      <ng-template #pageActions>
+        <ng-container>
+          <nx-button class="nx-title-bar-action js-sidebar-ignore"
+                     [isDisabled]="isErrorState"
+                     (btnClick)="maintenanceModeClick.emit($event)">Maintenance Mode
+          </nx-button>
+
+          <nx-button class="nx-title-bar-action">
+            <a class="nx-button-text" href="/alerts">View Alerts</a>
+          </nx-button>
+        </ng-container>
+      </ng-template>
+    </nx-title-bar>
+
+    <nx-loading
+      [isLoading]="isLoading"
+      [error]="error"
+      [showContent]="showContent"
+      [fatalMessageOverride]="fatalMessageOverride"
+      [contentTemplate]="content">
+      <ng-template #content>
+        <nx-tabset [tabGroup]="tabs"
+                   [selectedTabId]="selectedTabId"
+                   (tabSelected)="handleTabSelected($event)"></nx-tabset>
+      </ng-template>
+    </nx-loading>
+  </mat-drawer-content>
+</mat-drawer-container>

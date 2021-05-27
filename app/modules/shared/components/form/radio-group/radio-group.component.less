@@ -1,0 +1,132 @@
+@import 'mixins';
+
+:host {
+  display: block;
+}
+
+.nx-radio__input {
+  visibility: hidden;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.nx-radio__label {
+  .la-mixin_text(@la-font-family_base, 12px, 14px, @la-color_oxford-blue-base);
+}
+
+.nx-radio {
+  line-height: 0;
+  > label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    &:before {
+      content: '';
+      margin-right: 8px;
+      transition: background .2s ease .1s, border .2s ease .1s;
+      height: 14px;
+      width: 14px;
+      background-color: @la-color_white-base;
+      border: 1px solid @la-color_geyser-base;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 4px;
+      transform: translateY(-50%) scale(0, 0);
+      transform-origin: center center;
+      height: 6px;
+      width: 6px;
+      background-color: @la-color_white-base;
+      border-radius: 50%;
+      transition: transform .2s ease;
+    }
+  }
+}
+
+.nx-radio_is_active {
+  > label {
+    &:before {
+      background-color: @la-color_jaffa-base;
+      border-color: @la-color_jaffa-base;
+      transition-delay: 0s;
+    }
+
+    &:after {
+      transform: translateY(-50%) scale(1, 1);
+      transition-delay: .1s;
+    }
+  }
+}
+
+.nx-radio_is_disabled {
+  > label {
+    cursor: not-allowed;
+    &:before {
+      border-color: lighten(@la-color_mystic-base, 2%);
+      background-color: lighten(@la-color_mystic-base, 2%);
+    }
+  }
+}
+
+.nx-radio-group__item {
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+:host(.nx-radio-group_direction_row) {
+  display: flex;
+  .nx-radio-group__item {
+    margin-bottom: 0;
+    margin-right: 24px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.nx-radio__content {
+  padding-top: 16px;
+  padding-bottom: 8px;
+  padding-left: 22px;
+  &[hidden] {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+:host(.nx-radio-group_has-background) {
+  .nx-radio {
+    padding: 8px;
+    transition: background-color @duration_sm @easing_base;
+    border-radius: 2px;
+  }
+
+  .nx-radio_is_active {
+    background-color: @la-color_black-squeeze-base;
+  }
+}
+
+:host-context(.nx-form-field__header-additional-elements),
+:host-context(.nx-section__header-additional-elements) {
+  .nx-radio-group__item {
+    margin-right: 12px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+:host-context(.nx-section__header-additional-elements) {
+  margin-left: auto;
+}

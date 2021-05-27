@@ -1,0 +1,50 @@
+<div class="header-nav__item la-header-nav__item js-header-nav-item"
+     *ngIf="isLoggedIn"
+     id="appbar-help-dropdown"
+     [ngClass]="{'la-header-nav__item_has-opened-dropdown': activeHeaderNavItem === 'isActiveHelpConfigurationElement'}">
+
+  <a class="la-header-nav-toggle-dropdown-btn la-header-nav-label la-header-nav__item-toggle-dropdown-btn"
+     (click)="toggleHeaderNavItemDropdown()"
+     title="Help">
+    <span class="icon la-fontello la-fontello_question-circle-filled la-header-nav-label-icon la-header-nav-label__icon"></span>
+
+    <i class="la-icon la-fontello la-header-nav-toggle-dropdown-btn-icon"
+       [ngClass]="{'la-fontello_caret-up': activeHeaderNavItem === 'isActiveHelpConfigurationElement',
+                      'la-fontello_caret-down': activeHeaderNavItem !== 'isActiveHelpConfigurationElement'}">
+    </i>
+  </a>
+
+  <ul class="la-header-nav-dropdown">
+    <li class="la-header-nav-dropdown__item">
+      <a href="{{documentationUrl}}"
+         target="_blank"
+         title="Documentation">
+        Documentation
+      </a>
+    </li>
+
+    <li class="la-header-nav-dropdown__item">
+      <a (click)="openWalkMePlayer()"
+         title="Tutorials">
+        Tutorial
+      </a>
+    </li>
+
+    <li class="la-header-nav-dropdown__item">
+      <a routerLink="appAbout.settingsAbout"
+         id="appbar-about-selection"
+         title="About">
+        About
+      </a>
+    </li>
+
+    <li class="la-header-nav-dropdown__item"
+        *ngIf="showSupportPortalOption && supportPortalUrl">
+      <a routerLink="{{supportPortalUrl}}"
+         target="_blank"
+         title="Support Portal">
+        Support Portal
+      </a>
+    </li>
+  </ul>
+</div>

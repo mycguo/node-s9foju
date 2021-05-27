@@ -1,0 +1,58 @@
+<form [formGroup]="formGroup" (ngSubmit)="handleSubmitForm()">
+  <nx-modal-container
+    titleText="CONNECT LIVENA"
+    (closeButtonClicked)="handleCancel()"
+    [bodyTpl]="bodyTpl"
+    [footerTpl]="footerTpl"
+    [alertTpl]="alertTpl"
+  >
+    <ng-template #bodyTpl>
+      <nx-simple-input
+        class="row row_single"
+        [formControlName]="staticHostnameKey"
+        [inputModel]="hostnameField"
+      ></nx-simple-input>
+
+      <nx-simple-input
+        class="row row_single"
+        [formControlName]="staticPortKey"
+        [inputModel]="portField"
+      ></nx-simple-input>
+
+      <nx-simple-input
+        class="row row_single"
+        [formControlName]="staticApiInputKey"
+        [inputModel]="apiKeyField"
+      ></nx-simple-input>
+    </ng-template>
+
+    <ng-template #footerTpl>
+      <div nxButtonList>
+        <div *ngIf="configSubmitIsLoading || checkingConfigConnection">
+          <nx-spinner
+            [spinnerSize]="SPINNER_SIZE.XS"
+          ></nx-spinner>
+        </div>
+
+        <nx-button
+          [isDisabled]="configSubmitIsLoading || checkingConfigConnection"
+          (click)="handleCancel()"
+        >
+          Cancel
+        </nx-button>
+
+        <nx-button
+          [isSubmit]="true"
+          [isPrimary]="true"
+          [isDisabled]="!formGroup.valid || configSubmitIsLoading || checkingConfigConnection"
+          (btnClick)="handleSubmitForm()">
+          Submit
+        </nx-button>
+      </div>
+    </ng-template>
+
+    <ng-template #alertTpl>
+      <nx-simple-alert [alert]="errorMessage" *ngIf="errorMessage"></nx-simple-alert>
+    </ng-template>
+  </nx-modal-container>
+</form>

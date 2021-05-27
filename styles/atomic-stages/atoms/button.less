@@ -1,0 +1,49 @@
+@import "../../utilities/utilities";
+
+.nx-lightweight-icon-btn {
+  color: @la-color_regent-gray-base;
+  transition: color @duration_sm @easing_base;
+  cursor: pointer;
+  &.la-fontello {
+    font-size: 12px;
+  }
+
+  &.la-fontello_close {
+    font-size: 8px;
+  }
+
+  &.la-fontello_export-to-csv {
+    font-size: 12px;
+  }
+
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+}
+
+.nx-lightweight-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: @la-color_mystic-base;
+  border-radius: 2px;
+  padding: @nx-lightweight-btn__indent_vertical_base 6px;
+  .nx-typography-mixin(10px, @nx-lightweight-btn__line-height_base, @la-color_oxford-blue-base);
+  cursor: pointer;
+  text-decoration: none;
+  &.la-fontello:before {
+    line-height: 16px;
+    font-size: 12px;
+    color: @la-color_jaffa-base;
+    order: 1;
+    margin-left: 4px;
+  }
+
+  &:focus {
+    color: @la-color_oxford-blue-base;
+  }
+
+  &:hover {
+    background-color: darken(@la-color_mystic-base, 2%);
+    color: @la-color_oxford-blue-base;
+  }
+}

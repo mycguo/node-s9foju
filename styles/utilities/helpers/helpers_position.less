@@ -1,0 +1,36 @@
+@import '../mixins/mixins';
+
+.nx-absolute-center {
+  .nx-centering-mixin();
+}
+
+.nx-full-height-flex-col {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.nx-align_vertical_middle {
+  display: flex;
+  align-items: center;
+}
+
+.full-height-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.full-height-container__scroll {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.nx-position_relative {
+  position: relative;
+}
+
+.nx-nowrap {
+  white-space: nowrap;
+}

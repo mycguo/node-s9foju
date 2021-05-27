@@ -1,0 +1,24 @@
+@import 'variables';
+@import '../../../../../styles/atomic-stages/molecules/key-value-list';
+
+:host {
+  display: block;
+}
+
+:host(.nx-key-value-list_align-left) {
+  .kvl-table-cell_value {
+    text-align: left;
+  }
+}
+
+:host-context(nx-status-alert-details-drawer) {
+  .kvl-table-cell_key {
+    width: 155px;
+    padding-right: 24px;
+    box-sizing: border-box;
+  }
+}
+
+:host-context(nx-live-insight-edge-config-display) {
+  width: 849px;
+}

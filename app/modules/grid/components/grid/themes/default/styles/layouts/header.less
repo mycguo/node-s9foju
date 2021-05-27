@@ -1,0 +1,197 @@
+@import 'mixins';
+@import 'helpers_fontello';
+
+/**
+ * @section Angular Grid
+ * @subsection Header
+ */
+.nx-grid-default.ag-theme-balham_live-nx {
+  .ag-header {
+    background-color: @la-table-header__background-color_base;
+    border: none;
+  }
+
+  .ag-header-row {
+    box-shadow: 0 0 0 1px @la-table__border-color_base;
+    &:not(:first-child) {
+      z-index: 0;
+      .ag-header-cell {
+        border-color: @la-table__border-color_base;
+      }
+    }
+  }
+
+  .ag-header-row:first-child {
+    overflow: visible; // display checkbox
+    border-bottom: none;
+    z-index: 1;
+    .ag-header-cell {
+      &:first-child {
+        overflow: visible; // display checkbox
+      }
+    }
+  }
+
+  .ag-header-cell,
+  .ag-header-group-cell {
+    padding: 0;
+    border-color: @la-table__border-color_base;
+    overflow: visible;
+    &:after {
+      top: 0;
+      height: 100%;
+      background-color: @la-table__border-color_base;
+    }
+
+    &.ag-header-cell-moving {
+      background-color: @la-table-header__background-color_base;
+      opacity: .5;
+    }
+  }
+
+  .ag-header-cell {
+    padding-left: @nx-table-header-cell-resize__width_base/2;
+    &:last-child {
+      &:not(.ag-sub-header-cell) {
+        box-shadow: 0 0 0 1px @la-table__border-color_base;
+      }
+
+      &:after {
+        transform: translateX(1px);
+      }
+    }
+  }
+
+  // temporary disabled to achieve the same behavior as column headers of AngularJS tables
+  // .ag-header-cell_number {
+  //   .ag-header-cell-label {
+  //     justify-content: flex-end;
+  //   }
+  // }
+
+  .ag-header-cell-text,
+  .ag-header-group-text {
+    .nx-typography-mixin(@la-table-header__font-size_base, @la-table-header__line-height_base, @la-table-header__color_base, @la-table-header__font-weight_base);
+    text-transform: @la-table-header__text-transform_base;
+  }
+
+  .ag-header-cell-label {
+    position: relative;
+    padding: @la-table-header-cell__vertical-indent_base @la-table-header-cell__right-indent_resizer @la-table-header-cell__vertical-indent_base @la-table-header-cell__horizontal-indent_base - @nx-table-header-cell-resize__width_base/2;
+    .ag-header-icon {
+      margin-left: 0;
+      opacity: 1;
+    }
+  }
+
+  .ag-header-cell-sorted-asc {
+    .ag-icon-asc {
+      color: @la-table-icon__color_is-activated;
+    }
+  }
+
+  .ag-header-cell-sorted-desc {
+    .ag-icon-desc {
+      color: @la-table-icon__color_is-activated;
+    }
+  }
+
+  .ag-sort-ascending-icon,
+  .ag-sort-descending-icon {
+    display: flex!important; // reset ag-hidden css
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: @la-table-cell__horizontal-padding_base;
+  }
+
+  .ag-sort-ascending-icon {
+    margin-top: -3px;
+  }
+
+  .ag-sort-descending-icon {
+    margin-top: 3px;
+  }
+
+  .ag-icon-asc,
+  .ag-icon-desc {
+    &:extend(.la-fontello all);
+    font-size: 5px;
+    color: @la-table-icon__color_base;
+    &:before {
+      display: block;
+    }
+  }
+
+  .ag-icon-asc {
+    &:extend(.la-fontello_chevron_up all);
+  }
+
+  .ag-icon-desc {
+    &:extend(.la-fontello_chevron_down all);
+  }
+
+  .ag-header-cell-resize {
+    width: @nx-table-header-cell-resize__width_base;
+  }
+
+  // Grouping Header Cells
+  .ag-header-group-cell-with-group {
+    &:after,
+    .ag-header-cell-resize {
+      height: 200%; // overlap the sub-header cell's resizer
+    }
+  }
+
+  .ag-header-group-cell-no-group {
+    &:after {
+      display: none;
+    }
+  }
+
+  .ag-sub-header-cell .ag-header-cell-label,
+  .ag-header-group-cell-label {
+    padding: @la-table-header-cell__vertical-indent_group-item @la-table-header-cell__right-indent_resizer @la-table-header-cell__vertical-indent_group-item @la-table-header-cell__horizontal-indent_base - @nx-table-header-cell-resize__width_base/2;
+  }
+
+  .ag-sub-header-cell {
+    box-shadow: 0 -1px 0 0 @la-table__border-color_base;
+  }
+
+  .ag-sub-header-cell_no-resize {
+    &:after {
+      display: none;
+    }
+
+    .ag-header-cell-resize {
+      z-index: inherit; // allow to reuse the group resizer
+    }
+  }
+
+  .ag-header-group-cell-label {
+    justify-content: center;
+    padding-right: @la-table-header-cell__horizontal-indent_base;
+  }
+
+  .ag-header-row-column-group { // groups parent columns
+    box-shadow: none;
+    z-index: 0; // do not allow to overlap the cells without groups
+    + .ag-header-row-column { // groups child columns
+      overflow: visible; // do not allow to be overlapped by the groups parent columns
+      z-index: inherit; // do not allow click area to be overlapped by the groups parent columns click area
+      box-shadow: none;
+      .ag-header-cell {
+        border-top: 0;
+        &:not(.ag-sub-header-cell) {
+          height: 200%;
+          position: absolute;
+          top: -100%;
+          background-color: @la-table-header__background-color_base; // do not allow to be overlapped by the groups parent column's border
+          .ag-header-cell-label {
+            z-index: 1; // do not allow click area to be overlapped by the groups parent columns click area
+          }
+        }
+      }
+    }
+  }
+}

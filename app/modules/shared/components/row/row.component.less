@@ -1,0 +1,14 @@
+@import "../../../../../styles/atomic-stages/templates/__layout/__row-col/layouts__row-col";
+
+:host {
+  &:extend(.nx-row all);
+}
+
+:host(.nx-row_single) {
+  &:extend(.nx-row_single all);
+}
+
+:host(.nx-form-group-container.nx-row_single) {
+  display: flex;
+  width: 100%;
+}

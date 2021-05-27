@@ -1,0 +1,15 @@
+@import "variables";
+@import "src/styles/vendor/highcharts/highcharts_variables";
+
+.highcharts-tooltip {
+  > span {
+    font-family: @la-font-family_base!important;
+    font-size: @nx-highcharts-tooltip__font-size_base!important;
+    line-height: @nx-highcharts-tooltip__line-height_base;
+    color: @la-color_oxford-blue-base!important;
+    padding: @nx-highcharts-tooltip__indent_base;
+    > table {
+      margin-top: @nx-highcharts-tooltip-details__indent-top_base;
+    }
+  }
+}

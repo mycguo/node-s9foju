@@ -1,0 +1,32 @@
+@import '../variables/variables';
+
+.nx-text-critical {
+  color: @la-color_red-orange-base;
+}
+
+.nx-bg-color {
+
+  &-normal {
+    background-color: @la-form-element-tag__background-color_base;
+
+    &-active {
+      background-color: darken(@la-form-element-tag__background-color_base, 5%);
+    }
+  }
+
+  &-warning {
+    background-color: @la-color_champagne-base;
+
+    &-active {
+      background-color: fade(@la-color_jaffa-base, 20%);
+    }
+  }
+
+  &-critical {
+    background-color: darken(@la-status-background__color_status_critical_has-text, 5%);
+
+    &-active {
+      background-color: fade(#FF3635, 20);
+    }
+  }
+}

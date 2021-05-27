@@ -1,0 +1,11 @@
+<div class="nx-section__header" *ngIf="titleText" [ngClass]="{'nx-section__header_has-separator': hasHeaderSeparator}">
+  <strong class="nx-section-title">{{titleText}}</strong>
+
+  <div class="nx-section__header-additional-elements" *ngIf="headerAdditionalElementsTpl">
+    <ng-container *ngTemplateOutlet="headerAdditionalElementsTpl"></ng-container>
+  </div>
+</div>
+
+<div class="nx-section__body"><ng-content></ng-content></div>
+
+<div class="nx-section__footer" *ngIf="footerTmpl"><ng-container *ngTemplateOutlet="footerTmpl"></ng-container></div>

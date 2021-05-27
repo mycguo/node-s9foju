@@ -1,0 +1,13 @@
+@import 'mixins';
+@import "helpers_card";
+
+:host {
+  &:extend(.apply__card-wrapper-view-base);
+}
+
+.nx-common-integrations-panel__header {
+  &:extend(.nx-card-header-title);
+  &:extend(.apply__vertical-indents_card-base);
+  text-align: center;
+  margin: 0 auto;
+}

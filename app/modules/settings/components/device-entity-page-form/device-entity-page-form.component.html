@@ -1,0 +1,46 @@
+<!--
+  Do not use ngIf at or above the level of a ViewChild
+  The ViewChild reference will not resolve properly
+  See https://angular.io/guide/static-query-migration
+-->
+<form>
+  <nx-simple-input
+    [ngModel]="deviceEntityPageReport?.reportName"
+    (ngModelChange)="reportNameChange($event)"
+    [inputModel]="reportNameInput"
+    [disabled]="isDisabled"
+    (blur)="onTouch()"
+    name="reportName"
+    required
+    class="row row_single"
+    #reportName="ngModel"
+  ></nx-simple-input>
+
+  <ng-container
+    *ngFor="let item of optionsMap | keyvalue"
+    [ngSwitch]="item.value"
+  >
+    <nx-select
+      *ngSwitchCase="formType.select"
+      [ngModel]="deviceEntityPageReport?.parameters[item.key]"
+      (ngModelChange)="parameterChange(item.key, $event)"
+      [options]="selectMap.get(item.key).options"
+      [displayModel]="selectMap.get(item.key).displayOptions"
+      [disabled]="isDisabled"
+      [name]="item.key"
+      (blur)="onTouch()"
+      class="row row_single"
+    ></nx-select>
+
+    <nx-simple-input
+      *ngSwitchDefault
+      [ngModel]="deviceEntityPageReport?.parameters[item.key]"
+      (ngModelChange)="parameterChange(item.key, $event)"
+      [inputModel]="inputMap.get(item.key)"
+      [disabled]="isDisabled"
+      [name]="item.key"
+      (blur)="onTouch()"
+      class="row row_single"
+    ></nx-simple-input>
+  </ng-container>
+</form>

@@ -1,0 +1,16 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="errorMessageObj"
+  [showContent]="true"
+  [contentTemplate]="contentTemplate">
+  <ng-template #contentTemplate>
+    <nx-no-data-message *ngIf="isLoading == false && reports.length === 0"
+                        [model]="noDataObj"></nx-no-data-message>
+    <ng-container *ngFor="let report of reports">
+      <nx-live-insight-edge-reports-container
+        [report]="report"
+      >
+      </nx-live-insight-edge-reports-container>
+    </ng-container>
+  </ng-template>
+</nx-loading>

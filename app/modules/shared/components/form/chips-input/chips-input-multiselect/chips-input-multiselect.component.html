@@ -1,0 +1,34 @@
+<nx-form-field
+  *nxFormFieldControl="let controller from control errorOverrides chipsInputModel.errorMessageOverrides"
+  [label]="chipsInputModel.label"
+  [headerAdditionalElements]="chipSet?.size > 0 ? headerAdditionalElements : null"
+  [isValid]="controller.isValid"
+  [isInvalid]="controller.isInvalid"
+  [isRequired]="controller.isRequired"
+  [isDisabled]="controller.isDisabled"
+  [isTouched]="controller.isTouched"
+  [hintMessage]="chipsInputModel.hintMessage"
+  [errorMessage]="controller.errorMessage">
+
+  <ng-template>
+    <nx-chip-set-multiselect
+      [options]="chipsInputModel.options"
+      [chips]="chipSet"
+      [placeholder]="placeholder"
+      [size]="chipsInputModel.size"
+      [suggestionsItemTmpl]="suggestionsItemTmpl"
+      [isDisabled]="controller.isDisabled"
+      [inputValue]="inputValue"
+      [allowCustomText]="chipsInputModel.allowCustomText"
+      (addValue)="addValueMultiselect($event)"
+      (addOption)="addOption($event)"
+      (deleteChips)="removeChips($event)"
+      (touched)="onTouched()">
+    </nx-chip-set-multiselect>
+  </ng-template>
+
+</nx-form-field>
+
+<ng-template #headerAdditionalElements>
+  <span class="nx-form-field-label-counter" @fadeTrigger> Added: {{chipSet.size}}</span>
+</ng-template>

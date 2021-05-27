@@ -1,0 +1,22 @@
+<div class="row" [formGroup]="integrationForm">
+  <nx-simple-input
+    class="col col_w-100"
+    [formControlName]="staticHostnameKey"
+    [inputModel]="hostnameField"
+    (blur)="onTouched()">
+  </nx-simple-input>
+
+  <nx-simple-input
+    class="col col_w-100"
+    [formControlName]="staticUsernameKey"
+    [inputModel]="usernameField"
+    (blur)="onTouched()">
+  </nx-simple-input>
+
+  <nx-simple-input
+    class="col col_w-100"
+    [formControlName]="staticPasswordKey"
+    [inputModel]="passwordField"
+    (blur)="onTouched()">
+  </nx-simple-input>
+</div>

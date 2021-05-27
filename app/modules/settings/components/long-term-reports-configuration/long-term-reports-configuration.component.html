@@ -1,0 +1,46 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="showContent"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <nx-card
+      size="lg"
+      [header]="cardHeader"
+      [body]="cardBody">
+      <ng-template #cardHeader>
+        <p class="nx-card__header-title nx-card-header-title">Long Term Processing Reports</p>
+        <p class="nx-card-header-note"><b>Note:</b> Enabling long term processing can significantly impact LiveNX memory and CPU usage</p>
+      </ng-template>
+      <ng-template #cardBody>
+        <nx-section titleText="Reports">
+          <div class="row toggle-list">
+            <nx-toggle
+              class="col col_w-50"
+              *ngFor="let toggle of reportsTogglesList; trackBy: trackByFn"
+              [ngModel]="toggle.longTermEnabled"
+              (change)="toggleReport.emit({key: toggle.reportKey, value: !toggle.longTermEnabled})"
+              [toggleModel]="toggle.toggleModel"
+              [disabled]="toggle.disabled"
+            >
+            </nx-toggle>
+          </div>
+        </nx-section>
+        <nx-section titleText="Dynamic reports" *ngIf="dynamicReportsTogglesList?.length > 0">
+          <p class="nx-p"><b>Note:</b> Long term processing can’t be enabled for Dynamic reports with more than 1 key field</p>
+          <div class="row toggle-list">
+            <nx-toggle
+              class="col col_w-50"
+              *ngFor="let toggle of dynamicReportsTogglesList; trackBy: trackByFn"
+              [ngModel]="toggle.longTermEnabled"
+              (change)="toggleReport.emit({key: toggle.reportKey, value: !toggle.longTermEnabled})"
+              [toggleModel]="toggle.toggleModel"
+              [disabled]="toggle.disabled"
+            >
+            </nx-toggle>
+          </div>
+        </nx-section>
+      </ng-template>
+    </nx-card>
+  </ng-template>
+</nx-loading>

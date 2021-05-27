@@ -1,0 +1,46 @@
+<div class="header-nav__item la-header-nav__item js-header-nav-item"
+     id="appbar-settings-dropdown"
+     *ngIf="isLoggedIn && (access.systemManagement.create || access.systemManagement.update || access.user.create || access.user.update || access.application.create || access.application.update)"
+     [ngClass]="{'la-header-nav__item_has-opened-dropdown': activeHeaderNavItem === 'isActiveSettingsConfigurationElement'}">
+  <a class="header-nav-toggle-dropdown-btn la-header-nav-label la-header-nav-toggle-dropdown-btn"
+     (click)="toggleHeaderNavItemDropdown()"
+     title="Settings">
+    <span class="icon la-fontello la-fontello_settings la-header-nav-label-icon la-header-nav-label__icon"></span>
+
+    <i class="la-icon la-fontello la-header-nav-toggle-dropdown-btn-icon"
+       [ngClass]="{'la-fontello_caret-up': activeHeaderNavItem === 'isActiveSettingsConfigurationElement',
+                      'la-fontello_caret-down': activeHeaderNavItem !== 'isActiveSettingsConfigurationElement'}">
+    </i>
+  </a>
+
+  <ul class="la-header-nav-dropdown">
+    <li class="la-header-nav-dropdown__item"
+        *ngIf="access.systemManagement.create || access.systemManagement.update">
+      <a href="/system-management-configuration"
+         id="appbar-settings-selection"
+         title="System Management">
+        System Management
+      </a>
+    </li>
+
+    <li class="la-header-nav-dropdown__item"
+        *ngIf="access.systemDiagnostics.read">
+      <a href="/system-diagnostics"
+         title="System Diagnostics">
+        System Diagnostics
+      </a>
+    </li>
+
+    <li class="la-header-nav-dropdown__item"
+        *ngIf="access.user.create || access.user.update">
+      <a href="/livenx/settings/user-management"
+         title="Users Management">Users Management</a>
+    </li>
+
+    <li class="la-header-nav-dropdown__item"
+        *ngIf="access.application.create || access.application.update">
+      <a href (click)="configureIpModalOpen(); toggleMenu(true)"
+         title="LiveNX Server">LiveNX Server</a>
+    </li>
+  </ul>
+</div>

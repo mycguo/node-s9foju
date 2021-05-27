@@ -1,0 +1,38 @@
+<nx-modal-container
+  (closeButtonClicked)="cancelClicked.emit()"
+  [headerTpl]="headerTpl"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+>
+  <ng-template #headerTpl>
+    <div class="nx-modal-title">Select Peek Device</div>
+    <div class="nx-modal-subtitle" *ngIf="statusBarData?.allRows > 0">{{statusBarData.allRows}} device{{statusBarData.allRows > 1 ? 's' : ''}} available</div>
+    <button class="nx-modal-close-btn" type="button" (click)="cancelClicked.emit()"></button>
+  </ng-template>
+
+  <ng-template #bodyTpl>
+    <div class="flow-path-crosslaunch-note" *ngIf="hasSourceDevice"><b>Note:</b> The highlighted device generated flow info</div>
+
+    <nx-key-value-list [inline]="true" class="flow-path-crosslaunch-info">
+      <div nxKeyValueListItem *ngFor="let item of crosslaunchData" [key]="item.key" [value]="item.value"></div>
+    </nx-key-value-list>
+
+    <nx-flow-path-crosslaunch-table
+      [data]="data"
+      [flexFilters]="flexFilters"
+      [filterOptions]="filterOptions"
+      [highlightIds]="highlightIds"
+      [statusBarData]="statusBarData"
+      (columnFilterChanged)="columnFilterChanged.emit($event)"
+      (columnSortChanged)="columnSortChanged.emit($event)"
+      (globalSearchTermChanged)="globalSearchTermChanged.emit($event)"
+      (flexFilterChanged)="flexFilterChanged.emit($event)"
+    ></nx-flow-path-crosslaunch-table>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="cancelClicked.emit()">Cancel</nx-button>
+    </div>
+  </ng-template>
+</nx-modal-container>

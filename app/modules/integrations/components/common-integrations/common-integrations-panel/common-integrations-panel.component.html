@@ -1,0 +1,41 @@
+<p class="nx-common-integrations-panel__header nx-card-layout-integrations" *ngIf="title">{{title}}</p>
+
+<nx-loading
+  class="nx-common-integrations-panel__body"
+  [isLoading]="isLoading"
+  [error]="error"
+  [fatalMessageOverride]="fatalMessageOverride"
+  [showContent]="integrationData && integrationData.length > 0 || displayState === IntegrationDisplayStateEnum.ADD || displayState === IntegrationDisplayStateEnum.EDIT"
+  [contentTemplate]="content"
+>
+  <ng-template #content>
+    <ng-container
+      *ngIf="displayState === IntegrationDisplayStateEnum.VIEW">
+      <nx-common-integrations-display
+        [integrations]="integrationData"
+        [displayContent]="displayContent ? displayContent : defaultDisplayContent"
+        [actionButtons]="actionButtonModels"
+        (edit)="edit.emit()"
+        (delete)="onDelete()"
+      >
+        <ng-template #defaultDisplayContent>
+          <nx-key-value-list>
+            <div *ngFor="let item of integrationData" nxKeyValueListItem [key]="item.name" [value]="item.value"></div>
+
+            <ng-template nxKeyValueListItem [key]="'Status'" [value]="status" [template]="statusTemplate"></ng-template>
+
+            <ng-template #statusTemplate let-item="item">
+              <span nx-status-indicator [status]="item">{{item | intStatus}}</span>
+            </ng-template>
+          </nx-key-value-list>
+        </ng-template>
+
+      </nx-common-integrations-display>
+    </ng-container>
+
+    <ng-container
+      *ngIf="displayState === IntegrationDisplayStateEnum.ADD || displayState === IntegrationDisplayStateEnum.EDIT">
+      <ng-container *ngTemplateOutlet="formTemplate"></ng-container>
+    </ng-container>
+  </ng-template>
+</nx-loading>

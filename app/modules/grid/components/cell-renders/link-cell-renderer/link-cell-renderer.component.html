@@ -1,0 +1,6 @@
+<ng-container *ngIf="value.link != null; else plainLabel">
+  <a [href]="value.link" [title]="value.text">{{value.text}}</a>
+</ng-container>
+<ng-template #plainLabel>
+  <span [title]="value.text">{{value.text}}</span>
+</ng-template>

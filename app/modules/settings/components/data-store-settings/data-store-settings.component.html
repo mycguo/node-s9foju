@@ -1,0 +1,45 @@
+<nx-section [titleText]="settings.dataStoreType | dataStoreSettingsDisplayName" *ngIf="settings">
+  <div class="nx-section-paragraph nx-pb-20" *ngIf="settings?.dataStoreLocation || settings?.dataStoreUsedBytes">
+    <ng-container *ngIf="settings.dataStoreLocation">Database location: {{settings.dataStoreLocation}}</ng-container>
+
+    <ng-container *ngIf="settings.dataStoreUsedBytes">
+      <ng-container *ngIf="settings.dataStoreLocation"><br/></ng-container>
+      Database size: {{settings.dataStoreUsedBytes | byteFormatting}}
+    </ng-container>
+  </div>
+
+  <div class="nx-form-group" [ngClass]="{'nx-form-group_actions-pos_right': allowEditing}">
+    <form class="nx-form-group__main" [formGroup]="formGroup" *ngIf="allowEditing">
+      <nx-toggle-input
+        class="row row_single"
+        [formControlName]="bytesUsedWarningThresholdControlName"
+        [inputModel]='inputModels[bytesUsedWarningThresholdControlName]'
+      ></nx-toggle-input>
+
+      <div class="row row_single">
+        <nx-checkbox
+          class="nx-indent_inner_bottom_form-field-header la-form-element-title"
+          [formControlName]="purgeAutomaticallyControlName"
+          [label]="PURGE_AUTOMATICALLY_CONTROL_LABEL"
+        ></nx-checkbox>
+
+        <nx-simple-input
+          [formControlName]="purgeAgeControlName"
+          [inputModel]='inputModels[purgeAgeControlName]'
+        ></nx-simple-input>
+      </div>
+
+      <nx-toggle-input
+        class="row row_single"
+        [formControlName]="archiveDirectoryControlName"
+        [inputModel]='inputModels[archiveDirectoryControlName]'
+      ></nx-toggle-input>
+    </form>
+
+    <div class="nx-form-group__action-set" nxButtonList [equalWidth]="true" [column]="allowEditing">
+      <nx-button (btnClick)="backupClick()" [isDisabled]="disableActions" *ngIf="allowBackup">Backup now</nx-button>
+      <nx-button (btnClick)="resetClick()" [isDisabled]="disableActions">Reset now</nx-button>
+      <nx-button (btnClick)="purgeClick()" [isDisabled]="disableActions">Purge now</nx-button>
+    </div>
+  </div>
+</nx-section>

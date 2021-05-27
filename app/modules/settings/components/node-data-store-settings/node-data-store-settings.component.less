@@ -1,0 +1,44 @@
+@import "../../../../../styles/atomic-stages/templates/__layout/__section/layouts__section";
+@import "../../../../../styles/atomic-stages/organisms/nx-layout";
+
+@nx-node-data-store-settings__indent-horizontal-inner_base: 32px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 32px;
+  padding-bottom: 24px;
+  padding-left: @nx-node-data-store-settings__indent-horizontal-inner_base;
+}
+
+.nx-node-data-store-settings__header,
+.nx-node-data-store-settings__footer {
+  flex-shrink: 0;
+  padding-right: @nx-node-data-store-settings__indent-horizontal-inner_base;
+}
+
+.nx-node-data-store-settings__body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.nx-node-data-store-settings__body-content-switcher {
+  flex-shrink: 0;
+  padding-bottom: @nx-indent_inner_vertical_section_lg/2;
+}
+
+.nx-node-data-store-settings__body-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-top: @nx-indent_inner_vertical_section_lg/2;
+  padding-bottom: @nx-indent_vertical_layout_base;
+  padding-right: @nx-node-data-store-settings__indent-horizontal-inner_base;
+}
+
+.nx-node-data-store-settings__footer {
+  border-top: 1px solid @nx-section-header-divider__background-color_base;
+  justify-content: flex-end;
+}

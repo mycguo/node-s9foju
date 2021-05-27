@@ -1,0 +1,44 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="true"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <form [formGroup]="formGroup">
+      <nx-card size="sm" headerTitle="Login" [body]="cardBody" [footer]="cardFooter">
+        <ng-template #cardBody>
+          <div class="row">
+            <nx-simple-input
+              class="col col_w-100"
+              [formControlName]="sessionTimeoutKey"
+              [inputModel]="formFields[sessionTimeoutKey]">
+            </nx-simple-input>
+
+            <nx-simple-input
+              class="col col_w-100"
+              [formControlName]="allowedNumberOfLoginAttemptsKey"
+              [inputModel]="formFields[allowedNumberOfLoginAttemptsKey]">
+            </nx-simple-input>
+
+            <nx-toggle-input
+              class="col col_w-100"
+              [formControlName]="failedPasswordRestrictionPeriodKey"
+              [inputModel]="formFields[failedPasswordRestrictionPeriodKey]">
+            </nx-toggle-input>
+          </div>
+        </ng-template>
+
+        <ng-template #cardFooter>
+          <div nxButtonList class="nx-card-footer-buttons">
+            <nx-button
+              [isPrimary]="true"
+              [isDisabled]="isLoading || formGroup.invalid || formGroup.pristine"
+              (btnClick)="submitChanges()">
+              Apply
+            </nx-button>
+          </div>
+        </ng-template>
+      </nx-card>
+    </form>
+  </ng-template>
+</nx-loading>

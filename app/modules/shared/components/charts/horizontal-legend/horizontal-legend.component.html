@@ -1,0 +1,9 @@
+
+<div class="horizontal-legend__series-container">
+  <ng-container *ngFor="let series of seriesList">
+    <div class="series" (click)="handleSeriesClick(series)" [ngClass]="{'series-filterable': series.filterable}">
+      <div class="series__marker" [ngClass]="series.symbolType | lowercase" [ngStyle]="styleMap[series.key]"></div>
+      <div class="series__label" [ngStyle]="{opacity: styleMap[series.key]?.opacity}">{{series.label}}</div>
+    </div>
+  </ng-container>
+</div>

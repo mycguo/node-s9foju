@@ -1,0 +1,169 @@
+@import '../variables/variables';
+
+/**
+ * CSS Spacing
+ * Documentation: https://liveaction.atlassian.net/l/c/BZVn1Ess
+ */
+
+// Base Indents
+@spaces: 8, 12, 16, 20, 24;
+.apply-space-modifiers(@spaces; @index) when (@index > 0) {
+  .apply-space-modifiers(@spaces; (@index - 1));
+  @space: extract(@spaces, @index);
+  .nx-py-@{space} {
+    padding-top: @space*1px;
+    padding-bottom: @space*1px;
+  }
+
+  .nx-pt-@{space} {
+    padding-top: @space*1px;
+  }
+
+  .nx-pb-@{space} {
+    padding-bottom: @space*1px;
+  }
+
+  .nx-px-@{space} {
+    padding-left: @space*1px;
+    padding-right: @space*1px;
+  }
+
+  .nx-pl-@{space} {
+    padding-left: @space*1px;
+  }
+
+  .nx-pr-@{space} {
+    padding-right: @space*1px;
+  }
+
+  .nx-my-@{space} {
+    margin-top: @space*1px;
+    margin-bottom: @space*1px;
+  }
+
+  .nx-mt-@{space} {
+    margin-top: @space*1px;
+  }
+
+  .nx-mb-@{space} {
+    margin-bottom: @space*1px;
+  }
+
+  .nx-mx-@{space} {
+    margin-left: @space*1px;
+    margin-right: @space*1px;
+  }
+
+  .nx-ml-@{space} {
+    margin-left: @space*1px;
+  }
+
+  .nx-mr-@{space} {
+    margin-right: @space*1px;
+  }
+}
+
+.apply-space-modifiers(@spaces, length(@spaces));
+
+// Custom
+.nx-indent_inner_bottom_form-field-header {
+  padding-bottom: @la-form-element-label__indent-bottom_base;
+}
+
+.nx-indent_inner_vertical_content {
+  padding-top: @nx-indent_vertical_content;
+  padding-bottom: @nx-indent_vertical_content;
+}
+
+.nx-indent_inner_horizontal_content {
+  padding-left: @nx-indent_horizontal_content;
+  padding-right: @nx-indent_horizontal_content;
+}
+
+.nx-indent_inner_vertical_no-data-msg {
+  padding-top: @nx-indent_vertical_no-data-msg;
+  padding-bottom: @nx-indent_vertical_no-data-msg;
+}
+
+.nx-indent_inner_content {
+  padding: @nx-indent_content;
+  display: block;
+}
+
+.nx-indent_inner_bottom_form-field-header {
+  padding-bottom: @la-form-element-label__indent-bottom_base;
+}
+
+.nx-pt-sidebar {
+  padding-top: @nx-sidebar-layout__vertical-indent_base;
+}
+
+.nx-pb-sidebar {
+  padding-bottom: @nx-sidebar-layout__vertical-indent_base;
+}
+
+.nx-py-sidebar {
+  &:extend(.nx-pt-sidebar, .nx-pb-sidebar);
+}
+
+.nx-px-sidebar {
+  padding-left: @nx-sidebar-layout__horizontal-indent_base;
+  padding-right: @nx-sidebar-layout__horizontal-indent_base;
+}
+
+.nx-mxn-card {
+  margin-left: -@nx-card__indent-vertical_base;
+  margin-right: -@nx-card__indent-vertical_base;
+}
+
+.nx-indent-card-layout-bottom-inner {
+  padding-bottom: @nx-card__indent-vertical_base;
+  .nx-reset-indent_inner_bottom;
+}
+
+.nx-indent-card-horizontal-inner {
+  padding-left: @nx-card__indent-horizontal_lg;
+  padding-right: @nx-card__indent-horizontal_lg;
+}
+
+.nx-indent_outer_bottom_row {
+  margin-bottom: @row__indent-vertical_base;
+  .nx-reset-indent_outer_bottom();
+}
+
+// Reset
+.nx-mb-reset {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.nx-mr-reset {
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.nx-reset-indent_inner_top() {
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.nx-reset-indent_inner_bottom() {
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.nx-reset-indent_outer_bottom() {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.nx-reset-indent_outer_right() {
+  &:last-child {
+    margin-right: 0;
+  }
+}

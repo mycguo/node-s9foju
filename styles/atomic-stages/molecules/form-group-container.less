@@ -1,0 +1,19 @@
+@import "../../utilities/utilities";
+
+.nx-form-group-container {
+  display: flex;
+}
+
+.nx-form-group-container__control-list {
+  flex-grow: 1;
+}
+
+.nx-form-group-container__action-list {
+  flex-shrink: 0;
+  margin-top: @la-form-element-label__indent-bottom_base + @la-form-element-label__line-height_base; // add indent to start the container from the Y position of first input field
+  padding-left: 16px;
+  margin-left: 16px;
+  border-left: 1px solid @la-color_geyser-base;
+  display: flex;
+  align-items: center;
+}

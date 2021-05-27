@@ -1,0 +1,104 @@
+@import "../../utilities/utilities";
+
+.nx-status-indicator {
+  display: inline-flex;
+  align-items: center;
+  .nx-typography-mixin(12px, 16px);
+  &:before {
+    content: '';
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .kvl-table-cell_key & {
+    font-weight: 500;
+  }
+}
+
+.nx-status-indicator_only-icon {
+  &:before {
+    margin-right: 0;
+  }
+}
+
+.nx-status-indicator_only-text {
+  &:before,
+  &:after {
+    display: none;
+  }
+}
+
+.nx-status-indicator_valid,
+.nx-status-indicator_connected,
+.nx-status-indicator_good {
+  &:before {
+    background-color: @la-status__background-color_good;
+  }
+
+  &.nx-status-indicator_only-text {
+    color: @la-status__background-color_good
+  }
+}
+
+.nx-status-indicator_invalid,
+.nx-status-indicator_error,
+.nx-status-indicator_critical {
+  &:before {
+    background-color: @la-status__background-color_critical;
+  }
+
+  &.nx-status-indicator_only-text {
+    color: @la-status__background-color_critical
+  }
+}
+
+.nx-status-indicator_warning {
+  &:before {
+    background-color: @la-status__background-color_warning;
+  }
+
+  &.nx-status-indicator_only-text {
+    color: @la-status__background-color_warning
+  }
+}
+
+.nx-status-indicator_unconfigured,
+.nx-status-indicator_down,
+.nx-status-indicator_offline,
+.nx-status-indicator_polling-disabled {
+  &:before {
+    background-color: @la-status__background-color_unconfigured;
+  }
+
+  &.nx-status-indicator_only-text {
+    color: @la-status__background-color_unconfigured
+  }
+}
+
+.nx-status-indicator_unknown,
+.nx-status-indicator_n-a {
+  &:before {
+    background-color: @la-status__background-color_na;
+  }
+
+  &.nx-status-indicator_only-text {
+    color: @la-status__background-color_na
+  }
+}
+
+.nx-status-indicator_connecting,
+.nx-status-indicator_warning {
+  &:before {
+    background-color: @la-status__background-color_warning;
+  }
+
+  &.nx-status-indicator_only-text {
+    color: @la-status__background-color_warning
+  }
+}
+
+.nx-status-indicator-wrapper {
+  position: relative;
+}

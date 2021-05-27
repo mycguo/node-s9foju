@@ -1,0 +1,47 @@
+@import "../../utilities/utilities";
+
+la-updating-data-message {
+  display: flex;
+  align-items: center;
+  padding: 8px 24px;
+  background-color: @la-color_black-squeeze-base;
+  border-radius: 2px;
+  &.la-card__updating-data-message {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+  }
+  &.la-modal__updating-data-message {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.la-updating-data-message__loader {
+  margin-right: 12px;
+}
+
+.la-updating-data-message__text {
+  .la-mixin_text(@la-font-family_base, 12px, 14px, @la-color_regent-gray-base);
+  margin-right: 12px;
+  white-space: nowrap;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.la-updating-data-message__cancel-btn {
+  .la-mixin_text(@la-font-family_base, 12px, 14px, @la-link__color_base);
+  transition: color .2s ease;
+  cursor: pointer;
+  &:hover {
+    color: @la-link__color_is-hovered;
+  }
+}

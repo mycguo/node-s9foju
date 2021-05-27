@@ -1,0 +1,46 @@
+@import 'variables';
+.button__icon,
+.button__text {
+  font-size: @button__font-size_base;
+  line-height: @button__line-height_base;
+  color: @secondary-button__color_base;
+  margin-right: @button__vertical-indent_base;
+  .button_primary & {
+    color: @la-color_white-base;
+  }
+}
+
+.button__icon {
+
+  &:not(.only-icon) {
+    margin-left: 8px;
+  }
+
+  .button_secondary & {
+    color: @secondary-button-icon__color_base;
+  }
+}
+
+.button__text {
+  font-weight: @button__font-weight_base;
+  margin-right: @button__horizontal-indent_base;
+
+  &:only-child {
+    margin-left: 8px;
+  }
+  &:not(:only-child) {
+    margin-left: 0;
+  }
+
+  &:empty {
+    display: none;
+  }
+}
+
+a.nx-button-text {
+  &:extend(.button__text all);
+  margin-right: 0;
+  &:only-child {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,55 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <form class="nx-device-current-flows-tab-filter-list" [formGroup]="currentFlowsFormGroup">
+      <div class="row row_single nx-device-current-flows-tab-filter-list__row">
+        <nx-select
+          class="nx-device-current-flows-tab-filter-list__item
+                  nx-device-current-flows-tab-filter-list__item_select"
+          [options]="flowTypeSelect.options"
+          [displayModel]="flowTypeSelect.displayOptions"
+          [formControlName]="staticFlowKey">
+        </nx-select>
+
+        <div class="nx-device-current-flows-tab-filter-list__group">
+          <nx-select
+            class="nx-device-current-flows-tab-filter-list__item"
+            [formControlName]="staticTimeRangeKey"
+            [options]="timeRangeSelectModel.options"
+            [displayModel]="timeRangeSelectModel.displayOptions">
+          </nx-select>
+
+          <nx-button
+            class="nx-device-current-flows-tab-filter-list__item"
+            (btnClick)="refresh(currentFlowsFormGroup.value)"
+            [isWhiteViewMode]="true">
+            Refresh table
+          </nx-button>
+        </div>
+      </div>
+
+      <nx-filter
+        class="nx-device-current-flows-tab-filter-list__item nx-device-current-flows-tab-filter-list__item_flex-search"
+        [formControlName]="staticFlexSearchKey"
+        [filterOptions]="filterOptions"
+        [filterOptionsValue]="filterOptionsValue"
+        [showApplyButton]="true"
+      ></nx-filter>
+    </form>
+
+    <nx-dashboard-widget-container
+      widgetId="entity-device-current-flows"
+      [hideCard]="true"
+      [headerTitle]="currentFlowsWidget.headerTitle"
+      [headerSubtitle]="currentFlowsWidget.headerSubtitle"
+      [dateRange]="currentFlowsWidget.timeLabel"
+      [dataKey]="currentFlowsWidget.dataKey"
+      [visualComponent]="currentFlowsWidget.visualComponent"
+      [visualDataGenerator]="currentFlowsWidget.visualDataGenerator"
+      [visualDataGeneratorOptions]="currentFlowsWidget.visualGeneratorOptions"
+    ></nx-dashboard-widget-container>
+
+  </ng-template>
+</nx-loading>

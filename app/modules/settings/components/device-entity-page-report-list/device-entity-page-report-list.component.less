@@ -1,0 +1,24 @@
+@import "../../../shared/components/sortable-list/styles/sortable-list-nav";
+@import "../../../shared/components/sortable-list/styles/sortable-list-inner-elements";
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.nx-report-accordion-select-wrapper,
+.nx-device-entity-page-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: @nx-px-sortable-list-nav-section;
+}
+
+.nx-device-entity-page-form-wrapper {
+  overflow-y: auto;
+}
+
+.nx-report-accordion-select-wrapper__filter {
+  padding-bottom: 13px;
+  flex-shrink: 0;
+}

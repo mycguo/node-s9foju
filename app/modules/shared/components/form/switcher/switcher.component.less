@@ -1,0 +1,99 @@
+@import 'mixins';
+@nx-switcher__height_base: 28px;
+.nx-switcher {
+  background-color: @la-color_white-base;
+  box-shadow: inset 0 0 0 1px @la-form-element__border-color_base;
+  border-radius: 2px;
+  overflow: hidden;
+  display: inline-flex;
+  .nx-form-field_is-disabled & {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+}
+
+.nx-switcher__item {
+  position: relative;
+  .nx-form-field_is-disabled & {
+    pointer-events: none;
+  }
+
+  .nx-switcher_equal-width & {
+    flex-grow: 1;
+  }
+}
+
+.nx-switcher__item_disabled {
+  cursor: not-allowed;
+}
+
+.nx-switcher__item-label {
+  position: relative;
+  z-index: 0;
+  .nx-typography-mixin(12px, @nx-switcher__height_base);
+  transition: opacity @duration_sm @easing_outcome;
+  padding: 0 16px;
+  display: block;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: @la-color_jaffa-base;
+    opacity: 0;
+    transition: opacity @duration_sm @easing_outcome;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    right: -1px;
+    width: 1px;
+    background-color: @la-form-element__border-color_base;
+  }
+
+  .nx-switcher__item_disabled & {
+    color: fade(@la-color_oxford-blue-base, 50%);
+    pointer-events: none;
+    .nx-form-field_is-disabled & {
+      color: @la-color_oxford-blue-base;
+    }
+  }
+}
+
+.nx-switcher__item-input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+  &:checked {
+    ~ .nx-switcher__item-label {
+      z-index: 1;
+      color: @la-color_white-base;
+      user-select: none;
+      transition: color @duration_sm @easing_income;
+      &:before {
+        opacity: 1;
+        transition: opacity @duration_sm @easing_income;
+      }
+
+      &:after {
+        display: none;
+      }
+
+      .nx-switcher__item_disabled & {
+        .nx-form-field_is-disabled & {
+          color: @la-color_white-base;
+        }
+      }
+    }
+  }
+}

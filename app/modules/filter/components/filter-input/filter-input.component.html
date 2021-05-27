@@ -1,0 +1,166 @@
+<nx-form-field
+  *nxFormFieldControl="let controller from control errorOverrides displayModel.errorMessageOverrides validateOnInit validateOnInit"
+  [label]="displayModel.label"
+  [prefix]="displayModel.prefix"
+  [postfix]="displayModel.postfix"
+  [hintMessage]="displayModel.hintMessage"
+  [isValid]="controller.isValid"
+  [isInvalid]="controller.isInvalid"
+  [isRequired]="controller.isRequired"
+  [isDisabled]="controller.isDisabled"
+  [isTouched]="controller.isTouched"
+  [errorMessage]="controller.errorMessage"
+  [inline]="displayModel.inline"
+>
+  <ng-template>
+    <div class="nx-filter__tags" matAutocompleteOrigin #origin="matAutocompleteOrigin">
+      <mat-chip-list #tagsList class="nx-filter-chip-list">
+        <div class="nx-filter__tags-group-list nx-filter-tag-group-list" *ngIf="items?.length > 0">
+          <div
+            class="nx-filter-tag-group-list__item nx-filter-tag-group nx-filter-chip-group"
+            *ngFor="let item of items"
+            [ngClass]="{
+            'nx-filter-tag-group-list__item_is_selected': selectedColumn && item.name === selectedColumn.name,
+            'nx-filter-tag-group-list__item_single': item.singleValue
+          }"
+            [ngStyle]="{'background-color': item.groupColor}"
+            (click)="tagSelected(item)"
+          >
+            <strong class="nx-filter-tag-group-list__item__title nx-filter-tag-group__title">{{item.name}}{{!item.singleValue ? ':': ''}}</strong>
+
+            <nx-select
+              *ngIf="item.selectedOperator"
+              class="nx-chip-list-operator-select"
+              className="nx-lightweight-select nx-chip-list-operator-select-dropdown"
+              [ngStyle]="{'background-color': item.chipColor}"
+              [displayModel]="operatorSelectModel"
+              [options]="item.operatorOptions"
+              [ngModel]="item.selectedOperator"
+              (ngModelChange)="operatorChange(item, $event)"
+              (click)="$event.stopPropagation()"
+            ></nx-select>
+
+            <mat-basic-chip
+              class="nx-filter-tag-group__tag-list js-filter-tag"
+              *ngIf="item"
+              (click)="item.children?.length <= SWITCH_TO_DROPDOWN_LENGTH && tagSelected(item)"
+            >
+              <nx-filter-chip-list
+                *ngIf="item.children"
+                [data]="item.children"
+                [itemColor]="item.chipColor"
+                (deleteChip)="removeTag(item.id, $event)"
+              ></nx-filter-chip-list>
+            </mat-basic-chip>
+
+            <div
+              class="nx-filter-tag-group-list__item__add-btn nx-filter-tag-group__button-wrapper"
+              *ngIf="!hideChildInput && !item.singleValue && (!item.disableMultipleTags || item.children?.length === 0)"
+            >
+              <div
+                class="nx-filter-tag-group__button la-fontello la-fontello_add"
+                [ngStyle]="{'background-color': item.chipColor}"
+              >
+                Add
+              </div>
+            </div>
+
+            <div
+              class="nx-filter-tag-group__input"
+              *ngIf="!hideChildInput && item.name === selectedColumn?.name"
+            >
+              <span>{{tagsInputChild.value}}</span>
+              <input
+                [ngClass]="{'nx-filter-tag-input-invalid': !!tagValidationError}"
+                #tagsInputChild
+                placeholder="Add value"
+                [formControl]="tagsInputChildCtrl"
+                [matAutocomplete]="tagsAutocomplete"
+                [matAutocompleteConnectedTo]="origin"
+                [matChipInputFor]="tagsList"
+                [matChipInputAddOnBlur]="selectedColumn?.allowAddNewTag"
+                [matAutocompleteDisabled]="isFilterLoading"
+                (matChipInputTokenEnd)="addTag($event)"
+                #tooltip="matTooltip"
+                (mouseleave)="$event.stopImmediatePropagation()"
+                [matTooltip]='tagValidationError'
+                matTooltipClass="nx-filter-validation-msg"
+              />
+            </div>
+
+            <i class="nx-filter-tag-group-list__item-delete-btn nx-filter-tag-group__delete-btn la-fontello la-fontello_close"
+               *ngIf="item.children?.length > 0 || item.singleValue"
+               (mousedown)="removeTag(item.id)"></i>
+          </div>
+        </div>
+
+        <input
+          [hidden]="items.length === filterOptions.length || hasFlexSearchTag"
+          class='nx-filter__tags-input'
+          [ngClass]="{'nx-filter__tags-input_align_right': selectedColumn}"
+          [placeholder]="!selectedColumn ? 'Enter Filter Request Here' : 'Press [Tab] to add new tag'"
+          #tagsInput
+          [formControl]="tagsInputCtrl"
+          [matAutocomplete]="tagsAutocomplete"
+          [matChipInputFor]="tagsList"
+          [matAutocompleteConnectedTo]="origin"
+          (click)="mainInputFocus()"
+          (focusin)="tagsInput.scrollIntoView({ behavior: 'smooth' })"
+        />
+      </mat-chip-list>
+
+      <nx-progress-indicator *ngIf="isFilterLoading"></nx-progress-indicator>
+    </div>
+  </ng-template>
+</nx-form-field>
+
+<mat-autocomplete
+  class="nx-filter__dropdown js-sidebar-ignore"
+  #tagsAutocomplete="matAutocomplete"
+  [autoActiveFirstOption]="!selectedColumn?.allowAddNewTag"
+  [disableRipple]="true"
+  [displayWith]="displayFn"
+  (optionSelected)="optionSelected($event)"
+>
+  <div [hidden]="isFilterLoading || selectedColumn?.disableFetch">
+    <ng-container *ngIf="{tags: filteredTags$ | async} as data">
+    <div
+      class="mat-option_hint"
+      *ngIf="selectedColumn?.hint"
+    >
+      {{selectedColumn.hint}}
+    </div>
+    <!--class js-filter-autocomplete-panel used for catching click events-->
+    <mat-optgroup class="nx-filter-options-group-set js-filter-autocomplete-panel" *ngFor="let item of data.tags">
+      <strong
+        class="nx-filter-options-group-set__title"
+        *ngIf="item?.children" [innerHTML]="item.name | highlight: searchString"
+      ></strong>
+
+      <div class="nx-filter-options-group-set__option-set">
+        <mat-option class="nx-filter-dropdown-item"
+                    *ngFor="let child of (item.children ? item.children : [item] )"
+                    [value]="child"
+                    [disabled]="child.disabled"
+        >
+          <i
+            class="nx-filter-dropdown-item-marker"
+            [ngStyle]="{'background-color': item.color}"
+            *ngIf="!selectedColumn"
+          ></i>
+
+          <div class="nx-filter-dropdown-item-text" [innerHTML]="searchString ? (child.name | highlight: searchString) : (child.name | escapeSpecialChars)"></div>
+        </mat-option>
+      </div>
+    </mat-optgroup>
+
+    <div
+      class="mat-option_hint"
+      *ngIf="selectedColumn && data.tags?.length >= DEFAULT_FILTER_LIMIT"
+    >
+      Only {{DEFAULT_FILTER_LIMIT}} first options are shown. Type a name to see more results.
+    </div>
+    </ng-container>
+  </div>
+
+</mat-autocomplete>

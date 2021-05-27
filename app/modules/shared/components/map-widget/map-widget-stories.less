@@ -1,0 +1,42 @@
+@import 'variables';
+
+// styles for storybook component only!!!
+
+:host {
+  display: block;
+  width: 400px;
+}
+
+.map-container {
+  display: block;
+  width: 100%;
+  height: 333px;
+}
+
+
+.nx-map-marker-icon, .nx-map-cluster-icon {
+  background-color: @la-color_red-orange-base;
+  box-shadow: 0 0 0 6px fade(@la-color_red-orange-base, 21%);
+  border-radius: 50%;
+  font-size: 12px;
+  text-align: center;
+}
+
+.nx-map-marker-icon div {
+  color: #000;
+  font-weight: bold;
+  line-height: 14px;
+  white-space: nowrap;
+  background-color: fade(#fff, 50%);
+  margin-top: 2px;
+  padding: 0 2px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nx-map-cluster-icon div {
+  color: #fff;
+  line-height: 16px;
+}

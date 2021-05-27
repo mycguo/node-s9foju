@@ -1,0 +1,10 @@
+<label class="nx-checkbox" [ngClass]="{'nx-checkbox_partial': partial}">
+  <input
+    class="nx-checkbox__input"
+    type="checkbox"
+    [formControl]="checkboxControl"
+    (blur)="onTouch()"
+  />
+
+  <span class="nx-checkbox__label">{{label}}</span>
+</label>

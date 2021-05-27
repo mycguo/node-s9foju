@@ -1,0 +1,17 @@
+<div class="nx-grid-action-bar">
+
+  <div class="nx-grid-action-bar__secondary-actions">
+    <nx-table-string-filter
+      (searchTermChange)="globalSearchTermChanged.emit($event)"
+    ></nx-table-string-filter>
+  </div>
+</div>
+
+<nx-grid
+  [data]="gridData"
+  [columns]="columns"
+  [fullHeight]="true"
+  [statusBarData]="statusBarData"
+  (columnFilterChanged)="columnFilterChanged.emit($event)"
+  (columnSortChanged)="columnSortChanged.emit($event)"
+></nx-grid>

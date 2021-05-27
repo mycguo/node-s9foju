@@ -1,0 +1,44 @@
+<mat-selection-list
+  #selectionList
+  [multiple]="false"
+  [disableRipple]="true"
+  (selectionChange)="selectionListChange($event.option.value)"
+>
+  <mat-list-option
+    [value]="DEFAULT_NODE_ID"
+    #listOption
+    [selected]="listOption.value === selectedOptionValue"
+    class="nx-node-data-info-list-item nx-node-data-info-list-item_default"
+  >
+    <div class="nx-node-data-info-list-item__header">
+      <strong class="nx-node-data-info-list-item__header-title">Default settings</strong>
+    </div>
+
+    <div class="nx-node-data-info-list-item__body">
+      <p class="nx-node-data-info-list-item__body-paragraph">Are applied for all nodes that do not use custom settings</p>
+    </div>
+  </mat-list-option>
+
+  <mat-list-option
+    *ngFor="let nodeDataInfo of nodeDataInfoList"
+    [value]="nodeDataInfo.id"
+    class="nx-node-data-info-list-item"
+    #listOption
+    [selected]="listOption.value === selectedOptionValue"
+  >
+    <div class="nx-node-data-info-list-item__header">
+      <strong class="nx-node-data-info-list-item__header-title">{{nodeDataInfo.name}}</strong>
+      <span class="nx-node-data-info-list-item__header-subtitle">{{nodeDataInfo.useDefaultSettings ? 'Default' : 'Custom'}} settings applied</span>
+      <span class="nx-node-data-info-list-item__header-state nx-node-data-info-list-item__header-state_{{nodeDataInfo.nodeState | lowercase}}">{{nodeDataInfo.nodeState}}</span>
+    </div>
+
+    <nx-disk-storage-capacity
+      class="nx-node-data-info-list-item__body"
+      [ngClass]="{'nx-disabled nx-events-disabled': nodeDataInfo.nodeState === NODE_STATES.DISCONNECTED}"
+      [totalDiskSpace]="nodeDataInfo.totalSpace"
+      [usedDiskSpace]="nodeDataInfo.totalSpace - nodeDataInfo.freeSpace"
+      [legend]="nodeDataInfo | nodeDataInfoDiskStorageCapacityLegend"
+    >
+    </nx-disk-storage-capacity>
+  </mat-list-option>
+</mat-selection-list>

@@ -1,0 +1,33 @@
+// TODO: Remove this file before nxFilterOld has been deleted and nxFilter and nxFilterInput has been merged into develop
+@import "filter-tag-helpers";
+@import "filter-tag-group";
+
+.nx-filter__tags {
+  flex-grow: 1;
+  overflow-x: auto;
+  :host(.nx-filter_is_disabled) & { // TODO change to .nx-form-field_is-disabled
+    pointer-events: none;
+  }
+}
+
+.nx-filter-tag-group-list {
+  display: flex;
+  padding: 3px 0;
+}
+
+.nx-filter__tags-input {
+  &:extend(.filter-tags-input all);
+  height: 26px;
+  padding: 7px 8px;
+  .la-placeholder({
+    color: @la-placeholder__color_base;
+  });
+
+  :host(.nx-filter_is_disabled) & {
+    .la-placeholder({color: @la-form-element__color_is-disabled;});
+  }
+}
+
+.nx-filter__tags-input_align_right {
+  text-align: right;
+}

@@ -1,0 +1,43 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="true"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <form [formGroup]="formGroup">
+      <nx-card headerTitle="Flow Reports Results Limit"
+               [size]="'sm'"
+               [body]="cardBody"
+               [footer]="cardFooter">
+        <ng-template #cardBody>
+          <p class="nx-card-body-paragraph">
+            This parameter allows Flow reports to return more than the default 1000 results.<br>
+            In order to utilize this feature, reports must be ran through the REST API with the special parameter "useFlowReportLimit".
+          </p>
+
+          <nx-simple-input
+            [formControlName]="REPORTS_LIMIT_KEY"
+            [inputModel]="inputModel"
+          ></nx-simple-input>
+        </ng-template>
+
+        <ng-template #cardFooter>
+          <div nxButtonList class="nx-card-footer-buttons">
+            <nx-button
+              [isDisabled]="isLoading"
+              (btnClick)="resetToDefault()">
+              Reset to Default
+            </nx-button>
+            <nx-button
+              [isPrimary]="true"
+              [isSubmit]="true"
+              [isDisabled]="formGroup.pristine || formGroup.invalid || isLoading"
+              (btnClick)="submitChanges()">
+              Apply
+            </nx-button>
+          </div>
+        </ng-template>
+      </nx-card>
+    </form>
+  </ng-template>
+</nx-loading>

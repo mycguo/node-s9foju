@@ -1,0 +1,17 @@
+@import "variables";
+
+@nx-custom-oid-polling-modal__total-vertical-indents: @nx-modal__indent-inner_base*4;
+
+:host {
+  display: block;
+  height: calc(~"100vh - @{nx-custom-oid-polling-modal__total-vertical-indents}");
+}
+
+form {
+  height: 100%;
+}
+
+nx-custom-oid-polling-settings,
+nx-custom-oid-polling-devices-container {
+  flex-grow: 1;
+}

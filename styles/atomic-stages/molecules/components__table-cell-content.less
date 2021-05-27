@@ -1,0 +1,30 @@
+@import "../../utilities/utilities";
+
+.table-cell-threshold {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-size: @la-table__font-size_base;
+  line-height: @la-table__line-height_base;
+  color: @la-table__color_base;
+  font-weight: @la-table__font-weight_base;
+  justify-content: flex-end;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-sizing: border-box;
+}
+
+.table-cell-threshold_status_good {
+  color: #06C8AD;
+}
+
+.table-cell-threshold_status_warning {
+  background-color: fade(@la-status-background__color_status_warning_has-text, 10);
+  color: @la-status-text__color_status_warning_has-background;
+}
+
+.table-cell-threshold_status_critical {
+  background-color: @la-status-background__color_status_critical_has-text;
+  color: @la-status-text__color_status_critical_has-background;
+}

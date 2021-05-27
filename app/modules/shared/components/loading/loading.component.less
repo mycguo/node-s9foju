@@ -1,0 +1,14 @@
+@import 'helpers_position';
+:host {
+  display: block;
+  height: 100%;
+  position: relative;
+}
+
+:host(.nx-full-height-flex-col) {
+  &:extend(.nx-full-height-flex-col);
+}
+
+:host-context(nx-custom-oid-polling-devices-container) {
+  height: auto;
+}

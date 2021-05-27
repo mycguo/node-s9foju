@@ -1,0 +1,36 @@
+<ng-container *ngIf="switcherModel">
+  <nx-form-field
+    *nxFormFieldControl="let controller from control errorOverrides switcherModel.errorMessageOverrides"
+    [label]="switcherModel.label"
+    [hintMessage]="switcherModel.hintMessage"
+    [isValid]="controller.isValid"
+    [isInvalid]="controller.isInvalid"
+    [isRequired]="controller.isRequired"
+    [isDisabled]="controller.isDisabled"
+    [isTouched]="controller.isTouched"
+    [errorMessage]="controller.errorMessage"
+  >
+    <ng-template>
+      <div class="nx-switcher" [ngStyle]="{width: optionSetWidth}" [ngClass]="{'nx-switcher_equal-width': equalWidth }">
+        <div
+          class="nx-switcher__item"
+          *ngFor="let option of switcherModel.itemSet"
+          [ngClass]="{'nx-switcher__item_disabled' : option.disabled}"
+        >
+          <input
+            class="nx-switcher__item-input"
+            [formControl]="switcherControl"
+            [value]="option.name"
+            (blur)="onTouch()"
+            type="radio"
+            [checked]="switcherControl.value === option.name"
+            [id]="id+'_'+option.name"
+            [name]="id"
+          >
+
+          <label class="nx-switcher__item-label" [for]="id+'_'+option.name" #optionLabel>{{option.displayValue}}</label>
+        </div>
+      </div>
+    </ng-template>
+  </nx-form-field>
+</ng-container>

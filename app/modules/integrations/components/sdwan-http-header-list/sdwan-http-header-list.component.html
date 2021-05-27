@@ -1,0 +1,25 @@
+<nx-section [titleText]="'Additional HTTP Header'" [footerTmpl]="footerTmpl">
+  <ul class="nx-dynamic-list nx-section-content-with-background" *ngIf="formArray?.controls?.length">
+    <li class="nx-dynamic-list__item" *ngFor="let ctrl of formArray.controls; let controlIndex = index">
+      <nx-sdwan-http-header-item
+        class="nx-dynamic-list-item__body"
+        [formControl]="formControlItem(ctrl)"
+        [radioGroupName]="controlIndex.toString()"
+        [parentValidationErrors]="formArray.errors"
+        (blur)="onTouch()"
+      ></nx-sdwan-http-header-item>
+
+      <div class="nx-dynamic-list-item__action-list">
+        <nx-button
+          class="nx-dynamic-list-item__action-list-item"
+          [icon]="'trash'"
+          (btnClick)="removeHeaderControl(controlIndex)"
+        ></nx-button>
+      </div>
+    </li>
+  </ul>
+</nx-section>
+
+<ng-template #footerTmpl>
+  <nx-button (btnClick)="addHeaderControl()" [isDisabled]="!formArray.valid || isDisabled">Add HTTP Header</nx-button>
+</ng-template>

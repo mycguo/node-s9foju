@@ -1,0 +1,48 @@
+@import "components/checkbox.less";
+@import "layouts/header.less";
+@import "layouts/filters.less";
+@import "layouts/body.less";
+
+/**
+ * @section Angular Grid
+ * @subsection Wrapper
+ */
+.nx-grid-default.ag-theme-balham_live-nx {
+  width: 100%;
+  .ag-root-wrapper {
+    border: none;
+    border-radius: 0;
+  }
+
+  .ag-root {
+    border: 1px solid @la-table__border-color_base;
+    border-radius: 2px;
+  }
+
+  &:not(:last-child) {
+    .ag-root {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .ag-row {
+    border-color: @la-table__border-color_base;
+  }
+
+  .ag-center-cols-container:empty {
+    background-color: @la-table-no-data__background-color;
+  }
+
+  .ag-overlay-no-rows-center {
+    .no-data-message-text();
+  }
+
+  .ag-overlay-no-rows-wrapper {
+    padding-top: 80px;
+  }
+
+  .ag-grid_row-highlight {
+    background-color: lighten(@la-color_buttercup-base, 41%) !important;
+  }
+}

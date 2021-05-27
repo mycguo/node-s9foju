@@ -1,0 +1,49 @@
+<nx-modal-container
+  titleText="ADD APPLICATIONS"
+  (closeButtonClicked)="cancelModal.emit($event)"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+>
+  <ng-template #bodyTpl>
+    <nx-loading
+      [isLoading]="isLoading"
+      [contentTemplate]="content"
+      [showContent]="!isLoading"
+      [alertMessageOverride]="requestError"
+      [error]="error"
+    >
+      <ng-template #content>
+        <div class="nx-grid-action-bar">
+          <div class="nx-grid-action-bar__secondary-actions">
+            <nx-table-string-filter
+              [isDisabled]="errorMessage != null" (searchTermChange)="searchTermChanged.emit($event)"
+            ></nx-table-string-filter>
+          </div>
+        </div>
+
+        <nx-live-insight-edge-application-group-list
+          [data]="appGroups"
+          [selectedAppGroupIds]="selectedAppGroupIds"
+          [statusBarData]="statusBarData"
+          (appGroupsSelected)="appGroupsSelected.emit($event)"
+          [isLoading]="isLoading"
+          [errorMessage]="errorMessage"
+          (columnFilterChanged)="columnFilterChanged.emit($event)"
+          (columnSortChanged)="columnSortChanged.emit($event)"
+        ></nx-live-insight-edge-application-group-list>
+      </ng-template>
+    </nx-loading>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="cancelModal.emit($event)">Cancel</nx-button>
+
+      <nx-button
+        [isPrimary]="true"
+        [isDisabled]="!addButtonActive"
+        (btnClick)="addSelectedAppGroups.emit()"
+      >Add</nx-button>
+    </div>
+  </ng-template>
+</nx-modal-container>

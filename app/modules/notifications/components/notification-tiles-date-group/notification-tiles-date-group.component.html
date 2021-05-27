@@ -1,0 +1,17 @@
+<div class="notification-tiles-date-group"
+     [ngClass]="{'notification-tiles-date-group--slide-up': shouldSlideUp}"
+>
+  <div class="la-notifications-side-bar__notifications-group-header">
+    <p class="title" *ngIf="notificationGroup">{{formatGroupDate(notificationGroup.date)}}</p>
+
+    <button class="btn-delete la-fontello la-fontello_remove"
+            (click)="markNotificationGroupRead()"></button>
+  </div>
+  <div class="notification-tiles-date-group">
+    <ng-template nxNotificationsList></ng-template>
+  </div>
+  <button class="la-notifications-side-bar-show-more-btn"
+          (click)="showMoreItems()"
+          *ngIf="notificationGroup && numberOfTilesToShow < notificationGroup.notifications.length"
+  >Show More</button>
+</div>

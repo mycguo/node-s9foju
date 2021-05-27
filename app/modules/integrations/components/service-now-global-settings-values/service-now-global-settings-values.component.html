@@ -1,0 +1,16 @@
+<nx-section titleText="Default ServiceNow values" [hasHeaderSeparator]="true">
+  <div class="nx-list-container"
+       [ngStyle]="{'grid-template-rows': 'repeat('+ rowsAmount +', 1fr)'}">
+    <div *ngFor="let field of flattenedFields"
+         class="nx-width_service-now-form-field row row_single">
+      <nx-service-now-global-settings-select-container
+        [(ngModel)]="courierConfig[field.fieldName]"
+        (ngModelChange)="changeHandler()"
+        [fieldName]="field.fieldName"
+        [parentValue]="courierConfig[field.parentName]?.value"
+        [disabled]="isDisabled"
+        (blur)="onTouched()">
+      </nx-service-now-global-settings-select-container>
+    </div>
+  </div>
+</nx-section>

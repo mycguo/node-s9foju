@@ -1,0 +1,14 @@
+<button
+  class='nx-info-btn__handler la-fontello la-fontello_{{icon}}'
+  (click)='btnClick && btnClick.observers.length > 0 && btnClick.emit()'
+  (mouseover)="isTooltipDisplayed = true"
+  (mouseleave)="isTooltipDisplayed = false"
+></button>
+
+<nx-tooltip
+  class='nx-info-btn__tooltip'
+  *ngIf='allowTooltip !== false && isTooltipDisplayed'
+  [alignment]='tooltipAlignment'
+  [size]="tooltipSize"
+  @fadeTrigger
+><ng-content></ng-content></nx-tooltip>

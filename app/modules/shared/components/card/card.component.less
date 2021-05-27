@@ -1,0 +1,125 @@
+@import "./styles/inner-elements";
+@import "./styles/lightweight/lightweight-card";
+
+:host {
+  .apply__card-wrapper-view-base;
+  transition: opacity .2s ease, visibility .2s ease;
+}
+
+:host(.nx-card) {
+  .apply__vertical-indents_card-base;
+}
+
+:host(.nx-card_size-sm) {
+  max-width: @la-container__size_sm;
+}
+
+:host(.nx-card_size-md) {
+  max-width: @nx-card__size_md;
+}
+
+:host(.nx-card_size-lg) {
+  max-width: @la-container__size_md;
+}
+
+:host(.nx-card_size-xl),
+:host(.nx-card_size-full) {
+  .nx-card__header,
+  .nx-card__body,
+  .nx-card__footer {
+    .apply__horizontal-indents_card-lg;
+  }
+}
+
+:host(.nx-card_size-xl) {
+  width: 100%;
+}
+
+:host(.nx-card_size-full),
+:host(.nx-card_full-height) {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  .nx-card__body, .nx-lightweight-card__body {
+    flex: 1;
+  }
+}
+
+:host(.nx-card_size-full) {
+  max-width: 100%;
+}
+
+:host(.nx-card_full-height) {
+  .nx-card__body, .nx-lightweight-card__body {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.nx-card__header,
+.nx-card__body,
+.nx-card__footer {
+  .apply__horizontal-indents_card-base;
+}
+
+.nx-card__header {
+  .apply__bottom-indent_card-header-base;
+}
+
+.nx-card-header-title {
+  text-align: left;
+}
+
+:host(.nx-card_header-alignment_center) {
+  .nx-card-header-title {
+    text-align: center;
+  }
+}
+
+.nx-card__body {
+  position: relative;
+  .apply__bottom-indent_card-body-base;
+  .nx-card_has-separated-footer & {
+    .apply__bottom-border_card-body-base;
+  }
+}
+
+.nx-card__footer {
+  .nx-card_has-separated-footer & {
+    .apply__top-indent_card-footer-base;
+  }
+}
+
+:host(.nx-card_has-duplicated-layouts-styles) {
+  .nx-card__body,
+  .nx-card__footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nx-card__body {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .nx-card__footer {
+    padding-top: 0;
+  }
+}
+
+:host-context(nx-device-entity-page-reports) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .nx-card__header,
+  .nx-card__footer {
+    flex-shrink: 0;
+  }
+
+  .nx-card__body {
+    flex-grow: 1;
+    min-height: 0;
+  }
+}

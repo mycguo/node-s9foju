@@ -1,0 +1,11 @@
+@import 'mixins';
+:host {
+  position: absolute;
+  border: 1px solid @la-border-color_base;
+  background-color: @la-color_white-base;
+  padding: 4px 6px;
+  border-radius: 2px;
+  box-shadow: @la-shadow_level-3-base;
+  .nx-typography-mixin(12px, 16px, @la-color_oxford-blue-base);
+  -webkit-font-smoothing: initial;
+}

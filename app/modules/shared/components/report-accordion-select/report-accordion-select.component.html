@@ -1,0 +1,24 @@
+<ng-container *ngTemplateOutlet="accordionItemListTpl; context {reportList: dataSource, isFirstParent: true}"></ng-container>
+
+<ng-template #accordionItemListTpl let-reportList="reportList" let-isFirstParent="isFirstParent">
+  <mat-accordion *ngIf="reportList" class="nx-report-list {{isFirstParent ? ' nx-report-list_first-parent' : ''}}" [multi]="isExpanded">
+    <ng-container *ngFor="let report of reportList" [ngSwitch]="report.children?.length > 0">
+      <mat-expansion-panel *ngSwitchCase="true" class="nx-report-accordion" [expanded]="isExpanded">
+        <mat-expansion-panel-header
+          class="nx-report-accordion__header nx-report-list-label {{isFirstParent ? ' nx-report-list-label_lg' : ''}}"
+          [innerHTML]="report.name | highlight: searchString"
+        ></mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <ng-container *ngTemplateOutlet="accordionItemListTpl; context {reportList: report.children}"></ng-container>
+        </ng-template>
+      </mat-expansion-panel>
+
+      <div *ngSwitchDefault
+           (click)="selectedReport.emit(report.value)"
+           class="nx-report-list-item-label"
+           [innerHTML]="report.name | highlight: searchString">
+      </div>
+    </ng-container>
+  </mat-accordion>
+</ng-template>

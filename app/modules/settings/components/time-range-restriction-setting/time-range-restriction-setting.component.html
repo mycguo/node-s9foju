@@ -1,0 +1,45 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [error]="error"
+  [showContent]="true"
+  [contentTemplate]="content">
+  <ng-template #content>
+    <form [formGroup]="formGroup">
+      <nx-card [headerTitle]="'Time Range Restrictions'"
+               [size]="'sm'"
+               [body]="cardBody"
+               [footer]="cardFooter">
+        <ng-template #cardBody>
+          <div class="nx-post nx-pb-16">
+            Processing data for reports may consume a large amount of system resources. Limiting the available
+            time range options will help keep the system responsive for all users.
+          </div>
+
+          <nx-select
+            [ngClass]="{'nx-pb-20': showWarningMessage}"
+            [formControlName]="staticTimeRangeRestrictionKey"
+            [options]="selectModel.options"
+            [displayModel]="selectModel.displayOptions"
+          ></nx-select>
+
+          <nx-notification-label *ngIf="showWarningMessage" [status]="warningStatus">
+            <strong class="nx-notification-label__title">Time range warning</strong>
+            The selected time range restriction may result in a report consuming all system resources and slowing down performance
+            for other users.
+          </nx-notification-label>
+        </ng-template>
+
+        <ng-template #cardFooter>
+          <div nxButtonList class="nx-card-footer-buttons">
+            <nx-button
+              [isPrimary]="true"
+              [isDisabled]="formGroup.invalid || formGroup.pristine"
+              (btnClick)="submitChanges()">
+              Apply
+            </nx-button>
+          </div>
+        </ng-template>
+      </nx-card>
+    </form>
+  </ng-template>
+</nx-loading>

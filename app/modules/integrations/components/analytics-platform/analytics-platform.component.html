@@ -1,0 +1,33 @@
+<nx-card class="nx-card_has-duplicated-layouts-styles"
+         size="sm"
+         headerTitle="LiveNA"
+         [body]="body"
+>
+    <ng-template #body>
+      <nx-loading
+        [isLoading]="isLoading"
+        [error]="getErrorMessage"
+        [alertMessageOverride]="alertMessages"
+      >
+        <ng-template #content>
+          <nx-key-value-list>
+            <div *ngFor="let item of integrationData">
+              <div nxKeyValueListItem [key]="item.name" [value]="item.value"></div>
+            </div>
+            <ng-template nxKeyValueListItem [key]="'Status'">
+              <ng-container *ngIf="isCheckingConnection; else showStatus">
+                <div class="status-spinner">
+                  <nx-spinner
+                    [spinnerSize]="SPINNER_SIZE.XS"
+                  ></nx-spinner>
+                </div>
+              </ng-container>
+              <ng-template #showStatus>
+                <span nx-status-indicator [status]="status">{{status}}</span>
+              </ng-template>
+            </ng-template>
+          </nx-key-value-list>
+        </ng-template>
+      </nx-loading>
+    </ng-template>
+</nx-card>

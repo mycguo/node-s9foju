@@ -1,0 +1,238 @@
+@import 'variables';
+@import "./nx-button-inner-elements.less";
+@import 'helpers_fontello';
+@import 'helpers_indent';
+
+:host {
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.button {
+  width: 100%;
+  margin: 0;
+  padding: @button__vertical-indent_base 0 @button__vertical-indent_base @button__vertical-indent_base;
+  min-width: @button__min-width_base;
+  border-radius: @button__border-radius_base;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .2s ease-out, background-color .2s ease-out;
+  &:disabled {
+    opacity: .5;
+  }
+
+  :host(.nx-form-field-btn) & {
+    min-width: 26px;
+    height: 26px;
+    box-shadow: -1px 0 0 0 @secondary-button__border-color_base;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+:host(.nx-form-field-btn) {
+  position: relative;
+  z-index: 1;
+}
+
+:host-context(.nx-filter__action-list-item) {
+
+  .button {
+    box-shadow: none;
+    border-left: 1px solid @secondary-button__border-color_base;
+    border-radius: 0;
+    padding: 6px;
+    transition: background-color .2s ease;
+
+    .button__text {
+      margin: 0;
+    }
+
+    &.button_secondary.button_white {
+      background-color: @button__background-color_white;
+
+      .button__icon {
+        margin: 0;
+        color: @la-color_oxford-blue-base;
+      }
+
+      &:disabled {
+        background-color: fade(@la-color_black-squeeze-base, 70%);
+        .button__icon {
+          color: @la-form-element__color_is-disabled;
+        }
+      }
+    }
+
+    &:disabled {
+      background-color: fade(@la-color_black-squeeze-base, 70%);
+      opacity: 1;
+
+      .button__text {
+        color: @la-form-element__color_is-disabled;
+      }
+    }
+
+    &:hover:not(:disabled),
+    &:focus {
+      background-color: darken(@la-color_black-squeeze-base, 5%);
+    }
+  }
+
+  .button__icon {
+    &.la-fontello_code {
+      font-size: 10px;
+    }
+  }
+
+  &:first-child {
+    .button {
+      border-left: none;
+    }
+  }
+}
+
+.button__icon,
+.button__text {
+  font-size: @button__font-size_base;
+  line-height: @button__line-height_base;
+  margin-right: @button__vertical-indent_base;
+  .button_primary & {
+    color: @la-color_white-base;
+  }
+
+  .button_white & {
+    color: @secondary-button-icon__color_base;
+  }
+}
+
+.button__icon {
+  transition: transform @duration_sm @easing_base;
+  &:not(.only-icon) {
+    margin-left: 8px;
+  }
+
+  &.only-icon {
+    margin-left: 0;
+    margin-right: 7px;
+    ~ .button__text {
+      display: none;
+    }
+  }
+
+  .button_secondary & {
+    color: @secondary-button-icon__color_base
+  }
+
+  &.la-fontello_chevron_down {
+    font-size: 4px;
+    line-height: 4px;
+  }
+
+  &.la-fontello_folder-open-o {
+    font-size: 12px;
+  }
+
+  &.trash {
+    font-size: 9px;
+  }
+
+  &.la-fontello_clone {
+    font-size: 9px;
+  }
+
+  &.la-fontello_eye {
+    font-size: 9px;
+  }
+}
+
+:host-context(nx-dropdown [aria-expanded="true"]) {
+  .button__icon.la-fontello_chevron_down {
+    transform: rotate(-180deg);
+  }
+}
+
+.button__text {
+  font-weight: @button__font-weight_base;
+  margin-right: @button__horizontal-indent_base;
+
+  &:only-child {
+    margin-left: 8px;
+  }
+  &:not(:only-child) {
+    margin-left: 0;
+  }
+
+  &:empty {
+    display: none;
+  }
+  .button_secondary & {
+    color: @secondary-button__color_base
+  }
+}
+
+.button_primary,
+.button_primary:disabled:hover {
+  background-color: @primary-button__background-color_base;
+}
+
+.button_primary {
+  &:hover {
+    background-color: @primary-button__background-color_is-hovered;
+  }
+}
+
+.button_secondary,
+.button_secondary:disabled:hover {
+  background-color: @secondary-button__background-color_base;
+}
+
+.button_secondary {
+  box-shadow: inset 0 0 0 @button__border-size_base @secondary-button__border-color_base;
+  &:hover {
+    background-color: @secondary-button__background-color_is-hovered;
+  }
+}
+
+.button_white,
+.button_white:disabled:hover {
+  background-color: @button__background-color_white;
+}
+
+.button_white {
+  &:hover {
+    background-color: @secondary-button__background-color_is-hovered;
+  }
+}
+
+:host-context([nxButtonList]),
+:host(.nx-title-bar-action) {
+  display: inline-flex;
+  margin-right: @nx-button__mr_base;
+  &:extend(.nx-mr-reset all);
+}
+
+:host-context(.nx-button-list_direction_col) {
+  margin-right: 0;
+  margin-bottom: @nx-button__mb_base;
+  &:extend(.nx-mb-reset all);
+}
+
+.button_has-right-icon {
+  .button__text {
+    margin-left: 9px;
+    margin-right: 0;
+  }
+
+  .button__icon {
+    order: 2;
+    margin-left: 8px;
+    margin-right: 16px;
+    &.only-icon {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+}

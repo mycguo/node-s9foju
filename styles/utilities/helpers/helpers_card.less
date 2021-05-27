@@ -1,0 +1,110 @@
+@import "mixins";
+
+.nx-card-header-title {
+  .la-mixin_text(@la-font-family_base, 16px, 20px, @la-color_oxford-blue-base, 700);
+  text-transform: uppercase;
+}
+
+.nx-card__header-title {
+  padding-bottom: 8px;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.nx-card-footer-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nx-card-header-description {
+  &:extend(.la-post-paragraph);
+}
+
+.nx-card-header-note {
+  .la-mixin_text(@la-font-family_base, 12px, 16px, @la-color_oxford-blue-base);
+}
+
+.nx-card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  .nx-card-header-title {
+    padding-right: 12px;
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+}
+
+.nx-card-layout {
+  padding-left: @nx-card__indent-horizontal_lg;
+  padding-right: @nx-card__indent-horizontal_lg;
+}
+
+.nx-card-layout-integrations {
+  &:extend(.nx-card-layout);
+  width: @nx-integrations__width_base;
+  box-sizing: content-box;
+  nx-sdwan-integrations & {
+    width: auto;
+  }
+}
+
+.nx-card-body-paragraph {
+  .la-mixin_text(@la-font-family_base, 12px, 16px, @la-color_oxford-blue-base);
+  padding-bottom: 16px;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.nx-card__footer-btn-list {
+  &:only-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.nx-lightweight-card-header-title,
+.nx-lightweight-card-header-title {
+  .la-mixin_text(@la-font-family_base, 12px, @nx-lightweight-card-header-title__line-height_base, @la-color_oxford-blue-base, 500);
+}
+
+.nx-lightweight-card__header-title,
+.nx-lightweight-card__header-drill-down {
+  margin-right: 6px;
+}
+
+.nx-lightweight-card-header-subtitle {
+  .la-mixin_text(@la-font-family_base, 12px,@nx-lightweight-card-header-title__line-height_base, @la-color_regent-gray-base);
+}
+
+.nx-lightweight-card__header-subtitle {
+  margin-right: 12px;
+}
+
+.nx-lightweight-card-header-notation {
+  .la-mixin_text(@la-font-family_base, 12px, @nx-lightweight-card-header-title__line-height_base, @la-color_regent-gray-base);
+}
+
+.nx-lightweight-card__header-notation {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.nx-lightweight-card__header-close-btn {
+  margin-left: auto;
+  line-height: 14px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-right: -3px;
+}
+
+[nxButtonList] {
+  &:only-child {
+    .nx-card_size-sm .nx-card__footer & {
+      justify-content: flex-end;
+    }
+  }
+}

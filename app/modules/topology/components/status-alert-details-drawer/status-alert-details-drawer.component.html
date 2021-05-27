@@ -1,0 +1,32 @@
+<div class="header">
+  <button class="header__close-btn la-fontello la-fontello_one-arrow-left" (click)="onCloseDrawer()"></button>
+
+  <div class="header__details">
+    <div class="header__details-title entity-alert-severity-indicator entity-alert-severity-indicator_lg
+               {{detailsData.severity ? (' entity-alert-severity-indicator_' + detailsData.severity.toString()).toLowerCase() : ''}}"
+         title="{{detailsData.title}}"
+         *ngIf="detailsData?.title">
+      <i class="entity-alert-severity-indicator__icon la-fontello la-fontello_exclamation-outline"></i>
+
+      <span class="entity-alert-severity-indicator__text">{{detailsData.title}}</span>
+    </div>
+
+    <p class="header__details-subtitle"
+       title="{{detailsData.subtitle}}"
+       *ngIf="detailsData?.subtitle">
+      {{detailsData.subtitle}}
+    </p>
+  </div>
+</div>
+
+<div class="body">
+  <p class="body__description la-post-paragraph" *ngIf="detailsData?.description">{{detailsData.description}}</p>
+
+  <div class="body__parameters-groups" *ngIf="detailsData?.parameterGroups">
+    <nx-status-alert-details-parameters-group
+      class="parameters-groups__item"
+      *ngFor="let group of detailsData.parameterGroups"
+      [group]="group">
+    </nx-status-alert-details-parameters-group>
+  </div>
+</div>

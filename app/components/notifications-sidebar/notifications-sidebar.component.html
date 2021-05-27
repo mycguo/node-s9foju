@@ -1,0 +1,36 @@
+<div class="la-notifications-side-bar"
+     [ngClass]="{'la-notifications-side-bar_is-displayed': showSidebar$ | async}"
+>
+  <div class="la-notifications-side-bar__header">
+    <p class="la-notifications-side-bar__header-title">
+      <span class="la-notifications-side-bar__header-title-icon la-fontello la-fontello_bell"></span>
+
+      <span class="la-notifications-side-bar__header-title-text">Notifications</span>
+    </p>
+
+    <div class="la-notifications-side-bar__header-pop-ups-switcher">
+      <p>Pop&ndash;ups: </p>
+      <nx-custom-text-toggle
+        option1="On"
+        option2="Off"
+        [isOption1]="isPopupActive"
+        (valueChanged)="updatePopupGroupDefaultDisplayStatus($event)"
+      ></nx-custom-text-toggle>
+    </div>
+
+    <button class="la-notifications-side-bar__header-icon-toggle-sidebar la-fontello la-fontello_close js-notifications-sidebar-toggle"
+            ng-click="toggleNotificationsSidebar()"></button>
+  </div>
+
+  <div class="la-notifications-side-bar__notifications-wrapper">
+    <div class="la-notifications-side-bar__notifications">
+      <div class="la-notifications-side-bar__notifications-group"
+           *ngFor="let dateGroup of notificationDateGroups"
+      >
+        <nx-notification-tiles-date-group-container
+          [notificationGroup]="dateGroup"
+        ></nx-notification-tiles-date-group-container>
+      </div>
+    </div>
+  </div>
+</div>

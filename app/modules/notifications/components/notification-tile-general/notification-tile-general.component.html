@@ -1,0 +1,12 @@
+<div class="notification-tile-general"
+     *ngIf="notification"
+>
+  <nx-notification-tile-wrapper
+    [notificationTypeTitle]="notification.type"
+    [notificationBodyTitle]="notification.body"
+    [notificationLabel]="notification.title"
+    [notificationDateCreated]="notification.created"
+  >
+    {{notification.body}}
+  </nx-notification-tile-wrapper>
+</div>

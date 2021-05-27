@@ -1,0 +1,59 @@
+<nx-loading
+  [isLoading]="isLoading"
+  [showContent]="true"
+  [contentTemplate]="content"
+  class="nx-full-height-flex-col"
+>
+  <ng-template #content>
+    <form
+      [formGroup]="formGroup"
+      (ngSubmit)="submitForm.emit(formGroup.value)"
+    >
+      <!-- description -->
+      <p *ngIf="alert.description" class="nx-p row row_single">{{alert.description}}</p>
+
+      <!-- enabled --->
+      <nx-toggle
+        class="row row_single"
+        [formControlName]="staticEnabledKey"
+        [toggleModel]="enableField"
+        [inline]="false"
+      ></nx-toggle>
+
+      <!-- severity -->
+      <div class="row row_single">
+        <nx-select
+          [ngModel]=""
+          [options]="severityField.options"
+          [displayModel]="severityField.displayOptions"
+          [ngModelOptions]="{standalone: true}"
+          disabled>
+        </nx-select>
+      </div>
+
+      <nx-alert-management-sidebar-sharing-container
+        class="row row_single"
+        [formControlName]="staticSharingKey">
+      </nx-alert-management-sidebar-sharing-container>
+
+    </form>
+
+    <div nxButtonList>
+      <nx-button
+        (click)="cancel.emit()"
+        [isDisabled]="isLoading"
+      >
+        Cancel
+      </nx-button>
+
+      <nx-button
+        [isSubmit]="true"
+        [isPrimary]="true"
+        [isDisabled]="isLoading || formGroup.invalid || formGroup.pristine"
+        (btnClick)="submit()"
+      >
+        Save
+      </nx-button>
+    </div>
+  </ng-template>
+</nx-loading>

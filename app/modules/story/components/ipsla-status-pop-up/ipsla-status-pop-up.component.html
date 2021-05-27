@@ -1,0 +1,38 @@
+<nx-card [lightweight]="true" [header]="header" [body]="body" *ngIf="data">
+  <ng-template #header>
+    <ng-container *ngIf="data.testName">
+      <div class="nx-lightweight-card__header-title nx-lightweight-card-header-title">{{data.testName}}</div>
+      <a class="nx-lightweight-card__header-drill-down nx-link la-fontello la-fontello_drill-down" href="{{data.drilldown}}" target="_blank"></a>
+      <i class="nx-lightweight-card__header-close-btn nx-lightweight-icon-btn la-fontello la-fontello_close" (click)="close()"></i>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #body>
+    <nx-key-value-list class="nx-key-value-list_align-left">
+      <ng-template nxKeyValueListItem [key]="'Test status'" [template]="testStatusTpl"></ng-template>
+
+      <ng-template nxKeyValueListItem [key]="'Test status reason'" [template]="latestTestResultTpl"></ng-template>
+
+      <ng-template #testStatusTpl>
+        <ng-container [ngSwitch]="data.testStatus">
+          <span *ngSwitchCase="undefined">{{DASH}}</span>
+          <div nx-status-indicator
+               *ngSwitchDefault
+               [status]="data.testStatus"
+               [viewType]="testStatusType">
+            {{data.testStatus}}
+          </div>
+        </ng-container>
+      </ng-template>
+
+      <ng-template #latestTestResultTpl>
+        <ng-container [ngSwitch]="data.testStatusReason">
+          <span *ngSwitchCase="undefined">DASH</span>
+          <div>
+            {{data.testStatusReason}}
+          </div>
+        </ng-container>
+      </ng-template>
+    </nx-key-value-list>
+  </ng-template>
+</nx-card>

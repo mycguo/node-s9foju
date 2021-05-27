@@ -1,0 +1,103 @@
+@import "../../utilities/utilities";
+
+.content-tabs__tabs {
+  border-bottom: 1px solid rgba(177, 191, 209, 0.3);
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  la-tabs {
+    float: left;
+    .tab-list {
+      > .item {
+        position: relative;
+        padding: 0;
+        border: 1px solid transparent;
+        border-bottom: none;
+        a {
+          padding: 18px 20px;
+          font-size: 16px;
+          line-height: 18px;
+          font-weight: 400;
+          border-right: none;
+          color: @la-color_oxford-blue-base;
+          text-transform: capitalize;
+          i {
+            color: @la-color_regent-gray-base;
+          }
+        }
+
+        &.active {
+          background-color: @la-color_alabaster-base;
+          border-color: rgba(177, 191, 209, 0.3);
+          border-bottom: none;
+          &:after {
+            content: '';
+            width: 100%;
+            height: 1px;
+            background-color: @la-color_alabaster-base;
+            position: absolute;
+            top: 100%;
+            left: 0;
+          }
+
+          a {
+            background-color: @la-color_alabaster-base;
+          }
+
+          &:hover {
+            a {
+              cursor: default;
+            }
+          }
+
+          &:first-child {
+            border-left: 1px solid rgba(177, 191, 209, 0.3);
+          }
+
+          &:last-child {
+            border-right: 1px solid rgba(177, 191, 209, 0.3);
+          }
+        }
+
+        &:hover {
+          &:not(.active) {
+            a {
+              color: @la-color_oxford-blue-base;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > .btn {
+    float: right;
+    position: relative;
+    top: 10px;
+  }
+}
+
+.content-tabs__content {
+  padding: 25px;
+  background-color: @la-color_alabaster-base;
+  .la-grid {
+    td {
+      &.row-index {
+        border-color: @la-color_alabaster-base;
+      }
+    }
+  }
+}
+
+.content__middle {
+  &:last-child {
+    .content-tabs {
+      &.content__middle__main {
+        padding-bottom: 0;
+      }
+    }
+  }
+}

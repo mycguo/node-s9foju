@@ -1,0 +1,13 @@
+@import 'mixins';
+
+:host {
+  .nx-typography-mixin(12px, 14px, @la-color_red-orange-base);
+}
+
+:host(.nx-error-cell-renderer_status_good) {
+  color: @la-color_apple-base;
+}
+
+:host(.nx-error-cell-renderer_status_other) {
+  color: @la-status__background-color_na;
+}

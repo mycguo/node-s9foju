@@ -1,0 +1,150 @@
+@import 'mixins';
+@import '../../../../../../../client/laCommon/directives/laSpinner/laSpinner';
+
+:host {
+  min-height: @nx-spinner-radius_base*2;
+  &.nx-spinner_size_sm {
+    min-height: @nx-spinner-radius_sm*2;
+  }
+
+  &.nx-spinner_size_xs {
+    min-height: @nx-spinner-radius_xs*2;
+  }
+}
+
+.la-spinner,
+.la-ie-spinner {
+  display: block;
+  position: relative;
+  width: @nx-spinner-radius_base*2;
+  height: @nx-spinner-radius_base*2;
+}
+
+.la-spinner_size-sm,
+.la-ie-spinner_size-sm {
+  width: @nx-spinner-radius_sm*2;
+  height: @nx-spinner-radius_sm*2;
+}
+
+.la-spinner_size-sm {
+  circle {
+    .animation(la-keyframes_dash-spinner-sm 1.5s ease-in-out infinite);
+  }
+}
+
+.la-spinner_size-xs,
+.la-ie-spinner_size-xs {
+  width: @nx-spinner-radius_xs*2;
+  height: @nx-spinner-radius_xs*2;
+}
+
+.la-spinner_size-xs {
+  circle {
+    .animation(la-keyframes_dash-spinner-xs 1.5s ease-in-out infinite);
+  }
+}
+
+svg {
+  .animation(la-keyframes_rotate-spinner 2s linear infinite);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+circle {
+  stroke: @la-color_jaffa-base;
+  stroke-linecap: round;
+  .animation(la-keyframes_dash-spinner 1.5s ease-in-out infinite);
+  .btn_active-spinner & {
+    stroke: fade(#fff, 50);
+  }
+}
+
+&.spinner-position_absolute,
+&.spinner-position_center-right {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+}
+
+&.spinner-position_absolute {
+  left: 50%;
+  .la-spinner,
+  .la-ie-spinner {
+    margin-top: -@nx-spinner-radius_base;
+    margin-left: -@nx-spinner-radius_base;
+  }
+
+  .la-spinner_size-sm,
+  .la-ie-spinner_size-sm {
+    margin-top: -@nx-spinner-radius_sm;
+    margin-left: -@nx-spinner-radius_sm;
+  }
+
+  .la-spinner_size-xs,
+  .la-ie-spinner_size-xs {
+    margin-top: -@nx-spinner-radius_xs;
+    margin-left: -@nx-spinner-radius_xs;
+  }
+}
+
+&.spinner-position_center-right {
+  right: 0;
+  .la-spinner_size-sm,
+  .la-ie-spinner_size-sm {
+    margin-top: -@nx-spinner-radius_sm;
+  }
+
+  .la-spinner_size-xs,
+  .la-ie-spinner_size-xs {
+    margin-top: -@nx-spinner-radius_xs;
+  }
+}
+
+&.spinner-position_static-center {
+  .la-spinner,
+  .la-ie-spinner {
+    margin: 0 auto;
+  }
+}
+
+&.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: fade(#000, 20%);
+  z-index: 2;
+  .la-spinner,
+  .la-ie-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -@nx-spinner-radius_base;
+    margin-left: -@nx-spinner-radius_base;
+  }
+
+  .la-spinner_size-sm,
+  .la-ie-spinner_size-sm {
+    margin-top: -@nx-spinner-radius_sm;
+    margin-left: -@nx-spinner-radius_sm;
+  }
+
+  .la-spinner_size-xs,
+  .la-ie-spinner_size-xs {
+    margin-top: -@nx-spinner-radius_xs;
+    margin-left: -@nx-spinner-radius_xs;
+  }
+}
+
+:host(.nx-spinner_fill-content-area) {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+  .la-spinner,
+  .la-ie-spinner {
+    .nx-centering-mixin();
+  }
+}

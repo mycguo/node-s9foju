@@ -1,0 +1,47 @@
+@import 'mixins';
+.nx-grid-action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  min-width: 0;
+}
+
+.nx-grid-action-bar__info,
+.nx-grid-action-bar__filter,
+.nx-grid-action-bar__primary-actions,
+.nx-grid-action-bar__secondary-actions {
+  flex: 1 0 auto;
+}
+
+.nx-grid-action-bar__info {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nx-grid-counter {
+  .nx-typography-mixin(12px; 14px; @la-color_regent-gray-base);
+}
+
+.nx-grid-action-bar__filter {
+  margin-right: 24px;
+  +.nx-grid-action-bar__secondary-actions {
+    flex-grow: 0;
+  }
+}
+
+.nx-grid-action-bar__secondary-actions {
+  display: flex;
+  justify-content: flex-end;
+  &:first-child {
+    &:last-child {
+      display: flex;
+      flex-grow: 1;
+      justify-content: flex-end;
+    }
+  }
+
+  :host-context(nx-custom-oid-polling-devices) & {
+    flex-grow: 0;
+  }
+}

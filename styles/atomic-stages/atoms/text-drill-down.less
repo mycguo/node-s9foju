@@ -1,0 +1,26 @@
+@import "../../utilities/utilities";
+
+.nx-text-drill-down {
+  display: inline-flex;
+  align-items: center;
+  background-color: @la-color_mystic-base;
+  border-radius: 2px;
+  padding: 3px 6px;
+  .nx-typography-mixin(10px, 12px);
+  text-decoration: none;
+  transition: background-color @duration_sm @easing_base;
+  &:after {
+    margin-left: 7px;
+    &:extend(.la-fontello:before, .la-fontello_drill-down:before);
+    font-size: 12px;
+    color: @la-color_jaffa-base;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: darken(@la-color_mystic-base, 3%);
+  }
+}

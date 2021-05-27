@@ -1,0 +1,26 @@
+<div [formGroup]="headerForm" class="row">
+  <nx-simple-input
+    class="col"
+    [formControlName]="nameKey"
+    [inputModel]="nameInputModel"
+    (blur)="onTouch()">
+  </nx-simple-input>
+
+  <nx-simple-input
+    class="col"
+    [formControlName]="valueKey"
+    [inputModel]="valueInputModel"
+    (blur)="onTouch()"
+    [headerAdditionalElements]="headerAdditionalElements"
+  >
+    <ng-template #headerAdditionalElements>
+      <nx-form-radio-group
+        [formControlName]="base64Key"
+        [radioGroup]="radioGroup"
+        [inline]="true"
+        [groupName]="radioGroupName"
+        (blur)="onTouch()">
+      </nx-form-radio-group>
+    </ng-template>
+  </nx-simple-input>
+</div>

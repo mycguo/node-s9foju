@@ -1,0 +1,41 @@
+<div *ngIf="alert && !isAlertHidden"
+     class="simple-alert simple-alert-{{alert.type}}"
+     title="{{alert.title}} {{alert.message}}">
+  <div class="icon-wrapper">
+    <i class="la-fontello" [ngClass]="{'la-fontello_exclamation': alert.type === alertTypeEnum.ERROR,
+     'la-fontello_check': alert.type === alertTypeEnum.SUCCESS}"></i>
+  </div>
+
+  <div
+    class="nx-simple-alert-message-wrapper"
+    [@textToggleAnimation]="animationState"
+    (@textToggleAnimation.done)="onTextToggleAnimationEndEvent($event)"
+  >
+    <p
+      class="nx-simple-alert-message" #text
+      [class.nx-simple-alert-message_truncated]="!isTextExpanded && isMultipleLinesText"
+      [title]="alert.message"
+    >
+      <strong>{{alert.title}} </strong>
+
+      {{alert.message}}
+    </p>
+  </div>
+
+  <div
+    class="nx-simple-alert__show-more-btn"
+    *ngIf="isMultipleLinesText"
+  >
+    <button
+      class="container__show-more-btn"
+      (click)='toggleWholeText()'
+      [disabled]="isShowMoreBtnDisabled"
+    >
+      {{isTextExpanded ? 'Hide' : 'View'}} Details
+    </button>
+  </div>
+
+  <div class="close-icon-wrapper">
+    <i class="la-fontello la-fontello_close" (click)="onCLoseClick()"></i>
+  </div>
+</div>

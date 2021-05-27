@@ -1,0 +1,53 @@
+@import "../../utilities/utilities";
+
+.nx-notification-label {
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  padding: 8px 12px;
+  .nx-typography-mixin(12px, 16px, @la-color_oxford-blue-base);
+}
+
+@statuses:    good, warning, critical, info;
+@icon-colors: @la-color_apple-base, @la-color_buttercup-base, @la-color_red-orange-base, @la-color_dodger-blue-base;
+@icon-sizes:  14px, 16px, 14px, 16px;
+
+.apply-status-modifiers(@statuses; @icon-colors; @icon-sizes; @index) when (@index > 0) {
+  .apply-status-modifiers(@statuses; @icon-colors; @icon-sizes; (@index - 1));
+  @status: extract(@statuses, @index);
+  @iconColor: extract(@icon-colors, @index);
+  @iconSize: extract(@icon-sizes, @index);
+  .nx-notification-label_status_@{status} {
+    box-shadow: inset 0 0 0 1px @iconColor;
+    background-color: fade(@iconColor, 8);
+    &:before {
+      .set-status-icon(@status; @iconColor; @iconSize);
+    }
+  }
+}
+
+.set-status-icon(@status; @iconColor; @iconSize) {
+  &:extend(.la-fontello:before);
+  color: @iconColor;
+  font-size: @iconSize;
+  padding-right: 12px;
+  & when (@status = good) {
+    &:extend(.la-fontello_done:before);
+  }
+
+  & when (@status = warning) {
+    &:extend(.la-fontello_warning:before);
+    position: relative;
+    top: -1px;
+  }
+
+  & when (@status = critical) {
+    &:extend(.la-fontello_error:before);
+  }
+
+  & when (@status = info) {
+    &:extend(.la-fontello_info:before);
+  }
+}
+
+.apply-status-modifiers(@statuses; @icon-colors; @icon-sizes; length(@statuses));

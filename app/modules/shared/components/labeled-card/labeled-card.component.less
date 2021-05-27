@@ -1,0 +1,28 @@
+@import "../../../../../styles/atomic-stages/atoms/__utils/atoms__utils.less";
+@import "../../../../../styles/atomic-stages/atoms/__workaround/atoms__workaround.less";
+@import 'mixins';
+
+:host ::ng-deep {
+  nx-card {
+    padding: 0;
+    .nx-card {
+      &__header {
+        padding: 0;
+      }
+      &__header-title {
+        &:last-child {
+          padding: 6px 18px;
+        }
+        font-size: 12px;
+        text-transform: none;
+        text-align: left;
+        background-color: @la-table-header__background-color_base;
+      }
+      &__body {
+        &:last-child {
+          padding: 18px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<ag-grid-angular
+  [ngClass]="themeClasses"
+  [gridOptions]="gridOptions"
+  [rowData]="data?.rows"
+  [columnDefs]="_columns"
+  [defaultColDef]="defaultColDef"
+  [floatingFilter]="true"
+  [floatingFiltersHeight]="filterRowHeight"
+  [frameworkComponents]="gridFrameworkComponents"
+  [getRowNodeId]="getIdFromDataItem"
+  [overlayNoRowsTemplate]="noRowsTemplate"
+  [isRowSelectable]="isRowSelectable"
+  [ngStyle]="{height: fullHeight ? fullHeightValue : height}"
+  rowSelection="multiple"
+  (selectionChanged)="handleRowSelectionChanged($event)"
+  (sortChanged)="handleSortChanged($event)"
+  (gridReady)="handleGridReady($event)"
+  (gridColumnsChanged)="handleGridColumnsChanged($event)"
+></ag-grid-angular>
+
+<nx-grid-status-bar *ngIf="statusBarData" [data]="statusBarData"></nx-grid-status-bar>

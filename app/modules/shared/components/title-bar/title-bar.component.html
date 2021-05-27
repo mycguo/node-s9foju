@@ -1,0 +1,11 @@
+<div class="title-bar__page-title">
+  {{ pageTitle }}
+</div>
+
+<div class="title-bar__body" *ngIf="bodyTmpl">
+  <ng-container *ngTemplateOutlet="bodyTmpl"></ng-container>
+</div>
+
+<div class="title-bar__actions" *ngIf="pageActions">
+  <ng-container *ngTemplateOutlet="pageActions"></ng-container>
+</div>

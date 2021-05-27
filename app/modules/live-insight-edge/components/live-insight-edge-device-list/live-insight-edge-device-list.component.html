@@ -1,0 +1,22 @@
+<ng-container>
+  <nx-loading
+    [isLoading]="isLoading"
+    [contentTemplate]="deviceGrid"
+  ></nx-loading>
+</ng-container>
+<ng-template #deviceGrid>
+  <nx-grid
+    [data]="data"
+    [columns]="columns"
+    [selectedIds]="selectedDeviceIds"
+    [statusBarData]="statusBarData"
+    [getIdFromDataItem]="getIdFromDataItem"
+    [errorMessage]="errorMessage"
+    (rowsSelected)="handleDevicesSelected($event)"
+    (columnFilterChanged)="columnFilterChanged.emit($event)"
+    (columnSortChanged)="columnSortChanged.emit($event)"
+    [fullHeight]="fullHeight"
+    [offsetBottom]="gridOffsetBottom"
+  >
+  </nx-grid>
+</ng-template>

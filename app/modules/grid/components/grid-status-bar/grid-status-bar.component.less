@@ -1,0 +1,18 @@
+@import 'mixins';
+
+:host {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: @la-table__border_base;
+  border-left: @la-table__border_base;
+  border-right: @la-table__border_base;
+  border-bottom-left-radius: @la-table__border-radius_base;
+  border-bottom-right-radius: @la-table__border-radius_base;
+  background-color: @la-color_white-base;
+  .nx-typography-mixin(12px, 16px, @la-color_oxford-blue-base);
+}
+
+.grid-status-bar-rows {
+  padding-right: 24px;
+}

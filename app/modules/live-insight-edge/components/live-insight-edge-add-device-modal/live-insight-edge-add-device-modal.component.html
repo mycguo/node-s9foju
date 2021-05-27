@@ -1,0 +1,48 @@
+<nx-modal-container
+  titleText="ADD DEVICES"
+  (closeButtonClicked)="cancelModal.emit($event)"
+  [bodyTpl]="bodyTpl"
+  [footerTpl]="footerTpl"
+>
+  <ng-template #bodyTpl>
+    <nx-loading
+      [alertMessageOverride]="requestError"
+      [displayError]="errorDisplayType"
+      [error]="addDeviceErrorMessage"
+      [contentTemplate]="deviceContent"
+    >
+      <ng-template #deviceContent>
+        <div class="nx-grid-action-bar">
+          <div class="nx-grid-action-bar__secondary-actions">
+            <nx-table-string-filter
+              (searchTermChange)="searchTermChanged.emit($event)"
+            ></nx-table-string-filter>
+          </div>
+        </div>
+
+        <nx-live-insight-edge-device-list
+          [data]="devices"
+          [selectedDeviceIds]="selectedDeviceIds"
+          [statusBarData]="statusBarData"
+          (devicesSelected)="devicesSelected.emit($event)"
+          [isLoading]="isAvailableDevicesLoading"
+          [errorMessage]="errorMessage"
+          (columnFilterChanged)="columnFilterChanged.emit($event)"
+          (columnSortChanged)="columnSortChanged.emit($event)"
+        ></nx-live-insight-edge-device-list>
+      </ng-template>
+    </nx-loading>
+  </ng-template>
+
+  <ng-template #footerTpl>
+    <div nxButtonList>
+      <nx-button (btnClick)="cancelModal.emit($event)">Cancel</nx-button>
+
+      <nx-button
+        [isPrimary]="true"
+        [isDisabled]="!addButtonActive"
+        (btnClick)="addSelectedDevices.emit()"
+      >Add</nx-button>
+    </div>
+  </ng-template>
+</nx-modal-container>

@@ -1,0 +1,7 @@
+<div [formGroup]="webUiFormGroup" class="nx-align_vertical_middle">
+  <nx-checkbox
+    [label]="displayName"
+    [formControlName]="staticEnabledKey"
+    (blur)="onTouched()"
+  ></nx-checkbox>
+</div>

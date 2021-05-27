@@ -1,0 +1,48 @@
+<ng-container *ngIf="data">
+  <ng-container
+    *ngTemplateOutlet="data.length > SWITCH_TO_DROPDOWN_LENGTH ? chipListDropdown : chipListTmpl; context {data: data}"
+  ></ng-container>
+</ng-container>
+
+<!-- Chip list -->
+<ng-template #chipListTmpl let-data="data">
+  <div
+    nxChipList
+    [wrap]="data.length > SWITCH_TO_DROPDOWN_LENGTH"
+  >
+    <div
+      class="nx-filter-chip"
+      *ngFor="let chip of data"
+      [ngStyle]="{'backgroundColor': itemColor}"
+      [ngClass]="{'nx-filter-chip_has_hiding-delete-btn': data.length <= SWITCH_TO_DROPDOWN_LENGTH}"
+    >
+      <div
+        class="nx-filter-chip__text"
+        [ngClass]="{'nx-filter-chip-editable': data.id === flexString}"
+      >{{chip.displayName || chip.name}}</div>
+      <i class="nx-filter-chip__delete-btn la-fontello la-fontello_close"
+         (click)="$event.stopPropagation(); deleteChip.emit(chip.id)">
+      </i>
+    </div>
+  </div>
+</ng-template>
+
+<!-- Move list into dropdown if amount of items more than SWITCH_TO_DROPDOWN_LENGTH -->
+<ng-template #chipListDropdown let-data="data">
+  <nx-dropdown
+    panelClass="nx-filter-chip-list-dropdown"
+    [btnTmpl]="btnTmpl"
+  >
+    <ng-container *ngTemplateOutlet="chipListTmpl; context {data: data}"></ng-container>
+  </nx-dropdown>
+
+  <ng-template #btnTmpl>
+    <div class="nx-filter-chip-list-toggle-btn">
+      <span class="nx-filter-chip-list-toggle-btn__label">{{data.length}} values</span>
+      <i
+        class="nx-filter-chip-list-toggle-btn__icon la-fontello la-fontello_horizontal-overflow"
+        [ngStyle]="{'background-color': itemColor}"
+      ></i>
+    </div>
+  </ng-template>
+</ng-template>

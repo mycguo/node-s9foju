@@ -1,0 +1,56 @@
+@import "variables";
+@import "helpers";
+@import "sortable-list-variables";
+@import "helpers_sortable-list";
+
+.cdk-drag-preview {
+  border-top: @la-border_base;
+  box-sizing: border-box;
+  box-shadow: 0 3px 8px rgba(53, 64, 83, 0.06),
+  0 1px 6px rgba(53, 64, 83, 0.1),
+  0 1px 4px rgba(53, 64, 83, 0.14);
+
+  .sortable-item-handle {
+    color: @la-color_regent-gray-base;
+  }
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.sortable-list.cdk-drop-list-dragging .sortable-item:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-disabled {
+  opacity: .5;
+  pointer-events: none;
+
+  &:last-child {
+    transform: none !important;
+  }
+}
+
+.cdk-drop-list-dragging {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-top: @la-border_base;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .sortable-item {
+    cursor: ns-resize;
+  }
+}

@@ -1,0 +1,56 @@
+<nx-common-integrations-panel
+  [error]="error"
+  [isLoading]="isLoading"
+  [displayState]="displayState"
+  [integrationData]="integrationData"
+  [status]="status"
+  [baseTitle]="baseTitle"
+  [formTemplate]="formTemplate"
+  [actionButtonModels]="actionButtonModels"
+  [displayContent]="displayContent"
+  (edit)="edit.emit()"
+  (delete)="delete.emit()">
+
+  <ng-template #formTemplate>
+    <nx-sdwan-form
+      class="nx-card-layout-integrations"
+      [isLoading]="isLoading"
+      [isEdit]="isEditState"
+      [sdwanIntegrations]="sdwanIntegrations"
+      (cancel)="cancel.emit()"
+      (formSubmit)="formSubmit.emit($event)"></nx-sdwan-form>
+  </ng-template>
+
+  <ng-template #displayContent>
+    <nx-key-value-list>
+      <div *ngFor="let item of integrationData"
+           nxKeyValueListItem
+           [key]="item.name"
+           [value]="item.value">
+      </div>
+      <ng-template nxKeyValueListItem
+                   [key]="'Status'"
+                   [value]="status"
+                   [template]="statusTemplate">
+      </ng-template>
+
+      <ng-template nxKeyValueListItem
+        *ngIf="sdwanHeadersNames.length > 0"
+        [key]="'Additional HTTP Headers'"
+        [value]="sdwanHeadersNames"
+        [template]="headersTemplate">
+      </ng-template>
+
+      <ng-template #statusTemplate let-item="item">
+        <span nx-status-indicator [status]="item">{{item | intStatus}}</span>
+      </ng-template>
+
+      <ng-template #headersTemplate let-headers="item">
+        <div class="nx-flex-col nx-align-items-end" *ngIf="headers?.length > 0">
+          <span *ngFor="let header of headers">{{header}}</span>
+        </div>
+      </ng-template>
+
+    </nx-key-value-list>
+  </ng-template>
+</nx-common-integrations-panel>

@@ -1,0 +1,11 @@
+<button class="button button_{{isPrimary ? 'primary' : 'secondary'}}"
+        (click)="buttonClick()"
+        [ngClass]="{ 'button_white': isWhiteViewMode, 'button_has-right-icon': iconPos === 'right' }"
+        [disabled]="isDisabled"
+        tabindex="{{isPrimary ? 0 : -1}}"
+        [type]="isSubmit ? 'submit' : 'button'">
+  <i class="button__icon la-fontello la-fontello_{{icon}}"
+     *ngIf="icon"
+     [ngClass]="{'only-icon': !text.innerHTML.trim()}"></i>
+  <span #text class="button__text"><ng-content></ng-content></span>
+</button>

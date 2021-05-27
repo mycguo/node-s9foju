@@ -1,0 +1,68 @@
+.nx-flex {
+  display: flex;
+}
+
+.nx-full-height {
+  height: 100%;
+}
+
+.nx-align-items-center {
+  align-items: center;
+}
+
+.nx-align-items-end {
+  align-items: flex-end;
+}
+
+.nx-justify-between {
+  justify-content: space-between;
+}
+
+.nx-justify-self-end {
+  margin-left: auto;
+}
+
+.nx-justify-end {
+  justify-content: flex-end;
+}
+
+.nx-flex-full-height {
+  &:extend(.nx-flex, .nx-full-height);
+}
+
+.nx-flex-align-items-center {
+  &:extend(.nx-flex);
+  &:extend(.nx-align-items-center);
+}
+
+.nx-flex-align-items-end {
+  &:extend(.nx-flex);
+  &:extend(.nx-align-items-end);
+}
+
+.nx-flex-justify-between {
+  &:extend(.nx-flex);
+  &:extend(.nx-justify-between);
+}
+
+.nx-flex-col {
+  &:extend(.nx-flex);
+  flex-direction: column;
+}
+
+.nx-scrollable {
+  overflow-y: auto;
+}
+
+.nx-flex-item-expanded {
+  flex-grow: 1;
+}
+
+.nx-flex-item-scrollable {
+  &:extend(.nx-scrollable);
+  &:extend(.nx-flex-item-expanded);
+}
+
+.nx-flex-item-scrollable {
+  &:extend(.nx-scrollable, .nx-flex-item-fit-space);
+}

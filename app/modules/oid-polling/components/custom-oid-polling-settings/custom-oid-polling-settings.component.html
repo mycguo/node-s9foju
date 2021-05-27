@@ -1,0 +1,81 @@
+<form
+  [formGroup]="formGroup"
+  class="row"
+>
+  <nx-simple-input
+    [formControlName]="nameControlKey"
+    [inputModel]="nameModel"
+    class="col col_w-50"
+  ></nx-simple-input>
+
+  <nx-simple-input
+    [formControlName]="oidValueControlKey"
+    [inputModel]="oidValueModel"
+    class="col col_w-50"
+    [headerAdditionalElements]="oidValueTooltip"
+  ></nx-simple-input>
+
+  <nx-select
+    [formControlName]="processingTypeControlKey"
+    [displayModel]="processingTypeDisplayModel"
+    [options]="processingTypeOptions"
+    class="col col_w-50"
+    [headerAdditionalElements]="processingTypeTooltip"
+  ></nx-select>
+
+  <nx-simple-input
+    [formControlName]="unitsControlKey"
+    [inputModel]="unitsModel"
+    class="col col_w-50"
+  ></nx-simple-input>
+
+  <nx-select
+    [formControlName]="conversionTypeControlKey"
+    [displayModel]="conversionTypeDisplayModel"
+    [options]="conversionTypeOptions"
+    class="col col_w-50"
+    [headerAdditionalElements]="conversionTypeTooltip"
+  ></nx-select>
+
+  <nx-simple-input
+    [formControlName]="conversionFactorControlKey"
+    [inputModel]="conversionFactorModel"
+    class="col col_w-50"
+    [headerAdditionalElements]="conversionFactorTooltip"
+  ></nx-simple-input>
+</form>
+
+<!-- Tooltips -->
+<ng-template #oidValueTooltip>
+  <nx-info-btn [tooltipAlignment]="tooltipAlignment.BOTTOM_RIGHT">
+    <p><b>OID index must:</b></p>
+    <ul>
+      <li>Only contain 0-9 and .</li>
+      <li>Begin with either .1 or .0</li>
+      <li>Have at least 2 decimal separated numbers (ex. .0.98)</li>
+      <li>Be valid for all selected devices</li>
+    </ul>
+  </nx-info-btn>
+</ng-template>
+
+<ng-template #processingTypeTooltip>
+  <nx-info-btn [tooltipAlignment]="tooltipAlignment.BOTTOM_LEFT">
+    <p>This determines how to process the differences between each polled value.</p>
+    <p><b>Delta:</b> The difference between each poll value</p>
+    <p><b>Rate:</b> The delta with respect to the system time difference between each poll value</p>
+  </nx-info-btn>
+</ng-template>
+
+<ng-template #conversionTypeTooltip>
+  <nx-info-btn [tooltipAlignment]="tooltipAlignment.BOTTOM_LEFT">
+    This action will be applied to the polled values after processing.<br>
+    To avoid any conversion, select conversion type “Multiply” with a conversion factor of “1”.
+  </nx-info-btn>
+</ng-template>
+
+<ng-template #conversionFactorTooltip>
+  <nx-info-btn [tooltipAlignment]="tooltipAlignment.BOTTOM_RIGHT">
+    This value will be applied with the conversion type to the polled values after processing.<br>
+    To avoid any conversion, select conversion type “Multiply” with a conversion factor of “1”.
+  </nx-info-btn>
+</ng-template>

@@ -1,0 +1,13 @@
+<mat-tab-group [class]="!isContentDetailsView ? 'mat-tab-group_nx-page-tabs' : 'mat-tab-group_nx-content-details-tabs'"
+               [selectedIndex]="selectedIndex"
+               (selectedTabChange)="handleTabChange($event.index)"
+               animationDuration="0">
+    <mat-tab [label]="tab.label" [disabled]="tab.disabled" *ngFor="let tab of tabGroup">
+      <ng-template matTabLabel *ngIf="tab.labelTemplateRef">
+        <ng-container [ngTemplateOutlet]="tab.labelTemplateRef"></ng-container>
+      </ng-template>
+
+      <ng-template matTabContent><ng-template nxTab [tab]="tab"></ng-template></ng-template>
+    </mat-tab>
+</mat-tab-group>
+

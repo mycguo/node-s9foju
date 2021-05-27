@@ -1,0 +1,21 @@
+.mat-autocomplete_chips-input {
+
+  &:not([class*=mat-elevation-z]) {
+    max-height: 196px;
+    top: 1px;
+    box-shadow: @la-shadow_level-3-base, 0 0 0 1px @la-form-element__border-color_base;
+
+    .mat-autocomplete-panel-above & {
+      box-shadow: @la-shadow_level-3-direction-up, 0 0 0 1px @la-form-element__border-color_base;
+      top: -1px;
+    }
+  }
+
+  &.mat-autocomplete-panel {
+    border-radius: 1px;
+    
+    .mat-autocomplete-panel-above & {
+      border-radius: 1px;
+    }
+  }
+}

@@ -1,0 +1,95 @@
+@import "../../../utilities/utilities";
+
+@nx-dropdown-content__vertical-indent_base: 4px;
+@nx-dropdown-content__border_base: 1px solid @la-color_geyser-base;
+@nx-dropdown-content__box-shadow_base: @la-drop-down__box-shadow_base;
+@nx-dropdown-content__border-radius_base: 2px;
+@nx-dropdown-content__max-height_base: 200px;
+
+@nx-dropdown-checkbox-list__vertical-indent_base: 7px;
+@nx-dropdown-checkbox-list__horizontal-indent_base: 9px;
+
+@nx-dropdown-action__vertical-indent_base: 6px;
+@nx-dropdown-action__horizontal-indent_base: 9px;
+@nx-dropdown-action__font-size_base: 12px;
+@nx-dropdown-action__line-height_base: @nx-line-height_font-size-12;
+@nx-dropdown-action__color_base: @la-color_oxford-blue-base;
+@nx-dropdown-action__font-weight_base: 400;
+@nx-dropdown-action__font-weight_hover: 500;
+@nx-dropdown-action__font-weight_focus: bold;
+@nx-dropdown-action__transition_base: background-color @duration_sm @easing_base, opacity @duration_sm @easing_base;
+@nx-dropdown-action__background-color_hover: fade(@la-color_mystic-base, 60);
+
+.nx-dropdown-action-set-item__typography_base() {
+  .nx-typography-mixin(@nx-dropdown-action__font-size_base, @nx-dropdown-action__line-height_base, @nx-dropdown-action__color_base, @nx-dropdown-action__font-weight_base);
+}
+
+.nx-dropdown-positioning(@dropdownPosition: bottomRight) {
+  & when (@dropdownPosition = left) {
+    top: 0;
+    left: auto;
+    right: 100%;
+    margin-top: 0;
+    margin-right: 4px;
+  }
+
+  & when (@dropdownPosition = bottomLeft), (@dropdownPosition = bottomRight) {
+    top: 100%;
+    margin-top: 4px;
+  }
+
+  & when (@dropdownPosition = bottomLeft) {
+    left: 0;
+  }
+
+  & when (@dropdownPosition = bottomRight) {
+    left: auto;
+    right: 0;
+  }
+}
+
+.nx-dropdown-arr-positioning(@dropdownPosition: bottomRight) {
+  &:before,
+  &:after {
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  & when (@dropdownPosition = topRight), (@dropdownPosition = bottomRight) {
+    &:before,
+    &:after {
+      right: 8px;
+    }
+  }
+
+  & when (@dropdownPosition = bottomRight) {
+    &:before,
+    &:after {
+      bottom: 100%;
+    }
+
+    &:after {
+      border-color: transparent;
+      border-bottom-color: @la-color_white-base;
+      border-width: 4px;
+      margin-right: 1px;
+    }
+
+    &:before {
+      border-color: transparent;
+      border-bottom-color: @la-color_geyser-base;
+      border-width: 5px;
+    }
+  }
+
+  & when (@dropdownPosition = null) {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}

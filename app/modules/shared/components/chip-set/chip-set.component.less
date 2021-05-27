@@ -1,0 +1,59 @@
+@import 'mixins';
+@import 'helpers_status';
+@import '../chip/styles/chip-list.less';
+
+@nx-chips-input-clear-btn__width: 20px;
+
+.nx-chips-input__body {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 116px;
+  padding: @la-form-element__padding-vertical_has-tags @nx-chips-input-clear-btn__width 0 @la-form-element__padding-horizontal_has-tags;
+  border-radius: 2px;
+  overflow-y: auto;
+  background-color: @la-color_white-base;
+}
+
+.nx-chips-input__body_size_md {
+  min-height: @la-form-element__line-height_base*2 + @la-form-element__padding-vertical_base * 2;
+}
+
+.nx-chips-input__body-input {
+  flex-basis: 100%;
+  height: @la-form-element__line-height_base;
+  line-height: @la-form-element__line-height_base;
+  box-sizing: content-box;
+  padding: @la-form-element__padding-vertical_base - @la-form-element__padding-vertical_has-tags 0 6px @la-form-element__padding-horizontal_base - @la-form-element__padding-horizontal_has-tags;
+  border: none;
+}
+
+.nx-chips-input__clear-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  font-size: 9px;
+  line-height: 11px;
+  color: @la-color_regent-gray-base;
+  width: @nx-chips-input-clear-btn__width;
+  padding-top: 8px;
+  transition: color .2s ease;
+  box-sizing: content-box;
+  &:hover {
+    color: @la-color_oxford-blue-base;
+  }
+}
+
+:host-context(.nx-form-field_is-disabled) {
+  .nx-chips-input__body {
+    background-color: @la-form-element__background-color_is-disabled;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+:host-context(.nx-form-field__body-main) {
+  width: 100%;
+}
